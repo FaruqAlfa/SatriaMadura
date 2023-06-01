@@ -19,7 +19,6 @@ class Barang_Keluar extends Model
         'id',
         'staff_id',
         'jumlah',
-        'harga',
         'total',
         'tanggal_keluar',
     ];
