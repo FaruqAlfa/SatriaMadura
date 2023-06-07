@@ -22,13 +22,19 @@ class AuthController extends Controller
         if (Auth::guard('web')->attempt($credentials)) {
             $request->session()->regenerate();
  
-            return redirect('dashboard');
+            return redirect('dashboardSupplier');
         }
 
         if (Auth::guard('admin')->attempt($credentials)) {
             $request->session()->regenerate();
  
-            return redirect('dashboard');
+            return redirect('dashboardAdmin');
+        }
+
+        if (Auth::guard('staff')->attempt($credentials)) {
+            $request->session()->regenerate();
+ 
+            return redirect('dashboardStaff');
         }
  
         return back()->withErrors([

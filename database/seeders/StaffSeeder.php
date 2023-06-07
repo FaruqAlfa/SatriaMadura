@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class StaffSeeder extends Seeder
 {
@@ -16,8 +17,14 @@ class StaffSeeder extends Seeder
     public function run()
     {
         DB::table('staff')->insert([
+
+            'username' => 'Staff',
+            'name' => 'StaffGudang',
+            'email' => 'staff@gmail.com',
+            'password' => Hash::make('staff123'),
             'nama_staff'=> 'Kholid Maulidi',
             'no_telepon'=> '087750897177'
+
         ]);
     }
 }
