@@ -24,11 +24,17 @@ use function Ramsey\Uuid\v1;
 //     return view('Auth.login');
 // });
 
-// Auth::routes();
+
+Auth::routes();
+Route::get('/barang', [App\Http\Controllers\BarangController::class, 'getBarang']);
+Route::get('/staff', [App\Http\Controllers\StaffController::class, 'getStaff']);
+Route::get('/supplier', [App\Http\Controllers\SupplierController::class, 'getSupplier']);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/login', [AuthController::class,'login'])->name('login');
 Route::post('/login', [AuthController::class,'prosesLogin']);
 Route::post('/logout',[AuthController::class,'logout'])->name('logout');
+
 
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/Postregister', [RegisterController::class, 'register'])->name('postregister');
@@ -45,3 +51,7 @@ Route::get('/dashboardStaff', function(){
     return view('dashboard.dashboardStaff');
 })->middleware('auth:staff');
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/dashboard', function(){
+    return view('dashboardAdmin');
+})->middleware('auth:admin,web');

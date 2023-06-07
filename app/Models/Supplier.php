@@ -4,23 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Barang_Keluar;
+use App\Models\Barang_Masuk;
 
-class Staff extends Model
+class Supplier extends Model
 {
     use HasFactory;
 
-    protected $table="staff"; 
+    protected $table="supplier"; 
     public $timestamps= false;
     protected $primaryKey = 'id';
 
     protected $fillable = [
         'id',
-        'nama_staff',
+        'nama_supplier',
         'no_telepon',
     ];
 
-    public function barang_keluar(){
-        return $this->hasMany(Barang_Keluar::class);
+    public function barang_masuk(){
+        return $this->hasMany(Barang_Masuk::class);
     }
 }
