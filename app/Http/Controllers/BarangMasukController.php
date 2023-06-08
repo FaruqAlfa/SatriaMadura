@@ -105,7 +105,8 @@ class BarangMasukController extends Controller
      */
     public function edit($id)
     {
-        //
+        $barang_masuk = Barang_Masuk::find($id);
+        return view('perbarangan.editBarangMasuk', compact('barang_masuk'));
     }
 
     /**
@@ -117,7 +118,35 @@ class BarangMasukController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'jumlah' => 'required',
+        ]);
+
+        $barang_masuk = Barang_Masuk::findOrFail($id);
+
+        // $barang_masuk = Barang_Masuk::findOrFail($id);
+        $barang = Barang::findOrFail($barang_masuk->barang_id);
+        
+        // Mengembalikan jumlah stok barang sebelumnya
+        $barang->stok = $barang->stok - $barang_masuk->jumlah;
+
+        $barang_masuk->jumlah = $request->get('jumlah');
+        $barang_masuk->save();
+        // Mengupdate jumlah stok barang dengan nilai baru
+        $barang->stok = $barang->stok + $request->jumlah;
+        $barang->save();
+
+        $barang_masuk->harga=$barang->harga;
+        $harga = $barang->harga;
+        $total = $request->jumlah *$harga;
+
+        $barang_masuk->total = $total;
+        $barang_masuk->jumlah = $request->get('jumlah');
+        $barang_masuk->save();
+
+            
+        return redirect()->route('barangmasuk.index')
+        ->with('success', 'Barang Masuk Berhasil Ditambahkan');
     }
 
     /**
