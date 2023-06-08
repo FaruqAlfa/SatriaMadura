@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('staff', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->string('username', 25)->after('id')->nullable()->uniqie();
             $table->string('name')->after('username');
             $table->string('email')->after('name')->unique();
@@ -29,7 +29,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('table', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('username');
             $table->dropColumn('name');
             $table->dropColumn('email');

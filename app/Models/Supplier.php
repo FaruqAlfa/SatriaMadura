@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+// use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use App\Models\Barang_Masuk;
+use Illuminate\Foundation\Auth\User as Model;
 
 class Supplier extends Model
 {
@@ -15,9 +17,9 @@ class Supplier extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'id',
-        'nama_supplier',
-        'no_telepon',
+        'name',
+        'username',
+        'password',
     ];
 
     public function barang_masuk(){
