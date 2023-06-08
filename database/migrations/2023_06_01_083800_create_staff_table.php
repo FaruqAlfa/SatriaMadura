@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('staff', function (Blueprint $table) {
-            $table->id();
-            $table->string('username',25)->nullable()->uniqiue();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+        Schema::table('staff', function (Blueprint $table) {
+            $table->string('username', 25)->after('id')->nullable()->uniqie();
+            $table->string('name')->after('username');
+            $table->string('email')->after('name')->unique();
+            $table->string('password')->after('email');
+            // $table->rememberToken()->after('password');
         });
     }
 
@@ -31,6 +29,11 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('staff');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('username');
+            $table->dropColumn('name');
+            $table->dropColumn('email');
+            $table->dropColumn('password');
+        });
     }
 };
