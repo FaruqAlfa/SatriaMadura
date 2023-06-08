@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BarangMasukController;
+use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\HomeController;
 use App\Http\Middleware\Authenticate;
 use App\Http\Controllers\RegisterController;
@@ -26,6 +28,8 @@ use function Ramsey\Uuid\v1;
 
 
 Auth::routes();
+Route::resource('barangmasuk', BarangMasukController::class);
+Route::resource('barangkeluar', BarangKeluarController::class);
 Route::get('/barang', [App\Http\Controllers\BarangController::class, 'getBarang']);
 Route::get('/staff', [App\Http\Controllers\StaffController::class, 'getStaff']);
 Route::get('/supplier', [App\Http\Controllers\SupplierController::class, 'getSupplier']);
