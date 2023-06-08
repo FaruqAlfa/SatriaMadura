@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Barang;
 use App\Models\Staff;
+use App\Models\Lap_Barang_Keluar;
 
 class Barang_Keluar extends Model
 {
@@ -29,5 +30,9 @@ class Barang_Keluar extends Model
 
     public function barang(){
         return $this->belongsTo(Barang::class);
+    }
+
+    public function lap_barang_keluar(){
+        return $this->hasMany(Lap_Barang_Keluar::class);
     }
 }
