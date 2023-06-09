@@ -85,7 +85,8 @@ class BarangKeluarController extends Controller
      */
     public function edit($id)
     {
-        //
+        $barang_keluar = Barang_Keluar::find($id);
+        return view('perbarangan.editBarangKeluar', compact('barang_keluar'));
     }
 
     /**
@@ -97,7 +98,36 @@ class BarangKeluarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'jumlah' => 'required',
+        ]);
+
+        $barang_keluar = Barang_Keluar::findOrFail($id);
+
+        // $barang_masuk = Barang_Masuk::findOrFail($id);
+        $barang = Barang::findOrFail($barang_keluar->barang_id);
+        
+        // Mengembalikan jumlah stok barang sebelumnya
+        $barang->stok = $barang->stok + $barang_keluar->jumlah;
+
+        $barang_keluar->jumlah = $request->get('jumlah');
+        $barang_keluar->save();
+        // Mengupdate jumlah stok barang dengan nilai baru
+        $barang->stok = $barang->stok - $request->jumlah;
+        $barang->save();
+
+        $barang_keluar->harga=$barang->harga;
+        $harga = $barang->harga;
+        $total = $request->jumlah *$harga;
+
+        $barang_keluar->total = $total;
+
+        $barang_keluar->jumlah = $request->get('jumlah');
+        $barang_keluar->save();
+
+            
+        return redirect()->route('barangkeluar.index')
+        ->with('success', 'Barang Keluar Berhasil Ditambahkan');
     }
 
     /**

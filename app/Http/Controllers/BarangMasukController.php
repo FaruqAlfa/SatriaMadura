@@ -16,8 +16,24 @@ class BarangMasukController extends Controller
     public function index()
     {
         $barang_masuk = Barang_Masuk::all();
-
         return view('perbarangan.barang_masuk', ['Barang_Masuk' => $barang_masuk]);
+
+        if (request('search')) {
+            $barang_masuk = Barang_Masuk::where('id', 'LIKE', '%' . request('search') . '%')
+            ->orWhere('supplier_id', 'LIKE', '%' . request('search') . '%')
+            ->orWhere('jumlah', 'LIKE', '%' . request('search') . '%')
+            ->orWhere('total', 'LIKE', '%' . request('search') . '%')
+            ->orWhereHas('barang_masuk', function ($query) {
+                $query->where('tanggal_masuk', 'like', '%' . request('search') . '%');
+            })->with('barang_masuk')
+            ->paginate(5);
+
+            return view('perbarangan.barang-masuk', ['paginate' => $barang_masuk]);   
+        } else {
+            $barang_masuk = Barang_Masuk::with('barang_masuk')->get(); // Mengambil semua isi tabel
+            $paginate = Barang_Masuk::orderBy('id', 'asc')->Paginate(5);
+            return view('perbarangan.barang-masuk', ['barang_masuk' => $barang_masuk, 'paginate' => $paginate]);
+        }
     }
 
     /**
@@ -89,7 +105,8 @@ class BarangMasukController extends Controller
      */
     public function edit($id)
     {
-        //
+        $barang_masuk = Barang_Masuk::find($id);
+        return view('perbarangan.editBarangMasuk', compact('barang_masuk'));
     }
 
     /**
@@ -101,7 +118,35 @@ class BarangMasukController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'jumlah' => 'required',
+        ]);
+
+        $barang_masuk = Barang_Masuk::findOrFail($id);
+
+        // $barang_masuk = Barang_Masuk::findOrFail($id);
+        $barang = Barang::findOrFail($barang_masuk->barang_id);
+        
+        // Mengembalikan jumlah stok barang sebelumnya
+        $barang->stok = $barang->stok - $barang_masuk->jumlah;
+
+        $barang_masuk->jumlah = $request->get('jumlah');
+        $barang_masuk->save();
+        // Mengupdate jumlah stok barang dengan nilai baru
+        $barang->stok = $barang->stok + $request->jumlah;
+        $barang->save();
+
+        $barang_masuk->harga=$barang->harga;
+        $harga = $barang->harga;
+        $total = $request->jumlah *$harga;
+
+        $barang_masuk->total = $total;
+        $barang_masuk->jumlah = $request->get('jumlah');
+        $barang_masuk->save();
+
+            
+        return redirect()->route('barangmasuk.index')
+        ->with('success', 'Barang Masuk Berhasil Ditambahkan');
     }
 
     /**
