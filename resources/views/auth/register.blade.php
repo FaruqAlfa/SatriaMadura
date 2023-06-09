@@ -14,45 +14,45 @@
               @method('POST')
               <!-- Name input -->
               <div class="form-outline mb-4">
+                <label class="name" for="name">Name</label>
                   <input type="name" id="name" name="name" class="form-control form-control-lg"
                     placeholder="Masukkan Nama Anda" />
-                  <label class="name" for="name">Name</label>
                 </div>
 
                 <!-- Supplier Name input -->
               <div class="form-outline mb-4">
+                <label class="name" for="name">Nama Supplier</label>
                 <input type="nama_supplier" id="nama_supplier" name="nama_supplier" class="form-control form-control-lg"
                   placeholder="Masukkan Nama Supplier" />
-                <label class="name" for="name">Nama Supplier</label>
               </div>
 
             <!-- Username input -->
             <div class="form-outline mb-4">
+              <label class="username" for="username">Username</label>
               <input type="username" id="username" name="username" class="form-control form-control-lg"
                 placeholder="Masukkan Username yang Pasti" />
-              <label class="username" for="username">Username</label>
             </div>
 
 
               <!-- Email input -->
               <div class="form-outline mb-4">
+                <label class="email" for="email">Email</label>
                 <input type="email" id="email" name="email" class="form-control form-control-lg"
                   placeholder="Masukkan E-mail Anda" />
-                <label class="email" for="email">Email</label>
               </div>
 
             <!-- Password input -->
             <div class="form-outline mb-3">
+              <label class="password" for="password">Password</label>
               <input type="password" id="password" name="password" class="form-control form-control-lg"
                 placeholder="Masukkan password" />
-              <label class="password" for="password">Password</label>
             </div>       
             
              <!-- Nomor Telepon input -->
              <div class="form-outline mb-3">
+               <label class="no_telepon" for="no_telepon">Nomor Telepon</label>
               <input type="no_telepon" id="no_telepon" name="no_telepon" class="form-control form-control-lg"
                 placeholder="Masukkan Nomor Telepon" />
-              <label class="no_telepon" for="no_telepon">Nomor Telepon</label>
             </div>       
   
             <div class="text-center text-lg-start mt-4 pt-2">

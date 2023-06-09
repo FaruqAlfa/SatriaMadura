@@ -13,16 +13,16 @@
             @csrf
           <!-- Email input -->
           <div class="form-outline mb-4">
-            <input type="username" id="username" name="username" class="form-control form-control-lg"
-              placeholder="Enter a valid username" />
             <label class="username" for="username">Username</label>
+            <input type="username" id="username" name="username" class="form-control form-control-lg"
+            placeholder="Enter a valid username" />
           </div>
 
           <!-- Password input -->
           <div class="form-outline mb-3">
+            <label class="password" for="password">Password</label>
             <input type="password" id="password" name="password" class="form-control form-control-lg"
               placeholder="Enter password" />
-            <label class="password" for="password">Password</label>
           </div>
 
           <div class="d-flex justify-content-between align-items-center">
