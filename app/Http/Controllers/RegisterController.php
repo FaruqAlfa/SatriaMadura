@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterUserRequest;
-use App\Models\Users;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Http\Request;
@@ -21,14 +21,14 @@ class RegisterController extends Controller
 
 
         $request->validate([
-            'username' => 'required|string|max:255',
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
+            'username' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
         ]);
 
         //Buat user baru
-        Users::create([
+        User::create([
             'username' => $request-> get('username'),
             'name' => $request->get('name'),
             'email' => $request->get('email'),
