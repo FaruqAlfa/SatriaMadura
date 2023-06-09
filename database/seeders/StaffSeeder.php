@@ -18,11 +18,11 @@ class StaffSeeder extends Seeder
     {
         DB::table('staff')->insert([
 
-            'username' => 'Staff',
             'name' => 'StaffGudang',
+            'nama_staff'=> 'Kholid Maulidi',
+            'username' => 'Staff',
             'email' => 'staff@gmail.com',
             'password' => Hash::make('staff123'),
-            'nama_staff'=> 'Kholid Maulidi',
             'no_telepon'=> '087750897177'
 
         ]);
