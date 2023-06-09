@@ -17,9 +17,9 @@ class Staff extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        // 'id',
-        // 'nama_staff',
-        // 'no_telepon',
+        'id',
+        'nama_staff',
+        'no_telepon',
         'name',
         'username',
         'password', 

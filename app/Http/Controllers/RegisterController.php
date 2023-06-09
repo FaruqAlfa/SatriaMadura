@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterUserRequest;
-use App\Models\User;
+use App\Models\Supplier;
 use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Http\Request;
@@ -21,18 +21,22 @@ class RegisterController extends Controller
 
 
         $request->validate([
-            'username' => 'required',
             'name' => 'required',
+            'nama_supplier' => 'required',
+            'username' => 'required',
             'email' => 'required',
             'password' => 'required',
+            'no_telepon' => 'required',
         ]);
 
         //Buat user baru
-        User::create([
-            'username' => $request-> get('username'),
+        Supplier::create([
             'name' => $request->get('name'),
+            'nama_supplier' => $request->get('nama_supplier'),
+            'username' => $request->get('username'),
             'email' => $request->get('email'),
             'password' => Hash::make($request->get('password')),
+            'no_telepon' => $request->get('no_telepon'),
         ]);
 
         // $user = new User; 
