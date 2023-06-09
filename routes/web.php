@@ -1,13 +1,16 @@
 <?php
 
+use function Ramsey\Uuid\v1;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
-use App\Http\Middleware\Authenticate;
-use App\Http\Controllers\RegisterController;
 
-use function Ramsey\Uuid\v1;
+use App\Http\Controllers\StaffController;
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SupplierController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +55,6 @@ Route::get('/dashboardStaff', function(){
 })->middleware('auth:staff');
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/dashboard', function(){
-    return view('dashboardAdmin');
-})->middleware('auth:admin,web');
+// Route::get('/dashboard', function(){
+//     return view('dashboardAdmin');
+// })->middleware('auth:admin,web');
