@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang_Keluar;
 use App\Models\Lap_Barang_Keluar;
+use App\Models\Barang;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\PDF;
+use Carbon\Carbon;
 
 class LapBarangKeluarController extends Controller
 {
@@ -15,20 +17,71 @@ class LapBarangKeluarController extends Controller
         return view('laporan.lap_barang_keluar', compact('barang_keluar'));
     }
 
-    public function cetakPDF()
+    public function store(Request $request)
     {
-        // $lap_barang_keluar = Lap_Barang_Keluar::with('barang_keluar')->get();
+        $request->validate([
+            'staff_id' => 'required',
+            'jumlah' => 'required',
+            'tanggal_keluar' => 'required',
+        ]);
 
-        // $pdf = new Dompdf();
-        // $pdf->loadHtml(View::make('lap_barang_keluar.pdf', compact('lap_barang_keluar')));
-        // $pdf->setPaper('A4', 'portrait');
-        // $pdf->render();
+        $lap_barang_keluar = new Barang_Keluar;
+        $staff_id = $request->get('staff_id');
+        $lap_barang_keluar->staff_id = $staff_id;
+        $lap_barang_keluar->barang_id = $staff_id;
+        $lap_barang_keluar->jumlah = $request->get('jumlah');
 
-        // return $pdf->stream('lap_barang_keluar.pdf');
+        $jumlah = $request->input('jumlah');
+        $harga = $lap_barang_keluar->harga = $staff_id;
 
-        $lap_barang_keluar = Lap_Barang_Keluar::all();
- 
-    	$pdf = PDF::loadview('lap_barang_keluar_pdf',['lap_barang_keluar'=>$lap_barang_keluar]);
-    	return $pdf->download('lap_barang_keluar_pdf');
+        $barang = Barang::findOrFail($staff_id);
+        $barang = $lap_barang_keluar->barang ?? new Barang();
+        $lap_barang_keluar->harga = $barang->harga;
+        $harga = $barang->harga;
+        $total = $jumlah * $harga;
+        $barang->stok = $barang->stok + $request->jumlah;
+        $barang->save();
+        $lap_barang_keluar->total = $total;
+        $lap_barang_keluar->tanggal_keluar = $request->get('tanggal_keluar');
+        $lap_barang_keluar->save();
+
+
+        return redirect()->route('barangkeluar.index')
+            ->with('success', 'Barang keluar Berhasil Ditambahkan');
+    }
+
+    public function cetakPDF1(Request $request)
+    {
+        $lap_barang_keluar = Barang_Keluar::where('tanggal_keluar', $request->get('tanggal_keluar'))->get();
+
+        $pdf = PDF::loadview('laporan.lap_barang_keluar_pdf', ['lap_barang_keluar' => $lap_barang_keluar]);
+        $pdf->setPaper('A4', 'portrait');
+        return $pdf->stream();
+    }
+
+    public function cetakPDF1All()
+    {
+        $lap_barang_keluar = Barang_Keluar::all();
+
+        $pdf = PDF::loadview('laporan.lap_barang_keluar_pdf', ['lap_barang_keluar' => $lap_barang_keluar]);
+        $pdf->setPaper('A4', 'portrait');
+        return $pdf->stream();
+    }
+
+    public function filterByTanggalKeluar(Request $request)
+    {
+
+        // Validasi input tanggal
+        $request->validate([
+            'tanggal_keluar' => 'required',
+        ]);
+        $tanggal_keluar = $request->get('tanggal_keluar');
+
+        // // Ambil data tanggal_keluar yang tersedia di database
+        // $tanggal_keluar = Barang_Keluar::pluck('tanggal_keluar', 'id');
+
+        // Filtering data berdasarkan tanggal_keluar
+        $barang_keluar = Barang_Keluar::where('tanggal_keluar', $tanggal_keluar)->get();
+        return view('laporan.lap_barang_keluar', compact('barang_keluar'));
     }
 }

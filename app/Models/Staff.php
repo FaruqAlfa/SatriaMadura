@@ -22,8 +22,7 @@ class Staff extends Model
         'password',
     ];
 
-    public function barang_keluar()
-    {
+    public function barang_keluar(){
         return $this->hasMany(Barang_Keluar::class);
     }
 }

@@ -10,8 +10,8 @@ use App\Models\Staff;
 class Lap_Barang_Keluar extends Model
 {
     use HasFactory;
-    protected $table='lap_barang_keluar';
-    public $timestamps= false;
+    protected $table = 'lap_barang_keluar';
+    public $timestamps = false;
     protected $primaryKey = 'id';
 
     protected $fillable = [

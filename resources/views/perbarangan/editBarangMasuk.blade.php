@@ -43,6 +43,7 @@
                <input type="no_handphone" name="no_handphone" class="formcontrol" id="no_handphone"value="{{ $Mahasiswa->no_handphone }}" ariadescribedby="no_handphone">
             </div> --}}
             <button type="submit" class="btn btn-primary">Submit</button>
+            <a class="btn btn-success mt-3" href="{{ route('barangmasuk.index') }}">Kembali</a>
          </form>
          </div>
       </div>
