@@ -3,15 +3,15 @@
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
-        <div class="pull-left mt-2">
-            <h2>BARANG MASUK PERBARANGAN</h2>
+        <div class="pull-left mt-4">
+            <h2 style="text-align: center">BARANG MASUK PERBARANGAN</h2>
         </div>
         <div class="float-right my-2">
             <a class="btn btn-success" href="{{route('barangmasuk.create')}}">Input Barang</a>
         </div>
-        <div class="col-md-6 mt-3">
+        <div class="col-md-6 mt-4">
             <form action="{{ url('barang_masuk')}}" method="get">
-                <input type="search" class="form-control" name ="search" value="{{Request::get('search')}}" id="inputEmail" placeholder="Search Here">
+                <input type="search" class="form-control" name ="search" value="{{Request::get('search')}}" id="inputEmail" placeholder="Search Here"><br>
                 <button class="btn btn-secondary" type="submit">Cari</button>
             </form>
         </div>
@@ -41,7 +41,7 @@
         <td>
             <form action="{{ route('barangmasuk.destroy',$barang_masuk->id)}}" method="POST">
                 <a class="btn btn-info" href="{{route('barangmasuk.show',$barang_masuk->id)}}">Show</a>
-                <a class="btn btnprimary" href="{{ route('barangmasuk.edit',$barang_masuk->id) }}">Edit</a>
+                <a class="btn btn-primary" href="{{ route('barangmasuk.edit',$barang_masuk->id) }}">Edit</a>
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">Delete</button>

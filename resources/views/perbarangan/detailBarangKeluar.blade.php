@@ -10,8 +10,8 @@
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"><b>Nama Staff: </b>{{ $barang_keluar->staff->nama_staff }}</li>
-                        <li class="list-group-item"><b>Nama Barang:</b>{{ $barang_keluar->barang->nama_barang }}</li>
-                        <li class="list-group-item"><b>Jumlah:</b>{{ $barang_keluar->jumlah }}</li>
+                        <li class="list-group-item"><b>Nama Barang: </b>{{ $barang_keluar->barang->nama_barang }}</li>
+                        <li class="list-group-item"><b>Jumlah: </b>{{ $barang_keluar->jumlah }}</li>
                         <li class="list-group-item"><b>Harga: </b>{{ $barang_keluar->harga}}</li>
                         <li class="list-group-item"><b>Total: </b>{{ $barang_keluar->total }}</li>
                         <li class="list-group-item"><b>Tanggal keluar: </b>{{ $barang_keluar->tanggal_keluar }}</li>
