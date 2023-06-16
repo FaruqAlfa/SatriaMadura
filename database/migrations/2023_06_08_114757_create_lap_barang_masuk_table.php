@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('lap_barang_masuk', function (Blueprint $table) {
             $table->id();
+            
             $table->timestamps();
         });
     }

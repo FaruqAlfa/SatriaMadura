@@ -26,22 +26,20 @@
                             <label for="supplier_id">supplier_id</label>
                             <input type="text" name="supplier_id" class="formcontrol" id="supplier_id" aria-describedby="supplier_id">
                         </div>
-                        {{-- <div class="form-group">
+                        <div class="form-group">
                             <label for="barang_id">barang_id</label>
                             <input type="barang_id" name="barang_id" class="formcontrol" id="barang_id" aria-describedby="barang_id">
-                        </div> --}}
+                        </div>
                         </div>
                         <div class="form-group">
                             <label for="jumlah">jumlah</label>
-
-                            <input type="jumlah" name="jumlah" class="formcontrol" id="jumlah"
-                                aria-describedby="jumlah">
+                            <input type="jumlah" name="jumlah" class="formcontrol" id="jumlah" aria-describedby="jumlah">
                         </div>
-                        {{-- <div class="form-group">
+                        <div class="form-group">
                             <label for="harga">harga</label>
                             <input type="harga" name="harga" class="formcontrol" id="harga"
                                 aria-describedby="harga">
-                        </div> --}}
+                        </div>
                         {{-- <div class="form-group">
                             <label for="total">total</label>
                             <input type="total" name="total" class="formcontrol" id="total"

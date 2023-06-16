@@ -67,6 +67,7 @@ Route::middleware('auth:web')->group(function (){
 });
 
 
+
 Route::middleware('auth:staff')->group(function (){
     Route::get('/dashboardStaff', [StaffController::class, 'index'])->name('dashboardStaff');
     Route::resource('/barangKeluar', BarangKeluarController::class);
