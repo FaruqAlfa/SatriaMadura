@@ -89,6 +89,11 @@
               </p>
             </a>
           </li>
+          <li class="nav-item d-none d-sm-inline-block">
+            <a class="nav-link" href="{{ route('logoutSupplier')}}">
+              Logout
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

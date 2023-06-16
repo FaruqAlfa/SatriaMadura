@@ -46,10 +46,38 @@ class AuthController extends Controller
         return 'username';
     }
 
-    public function logout(Request $request){
+    // public function logout(Request $request){
+    //     Auth::logout();
+    //     $request->session()->invalidate();
+    //     $request->session()->regenerateToken();
+    //     return redirect('/login');
+    // }
+
+    public function logout(Request $request)
+    {
         Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        
+    }
+    
+    public function logoutAdmin(Request $request)
+    {
+        Auth::logout();
+        Auth::guard('admin')->logout();
         return redirect('/login');
+    }
+    
+    public function logoutStaff(Request $request)
+    {
+        Auth::logout();
+        Auth::guard('staff')->logout();
+        return redirect('/login');
+    }
+    
+    public function logoutSupplier(Request $request)
+    {
+        Auth::logout();
+        Auth::guard('staff')->logout();
+        return redirect('/login');
+
     }
 }
