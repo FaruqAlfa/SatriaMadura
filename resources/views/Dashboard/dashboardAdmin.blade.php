@@ -16,11 +16,11 @@
   </div>
 
   <!-- Navbar -->
-  @include('layoutsStaff.navbarStaff')
+  @include('layoutsAdmin.navbarAdmin')
   <!-- /.navbar -->
 
   <!-- Sidebar -->
- @include('layoutsStaff.sidebarStaff')
+ @include('layoutsAdmin.sidebarAdmin')
   <!-- /.Sidebar -->
 
   <!-- Content Wrapper. Contains page content -->
@@ -39,13 +39,13 @@
 
     <!-- Main content -->
     <section class="content">
-      
+      @yield('staff')
     </section>
     <!-- /.content -->
   </div>
   
 <!-- Footer -->
-@include('layoutsStaff.footerStaff')
+@include('layoutsAdmin.footerAdmin')
 <!-- /.footer -->
 
   <!-- Control Sidebar -->
@@ -56,6 +56,6 @@
 </div>
 <!-- ./wrapper -->
 
-@include('layoutsStaff.js')
+@include('layoutsAdmin.js')
 </body>
 </html>
