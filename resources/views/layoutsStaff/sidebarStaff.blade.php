@@ -53,7 +53,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="#" class="nav-link">
               <img src="img/gudang.png" class="nav-icon">
               <p>
@@ -61,9 +61,9 @@
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-          </li>
+          </li> --}}
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('barangkeluar.index') }}" class="nav-link">
               <img src="img/location.png" class="nav-icon">
               <p>
                 Dsitribusi

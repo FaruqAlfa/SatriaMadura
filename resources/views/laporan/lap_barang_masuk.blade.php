@@ -6,6 +6,22 @@
         <div class="pull-left mt-5">
             <h2 style="text-align: center">Data Pelaporan Barang Masuk</h2>
         </div><br>
+
+        <style type="text/css">
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            th, td {
+                text-align: left;
+                padding: 8px;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+        </style>
         
         <div class="col-md-7 mt-2">
             <form action="{{ route('filterByTanggalMasuk') }}" method="POST">
