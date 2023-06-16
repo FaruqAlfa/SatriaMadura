@@ -32,11 +32,18 @@
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="true">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
+<<<<<<< HEAD
             <a href="{{ route('dashboardAdmin') }}" class="nav-link">
+=======
+
+            <a href="{{ route('dashboardAdmin') }}" class="nav-link">
+
+          
+>>>>>>> 633e2af10d865d6b474ff93618e5fe59ed72a7ef
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -82,7 +89,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Data Karyawan
@@ -90,6 +97,12 @@
               </p>
             </a>
           </li>
+          <li class="nav-item d-none d-sm-inline-block">
+            <a class="nav-link" href="{{ route('logoutAdmin')}}">
+              Logout
+            </a>
+          </li>
+      </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
