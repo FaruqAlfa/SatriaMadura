@@ -74,7 +74,7 @@ class BarangKeluarController extends Controller
         $barang_keluar->harga = $barang->harga;
         $harga = $barang->harga;
         $total = $jumlah * $harga;
-        $barang->stok = $barang->stok + $request->jumlah;
+        $barang->stok = $barang->stok - $request->jumlah;
         $barang->save();
         $barang_keluar->total = $total;
         $barang_keluar->tanggal_keluar = $request->get('tanggal_keluar');

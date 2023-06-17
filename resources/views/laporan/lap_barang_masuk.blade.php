@@ -1,4 +1,4 @@
-@extends('perbarangan.layout')
+@extends('Tambah.includeStaff')
 
 @section('content')
 <div class="row">
@@ -36,15 +36,15 @@
                     </select>
                 </div>
 
-                <button type="submit">Filter</button>
+                <a class="btn btn-warning mt-3" href="{{ route('filterByTanggalMasuk') }}">Filter</a>
+                {{-- <button type="submit">Filter</button> --}}
             </form>
 
             <div class="col d-flex justify-content-end align-items-end">
                 <form action="{{ route('cetakPDF2') }}" method="GET">
                     <input type="hidden" name="tanggal_masuk" value="{{$bk->tanggal_masuk}}">
-                    <button type="submit">
-                        <a class="btn btn-primary mt-3">CetakPDF</a>
-                    </button>
+
+                    <a class="btn btn-primary mt-3 mr-3" href="{{ route('cetakPDF2') }}">CetakPDF</a>
                 </form>
 
                 <a class="btn btn-primary mt-3" href="{{ route('cetakPDF2All') }}">CetakPDFAll</a>
@@ -73,8 +73,12 @@
             <td>{{ $item->tanggal_masuk }}</td>
         </tr>
     @endforeach
-</table>
+</table><br>
 
-<a class="btn btn-success mt-3" href="{{ route('lap_barang_masuk') }}">Kembali</a>
+@if(isset($total_harga))
+    <h2 id="total_harga">Total Harga: {{ $total_harga }}</h2>
+@endif
+
+<a class="btn btn-success mt-3" href="{{ route('lap_barang_masuk') }}">Kembali</a><br><br>
 {{-- {{$Barang_masuk->links()}} --}}
 @endsection

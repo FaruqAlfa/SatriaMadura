@@ -13,7 +13,9 @@ class LapBarangMasukController extends Controller
     public function index()
     {
         $barang_masuk = Barang_Masuk::all();
-        return view('laporan.lap_barang_masuk', compact('barang_masuk'));
+        // Menghitung jumlah total harga
+        $total_harga = $barang_masuk->sum('total');
+        return view('laporan.lap_barang_masuk', compact('barang_masuk', 'total_harga'));
     }
 
     public function store(Request $request)
@@ -81,6 +83,9 @@ class LapBarangMasukController extends Controller
 
         // Filtering data berdasarkan tanggal_masuk
         $barang_masuk = Barang_Masuk::where('tanggal_masuk', $tanggal_masuk)->get();
-        return view('laporan.lap_barang_masuk', compact('barang_masuk'));
+
+        // Menghitung jumlah total harga
+        $total_harga = $barang_masuk->sum('total');
+        return view('laporan.lap_barang_masuk', compact('barang_masuk', 'total_harga'));
     }
 }

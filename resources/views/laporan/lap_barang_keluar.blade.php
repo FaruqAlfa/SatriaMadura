@@ -1,4 +1,4 @@
-@extends('perbarangan.layout')
+@extends('Tambah.includeStaff')
 
 @section('content')
 <div class="row">
@@ -36,15 +36,15 @@
                     </select>
                 </div>
 
-                <button type="submit">Filter</button>
+                <a class="btn btn-warning mt-3" href="{{ route('filterByTanggalKeluar') }}">Filter</a>
+                {{-- <button type="submit">Filter</button> --}}
             </form>
 
             <div class="col d-flex justify-content-end align-items-end">
                 <form action="{{ route('cetakPDF1') }}" method="GET">
                     <input type="hidden" name="tanggal_keluar" value="{{$bk->tanggal_keluar}}">
-                    <button type="submit">
-                        <a class="btn btn-primary mt-3">CetakPDF</a>
-                    </button>
+                    
+                    <a class="btn btn-primary mt-3 mr-3" href="{{ route('cetakPDF1') }}">CetakPDF</a>
                 </form>
 
                 <a class="btn btn-primary mt-3" href="{{ route('cetakPDF1All') }}">CetakPDFAll</a>

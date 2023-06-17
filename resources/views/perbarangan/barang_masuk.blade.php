@@ -68,6 +68,6 @@
     @endforeach
 </table>
 
-{{ $barang_masuk->links() }}
+{{-- {{ $barang_masuk->links() }} --}}
 
 @endsection

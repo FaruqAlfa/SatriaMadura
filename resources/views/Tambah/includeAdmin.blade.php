@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sistem Informasi Admin</title>
-  @include('layoutsStaff.css')
+  @include('layoutsAdmin.css')
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -16,11 +16,11 @@
   </div>
 
   <!-- Navbar -->
-  @include('layoutsStaff.navbarStaff')
+  @include('layoutsAdmin.navbarAdmin')
   <!-- /.navbar -->
 
   <!-- Sidebar -->
- @include('layoutsStaff.sidebarStaff')
+ @include('layoutsAdmin.sidebarAdmin')
   <!-- /.Sidebar -->
 
   <!-- Content Wrapper. Contains page content -->
@@ -45,7 +45,7 @@
   </div>
   
 <!-- Footer -->
-@include('layoutsStaff.footerStaff')
+@include('layoutsAdmin.footerAdmin')
 <!-- /.footer -->
 
   <!-- Control Sidebar -->
@@ -56,6 +56,6 @@
 </div>
 <!-- ./wrapper -->
 
-@include('layoutsStaff.js')
+@include('layoutsAdmin.js')
 </body>
 </html>
