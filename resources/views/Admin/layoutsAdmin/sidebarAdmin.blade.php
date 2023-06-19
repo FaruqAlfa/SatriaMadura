@@ -36,7 +36,10 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
+
             <a href="{{ route('dashboardAdmin') }}" class="nav-link">
+
+          
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -59,6 +62,7 @@
               <p>
                 Gudang
                 <i class="right fas fa-angle-left"></i>
+
               </p>
             </a>
           </li>

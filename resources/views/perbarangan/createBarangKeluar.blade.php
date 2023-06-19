@@ -33,15 +33,12 @@
                         </div>
                         <div class="form-group">
                             <label for="jumlah">jumlah</label>
-
-                            <input type="jumlah" name="jumlah" class="formcontrol" id="jumlah"
-                                aria-describedby="jumlah">
+                            <input type="jumlah" name="jumlah" class="formcontrol" id="jumlah" aria-describedby="jumlah">
                         </div>
-                        {{-- <div class="form-group">
+                        <div class="form-group">
                             <label for="harga">harga</label>
-                            <input type="harga" name="harga" class="formcontrol" id="harga"
-                                aria-describedby="harga">
-                        </div> --}}
+                            <input type="harga" name="harga" class="formcontrol" id="harga" aria-describedby="harga">
+                        </div>
                         {{-- <div class="form-group">
                             <label for="total">total</label>
                             <input type="total" name="total" class="formcontrol" id="total"

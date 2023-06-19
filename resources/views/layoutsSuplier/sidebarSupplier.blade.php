@@ -36,7 +36,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ url('dashboardSupplier') }}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -63,7 +63,7 @@
             </a>
           </li> --}}
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ url('barangmasuk') }}" class="nav-link">
               <img src="img/location.png" class="nav-icon">
               <p>
                 Dsitribusi

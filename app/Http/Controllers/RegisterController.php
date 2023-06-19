@@ -17,18 +17,8 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        
-
 
         $request->validate([
-            'name' => 'required',
-            'nama_supplier' => 'required',
-            'username' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-            'no_telepon' => 'required',
-        ]);
-
         //Buat user baru
         Supplier::create([
             'name' => $request->get('name'),

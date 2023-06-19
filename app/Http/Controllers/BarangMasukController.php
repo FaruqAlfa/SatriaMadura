@@ -20,19 +20,19 @@ class BarangMasukController extends Controller
 
         if (request('search')) {
             $barang_masuk = Barang_Masuk::where('id', 'LIKE', '%' . request('search') . '%')
-            ->orWhere('supplier_id', 'LIKE', '%' . request('search') . '%')
-            ->orWhere('jumlah', 'LIKE', '%' . request('search') . '%')
-            ->orWhere('total', 'LIKE', '%' . request('search') . '%')
-            ->orWhereHas('barang_masuk', function ($query) {
-                $query->where('tanggal_masuk', 'like', '%' . request('search') . '%');
-            })->with('barang_masuk')
-            ->paginate(5);
+                ->orWhere('supplier_id', 'LIKE', '%' . request('search') . '%')
+                ->orWhere('jumlah', 'LIKE', '%' . request('search') . '%')
+                ->orWhere('total', 'LIKE', '%' . request('search') . '%')
+                ->orWhereHas('barang_masuk', function ($query) {
+                    $query->where('tanggal_masuk', 'like', '%' . request('search') . '%');
+                })->with('barang_masuk')
+                ->paginate(5);
 
-            return view('perbarangan.barang-masuk', ['paginate' => $barang_masuk]);   
+            return view('perbarangan.barang-masuk', ['paginate' => $barang_masuk]);
         } else {
             $barang_masuk = Barang_Masuk::with('barang_masuk')->get(); // Mengambil semua isi tabel
             $paginate = Barang_Masuk::orderBy('id', 'asc')->Paginate(5);
-            return view('perbarangan.barang-masuk', ['barang_masuk' => $barang_masuk, 'paginate' => $paginate]);
+            return view('perbarangan.barang_masuk', ['barang_masuk' => $barang_masuk, 'paginate' => $paginate]);
         }
     }
 
@@ -58,26 +58,26 @@ class BarangMasukController extends Controller
             'supplier_id' => 'required',
             'jumlah' => 'required',
             'tanggal_masuk' => 'required',
-            ]);
-        
+        ]);
+
         $barang_masuk = new Barang_Masuk;
         $supplier_id = $request->get('supplier_id');
-        $barang_masuk->supplier_id= $supplier_id;
-        $barang_masuk->barang_id=$supplier_id;
-        $barang_masuk->jumlah=$request->get('jumlah');
-        
+        $barang_masuk->supplier_id = $supplier_id;
+        $barang_masuk->barang_id = $supplier_id;
+        $barang_masuk->jumlah = $request->get('jumlah');
+
         $jumlah = $request->input('jumlah');
-        $harga = $barang_masuk->harga=$supplier_id;
-        
-        $barang=Barang::findOrFail($supplier_id);
+        $harga = $barang_masuk->harga = $supplier_id;
+
+        $barang = Barang::findOrFail($supplier_id);
         $barang = $barang_masuk->barang ?? new Barang();
-        $barang_masuk->harga=$barang->harga;
+        $barang_masuk->harga = $barang->harga;
         $harga = $barang->harga;
-        $total = $jumlah *$harga;
+        $total = $jumlah * $harga;
         $barang->stok = $barang->stok + $request->jumlah;
         $barang->save();
         $barang_masuk->total = $total;
-        $barang_masuk->tanggal_masuk=$request->get('tanggal_masuk');
+        $barang_masuk->tanggal_masuk = $request->get('tanggal_masuk');
         $barang_masuk->save();
 
 
@@ -126,7 +126,7 @@ class BarangMasukController extends Controller
 
         // $barang_masuk = Barang_Masuk::findOrFail($id);
         $barang = Barang::findOrFail($barang_masuk->barang_id);
-        
+
         // Mengembalikan jumlah stok barang sebelumnya
         $barang->stok = $barang->stok - $barang_masuk->jumlah;
 
@@ -136,17 +136,17 @@ class BarangMasukController extends Controller
         $barang->stok = $barang->stok + $request->jumlah;
         $barang->save();
 
-        $barang_masuk->harga=$barang->harga;
+        $barang_masuk->harga = $barang->harga;
         $harga = $barang->harga;
-        $total = $request->jumlah *$harga;
+        $total = $request->jumlah * $harga;
 
         $barang_masuk->total = $total;
         $barang_masuk->jumlah = $request->get('jumlah');
         $barang_masuk->save();
 
-            
+
         return redirect()->route('barangmasuk.index')
-        ->with('success', 'Barang Masuk Berhasil Ditambahkan');
+            ->with('success', 'Barang Masuk Berhasil Ditambahkan');
     }
 
     /**

@@ -13,18 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-
-        Schema::create('staff', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->nullable();
-            $table->string('nama_staff', 30);
-            $table->string('username',25)->nullable()->uniqiue();
-            $table->string('email')->nullable()->unique();
-            $table->string('password');
-            $table->string('no_telepon', 20)->nullable();
-            $table->rememberToken();
-            $table->timestamps();
-
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('username', 25)->after('id')->nullable()->uniqie();
+            $table->string('name')->after('username');
+            $table->string('email')->after('name')->unique();
+            $table->string('password')->after('email');
+            // $table->rememberToken()->after('password');
         });
     }
 
@@ -35,7 +29,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('table', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('username');
             $table->dropColumn('name');
             $table->dropColumn('email');

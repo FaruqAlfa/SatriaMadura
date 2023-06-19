@@ -6,6 +6,7 @@
   <title>Dashboard Admin</title>
   @include('Admin.layoutsAdmin.css')
 
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
