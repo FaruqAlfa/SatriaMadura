@@ -37,12 +37,12 @@
                 </div>
 
                 <a class="btn btn-warning mt-3" href="{{ route('filterByTanggalKeluar') }}">Filter</a>
-                {{-- <button type="submit">Filter</button> --}}
+
             </form>
 
             <div class="col d-flex justify-content-end align-items-end">
                 <form action="{{ route('cetakPDF1') }}" method="GET">
-                    <input type="hidden" name="tanggal_keluar" value="{{$bk->tanggal_keluar}}">
+                    <input type="hidden" name="tanggal_keluar" value="{{ $bk->tanggal_keluar }}">
                     
                     <a class="btn btn-primary mt-3 mr-3" href="{{ route('cetakPDF1') }}">CetakPDF</a>
                 </form>
@@ -79,11 +79,8 @@
     <h2 id="total_harga">Total Harga: {{ $total_harga }}</h2>
 @endif
 
-<!-- pagination -->
-{{-- {!! $barang_keluar->links() !!} --}}
-
 <a class="btn btn-success mt-3" href="{{ route('lap_barang_keluar') }}">Kembali</a>
-{{-- {{$barang_keluar->links()}} --}}
+
 @endsection
 
 

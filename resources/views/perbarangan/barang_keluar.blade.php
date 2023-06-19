@@ -66,6 +66,10 @@
         </td>
     </tr>
     @endforeach
-</table>
-{{-- {{$Barang_keluar->links()}} --}}
+</table><br>
+
+@if(isset($total_harga1))
+    <h2 id="total_harga1">Total Harga: {{ $total_harga1 }}</h2><br><br>
+@endif
+
 @endsection

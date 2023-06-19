@@ -3,8 +3,15 @@
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
-        <div class="pull-left mt-5">
-            <h2 style="text-align: center">Tampilan Admin Data Karyawan</h2>
+        <div class="pull-left mt-4">
+            <h2 style="text-align: center">Tampilan Admin Barang Keluar</h2>
+        </div><br>
+
+        <div class="col-md-6 mt-4">
+            <form action="{{ url('barang_keluar_admin')}}" method="get">
+                <input type="search" class="form-control" name ="search" value="{{Request::get('search')}}" id="inputEmail" placeholder="Search Here"><br>
+                <button class="btn btn-secondary" type="submit">Cari</button><br><br>
+            </form>
         </div><br>
 
         <style type="text/css">
@@ -22,7 +29,6 @@
                 background-color: #f2f2f2;
             }
         </style>
-        
     </div>
 </div>
 
@@ -31,9 +37,9 @@
         <th>Nama Staff</th>
         <th>Nama Barang</th>
         <th>Jumlah</th>
-        <th>Harga Satuan</th>
-        <th>Total Harga</th>
-        <th>Tanggal Keluar</th>
+        <th>Harga</th>
+        <th>Total</th>
+        <th>Tanggal keluar</th>
     </tr>
 
     @foreach ($barang_keluar as $item)
@@ -48,12 +54,8 @@
     @endforeach
 </table><br>
 
-@if(isset($total_harga))
-    <h2 id="total_harga">Total Harga: {{ $total_harga }}</h2>
+@if(isset($total_harga1))
+    <h2 id="total_harga1">Total Harga: {{ $total_harga1 }}</h2><br><br>
 @endif
 
-<a class="btn btn-success mt-3" href="{{ route('lap_barang_keluar_admin') }}">Kembali</a><br><br>
-
 @endsection
-
-

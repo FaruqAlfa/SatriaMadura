@@ -28,7 +28,7 @@ class BarangKeluarController extends Controller
                 })->with('barang_keluar')
                 ->paginate(5);
 
-            return view('perbarangan.barang-masuk', ['paginate' => $barang_keluar]);
+            return view('perbarangan.barang_masuk', ['paginate' => $barang_keluar]);
         } else {
             $barang_keluar = Barang_Keluar::with('barang_keluar')->get(); // Mengambil semua isi tabel
             $paginate = Barang_Keluar::orderBy('id', 'asc')->Paginate(5);

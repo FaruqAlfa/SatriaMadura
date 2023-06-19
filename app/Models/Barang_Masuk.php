@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Barang;
 use App\Models\Lap_Barang_Masuk;
-use App\Models\Supplier;
+use App\Models\SupplierResource;
 
 class Barang_Masuk extends Model
 {
@@ -23,9 +23,9 @@ class Barang_Masuk extends Model
         'tanggal_masuk',
     ];
 
-    public function supplier()
+    public function supplier1()
     {
-        return $this->belongsTo(Supplier::class);
+        return $this->belongsTo(SupplierResource::class);
     }
 
     public function barang()

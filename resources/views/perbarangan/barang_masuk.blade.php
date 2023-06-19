@@ -66,8 +66,11 @@
         
     </tr>
     @endforeach
-</table>
+</table><br>
 
 {{-- {{ $barang_masuk->links() }} --}}
+@if(isset($total_harga2))
+    <h2 id="total_harga2">Total Harga: {{ $total_harga2 }}</h2><br><br>
+@endif
 
 @endsection

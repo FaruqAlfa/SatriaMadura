@@ -15,7 +15,7 @@ class StaffResourceController extends Controller
      */
     public function index()
     {
-        return view('dashboard.dashboardStaff');
+        return view('Dashboard.dashboardStaff');
     }
 
     public function getStaff()

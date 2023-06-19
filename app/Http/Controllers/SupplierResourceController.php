@@ -6,8 +6,6 @@ use App\Models\Supplier;
 use App\Models\SupplierResource;
 use Illuminate\Http\Request;
 
-use function Ramsey\Uuid\v1;
-
 class SupplierResourceController extends Controller
 {
     /**
@@ -20,11 +18,10 @@ class SupplierResourceController extends Controller
         return view('Dashboard.dashboardSupplier');
     }
 
-    public function getStaff()
+    public function getSupplier()
     {
-        $supplier = SupplierResource::all(); // Mengambil semua data dari tabel menggunakan model
-
-        return view('perbarangan.supplier', ['supplier' => $supplier]); // Mengembalikan data ke view dengan nama 'your-view'
+        $supplier1 = SupplierResource::all(); // Mengambil semua data dari tabel menggunakan model
+        return view('perbarangan.supplier', compact('supplier1')); // Mengembalikan data ke view dengan nama 'your-view'
     }
 
     /**

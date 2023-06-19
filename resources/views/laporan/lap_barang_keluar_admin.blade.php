@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left mt-5">
-            <h2 style="text-align: center">Tampilan Admin Data Karyawan</h2>
+            <h2 style="text-align: center">Tampilan Admin Data Pelaporan Barang Keluar</h2>
         </div><br>
 
         <style type="text/css">
@@ -23,6 +23,24 @@
             }
         </style>
         
+        <div class="col-md-7 mt-2">
+            <form action="{{ route('filterByTanggalKeluar2') }}" method="POST">
+                @csrf
+                <div>
+                    <label for="tanggal_keluar_admin">Tanggal Keluar:</label>
+                    <select id="tanggal_keluar_admin" name="tanggal_keluar_admin" required>
+                        <option value="">Pilih Tanggal Keluar</option>
+                        @foreach ($barang_keluar as $bk)
+                            <option value="{{ $bk->tanggal_keluar }}">{{ $bk->tanggal_keluar }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <a class="btn btn-warning mt-3" href="{{ route('filterByTanggalKeluar2') }}">Filter</a><br><br>
+                {{-- <button type="submit">Filter</button> --}}
+            </form>
+
+        </div>
     </div>
 </div>
 

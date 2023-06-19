@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left mt-5">
-            <h2 style="text-align: center">Tampilan Admin Data Karyawan</h2>
+            <h2 style="text-align: center">Tampilan Admin Data Supplier</h2>
         </div><br>
 
         <style type="text/css">
@@ -28,17 +28,17 @@
 
 <table class="table table-bordered">
     <tr>
-        <th>Nama Staff</th>
-        <th>Nama Barang</th>
+        <th>Nama</th>
+        <th>Nama Supplier</th>
         <th>Jumlah</th>
         <th>Harga Satuan</th>
         <th>Total Harga</th>
         <th>Tanggal Keluar</th>
     </tr>
 
-    @foreach ($barang_keluar as $item)
+    @foreach ($supplier1 as $supplier)
         <tr>
-            <td>{{ $item->staff->nama_staff }}</td>
+            <td>{{ $supplier->name }}</td>
             <td>{{ $item->barang->nama_barang }}</td>
             <td>{{ $item->jumlah }}</td>
             <td>{{ $item->harga }}</td>

@@ -66,7 +66,7 @@
             <a href="{{ route('barangmasuk.index') }}" class="nav-link">
               <img src="img/location.png" class="nav-icon">
               <p>
-                Dsitribusi
+                Distribusi
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
