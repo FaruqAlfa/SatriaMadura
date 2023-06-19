@@ -15,7 +15,6 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\BarangKeluarController;
-use App\Http\Controllers\StaffResourceController;
 use App\Http\Controllers\SupplierResourceController;
 
 /*
@@ -70,6 +69,14 @@ Route::middleware('auth:web')->group(function (){
     Route::get('/logoutSupplier', [AuthController::class, 'logoutSupplier'])->name('logoutSupplier');
 });
 
+
+
+Route::middleware('auth:staff')->group(function (){
+    Route::resource('/dashboard', StaffController::class);
+    Route::get('/dashboardStaff', [StaffController::class, 'index'])->name('dashboardStaff');
+    Route::resource('/barangKeluar', BarangKeluarController::class);
+    Route::get('/logoutStaff', [AuthController::class, 'logoutStaff'])->name('logoutStaff');
+});
 
 
 Route::middleware('auth:staff')->group(function (){
