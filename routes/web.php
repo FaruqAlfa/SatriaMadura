@@ -77,7 +77,7 @@ Route::middleware('auth:web')->group(function () {
 Route::middleware('auth:staff')->group(function (){
     Route::resource('/dashboard', StaffController::class);
     Route::get('/dashboardStaff', [StaffController::class, 'index'])->name('dashboardStaff');
-    Route::resource('/barangKeluar', BarangKeluarController::class);
+    Route::resource('/barangkeluar', BarangKeluarController::class);
     Route::get('/logoutStaff', [AuthController::class, 'logoutStaff'])->name('logoutStaff');
 });
 
@@ -85,7 +85,8 @@ Route::middleware('auth:staff')->group(function (){
 Route::middleware('auth:staff')->group(function (){
     Route::resource('/dashboard', StaffController::class);
     Route::get('/dashboardStaff', [StaffController::class, 'index'])->name('dashboardStaff');
-    Route::resource('/barangKeluar', BarangKeluarController::class);
+    Route::resource('/barang', BarangKeluarController::class);
+    Route::get('/barangkeluar',[BarangKeluarController::class, 'index'])->name('barangKeluar');
     Route::get('/logoutStaff', [AuthController::class, 'logoutStaff'])->name('logoutStaff');
 });
 
@@ -99,4 +100,4 @@ Route::get('/lap_barang_keluar/cetakPDF1', [LapBarangKeluarController::class, 'c
 Route::get('/lap_barang_keluar/cetakPDF1All', [LapBarangKeluarController::class, 'cetakPDF1All'])->name('cetakPDF1All');
 Route::post('/lap_barang_keluar', [LapBarangKeluarController::class, 'filterByTanggalKeluar'])->name('filterByTanggalKeluar');
 
-Route::get('/lap_barang_masuk', [LapBarangMasukController::class, 'index'])->name('lap_barang_masuk');
+// Route::get('/lap_barang_masuk', [LapBarangMasukController::class, 'index'])->name('lap_barang_masuk');

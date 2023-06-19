@@ -30,19 +30,18 @@
                     <label for="tanggal_masuk">Tanggal Masuk:</label>
                     <select id="tanggal_masuk" name="tanggal_masuk" required>
                         <option value="">Pilih Tanggal Masuk</option>
-                        @foreach ($barang_masuk as $bk)
-                            <option value="{{ $bk->tanggal_masuk }}">{{ $bk->tanggal_masuk }}</option>
+                        @foreach ($barang_masuk as $bm)
+                            <option value="{{ $bm->tanggal_masuk }}">{{ $bm->tanggal_masuk }}</option>
                         @endforeach
                     </select>
                 </div>
 
-                <a class="btn btn-warning mt-3" href="{{ route('filterByTanggalMasuk') }}">Filter</a>
-                {{-- <button type="submit">Filter</button> --}}
+                <button class="btn btn-warning mt-3" type="submit">Filter</button>
             </form>
 
             <div class="col d-flex justify-content-end align-items-end">
                 <form action="{{ route('cetakPDF2') }}" method="GET">
-                    <input type="hidden" name="tanggal_masuk" value="{{$bk->tanggal_masuk}}">
+                    <input type="hidden" name="tanggal_masuk" value="{{$bm->tanggal_masuk}}">
 
                     <a class="btn btn-primary mt-3 mr-3" href="{{ route('cetakPDF2') }}">CetakPDF</a>
                 </form>
