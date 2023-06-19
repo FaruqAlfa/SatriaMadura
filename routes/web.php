@@ -52,9 +52,13 @@ Route::middleware('guest')->group(function () {
 });
 
 
-Route::middleware('auth:admin')->group(function () {
-    Route::resource('/staff', StaffResourceController::class);
-    Route::resource('/supplier', SupplierResourceController::class);
+Route::middleware('auth:admin')->group(function (){
+    Route::resource('/staff', StaffController::class);
+    Route::get('/getAllStaff',[StaffController::class, 'getAll'])->name('staffAll');
+    Route::get('/StaffInput',[StaffController::class, 'create'])->name('staffCreate');
+    Route::post('/makeStaff',[StaffController::class, 'store'])->name('makeStaff');
+    // Route::resource('/supplier', [SupplierController::class]);
+    Route::resource('/supplier', SupplierController::class);
     Route::get('/logoutAdmin', [AuthController::class, 'logoutAdmin'])->name('logoutAdmin');
     Route::get('/dashboardAdmin', [AdminController::class, 'index'])->name('dashboardAdmin');
     Route::get('/barang', [BarangController::class, 'getBarang'])->name('barang');
@@ -68,10 +72,21 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/logoutSupplier', [AuthController::class, 'logoutSupplier'])->name('logoutSupplier');
 });
 
-Route::middleware('auth:staff')->group(function () {
-    Route::resource('/dashboardStaff', StaffResourceController::class);
-    Route::resource('/barangkeluar', BarangKeluarController::class);
-    Route::get('/logoutStaff', [AuthController::class, 'logout'])->name('logoutStaff');
+
+
+Route::middleware('auth:staff')->group(function (){
+    Route::resource('/dashboard', StaffController::class);
+    Route::get('/dashboardStaff', [StaffController::class, 'index'])->name('dashboardStaff');
+    Route::resource('/barangKeluar', BarangKeluarController::class);
+    Route::get('/logoutStaff', [AuthController::class, 'logoutStaff'])->name('logoutStaff');
+});
+
+
+Route::middleware('auth:staff')->group(function (){
+    Route::resource('/dashboard', StaffController::class);
+    Route::get('/dashboardStaff', [StaffController::class, 'index'])->name('dashboardStaff');
+    Route::resource('/barangKeluar', BarangKeluarController::class);
+    Route::get('/logoutStaff', [AuthController::class, 'logoutStaff'])->name('logoutStaff');
 });
 
 Route::get('/lap_barang_masuk', [LapBarangMasukController::class, 'index'])->name('lap_barang_masuk');

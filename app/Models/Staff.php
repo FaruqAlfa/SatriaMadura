@@ -14,20 +14,20 @@ class Staff extends Model
 {
     use HasFactory;
 
+
     protected $table = "staff";
     public $timestamps = false;
     protected $primaryKey = 'id';
 
+
     protected $fillable = [
-        'id',
-        'nama_staff',
-        'no_telepon',
         'name',
+        'nama_staff',
         'username',
-        'password', 
+        'email',
+        'password',
+        'no_telepon',
     ];
 
-    public function barang_keluar(){
-        return $this->hasMany(Barang_Keluar::class);
-    }
+
 }
