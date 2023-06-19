@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>
-  @include('layoutsStaff.css')
+  <title>Dashboard Admin</title>
+  @include('Admin.layoutsAdmin.css')
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -16,11 +16,11 @@
   </div>
 
   <!-- Navbar -->
-  @include('layoutsAdmin.navbarAdmin')
+  @include('Admin.layoutsAdmin.navbarAdmin')
   <!-- /.navbar -->
 
   <!-- Sidebar -->
- @include('layoutsAdmin.sidebarAdmin')
+ @include('Admin.layoutsAdmin.sidebarAdmin')
   <!-- /.Sidebar -->
 
   <!-- Content Wrapper. Contains page content -->
@@ -30,7 +30,6 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard Admin</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -39,13 +38,13 @@
 
     <!-- Main content -->
     <section class="content">
-      @yield('staff')
+      @yield('content')
     </section>
     <!-- /.content -->
   </div>
   
 <!-- Footer -->
-@include('layoutsAdmin.footerAdmin')
+@include('Admin.layoutsAdmin.footerAdmin')
 <!-- /.footer -->
 
   <!-- Control Sidebar -->
@@ -56,6 +55,6 @@
 </div>
 <!-- ./wrapper -->
 
-@include('layoutsAdmin.js')
+@include('Admin.layoutsAdmin.js')
 </body>
 </html>

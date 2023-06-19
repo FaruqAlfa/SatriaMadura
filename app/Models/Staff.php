@@ -3,29 +3,25 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-//use Illuminate\Database\Eloquent\Model;
-use App\Models\Barang_Keluar;
+// use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Model;
 
 class Staff extends Model
 {
     use HasFactory;
-
-    protected $table="staff"; 
-    public $timestamps= false;
-    protected $primaryKey = 'id';
+    protected $table ='staff';
+    public $timestamps = false;
+    protected $primarykey = 'id';
 
     protected $fillable = [
-        'id',
-        'nama_staff',
-        'no_telepon',
         'name',
+        'nama_staff',
         'username',
-        'password', 
+        'email',
+        'password',
+        'no_telepon',
     ];
 
-    public function barang_keluar(){
-        return $this->hasMany(Barang_Keluar::class);
-    }
+
 }

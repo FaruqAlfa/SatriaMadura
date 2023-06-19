@@ -15,6 +15,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\BarangKeluarController;
+use App\Http\Controllers\StaffResourceController;
 use App\Http\Controllers\SupplierResourceController;
 
 /*
@@ -50,6 +51,9 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth:admin')->group(function (){
     Route::resource('/staff', StaffController::class);
+    Route::get('/getAllStaff',[StaffController::class, 'getAll'])->name('staffAll');
+    Route::get('/StaffInput',[StaffController::class, 'create'])->name('staffCreate');
+    Route::post('/makeStaff',[StaffController::class, 'store'])->name('makeStaff');
     // Route::resource('/supplier', [SupplierController::class]);
     Route::resource('/supplier', SupplierController::class);
     Route::get('/logoutAdmin', [AuthController::class, 'logoutAdmin'])->name('logoutAdmin');
@@ -68,9 +72,10 @@ Route::middleware('auth:web')->group(function (){
 
 
 Route::middleware('auth:staff')->group(function (){
+    Route::resource('/dashboard', StaffController::class);
     Route::get('/dashboardStaff', [StaffController::class, 'index'])->name('dashboardStaff');
     Route::resource('/barangKeluar', BarangKeluarController::class);
-    Route::get('/logoutStaff', [AuthController::class, 'logout'])->name('logoutStaff');
+    Route::get('/logoutStaff', [AuthController::class, 'logoutStaff'])->name('logoutStaff');
 });
 
 
