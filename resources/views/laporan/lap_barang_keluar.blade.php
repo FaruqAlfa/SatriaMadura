@@ -36,8 +36,7 @@
                     </select>
                 </div>
 
-                <a class="btn btn-warning mt-3" href="{{ route('filterByTanggalKeluar') }}">Filter</a>
-                {{-- <button type="submit">Filter</button> --}}
+                <button class="btn btn-warning mt-3" type="submit">Filter</button>
             </form>
 
             <div class="col d-flex justify-content-end align-items-end">

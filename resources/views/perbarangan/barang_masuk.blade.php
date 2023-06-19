@@ -10,11 +10,17 @@
             <a class="btn btn-success " href="{{route('barangmasuk.create')}}">Input Barang</a>
         </div>
         <div class="col-md-6 mt-4">
-            <form action="{{ url('barang_masuk') }}" method="get">
+            <form action="{{ url('barangmasuk') }}" method="get">
                 <input type="search" class="form-control" name ="search" value="{{Request::get('search')}}" id="inputEmail" placeholder="Search Here"><br>
-                <button class="btn btn-secondary" type="submit">Cari</button><br><br>
+                <button class="btn btn-warning mt-3" type="submit">Cari</button><br><br>
             </form>
         </div>
+
+@if ($message = Session::get('success'))
+<div class="alert alert-success">
+    <p>{{ $message }}</p>
+</div>
+@endif
 
         <style type="text/css">
             table {
@@ -34,9 +40,10 @@
     </div>
 </div>
 
+
 <table class="table table-bordered">
     <tr>
-        <th>No</th>
+        {{-- <th>No</th> --}}
         <th>Nama Supplier</th>
         <th>Nama Barang</th>
         <th>Jumlah</th>
@@ -47,7 +54,7 @@
     </tr>
     @foreach ($Barang_Masuk as $barang_masuk)
     <tr>
-        <td>{{ $barang_masuk->id }}</td>
+        {{-- <td>{{ $barang_masuk->id }}</td> --}}
         <td>{{ $barang_masuk->supplier->nama_supplier }}</td>
         <td>{{ $barang_masuk->barang->nama_barang }}</td>
         <td>{{ $barang_masuk->jumlah }}</td>
@@ -68,6 +75,6 @@
     @endforeach
 </table>
 
-{{-- {{ $barang_masuk->links() }} --}}
+{{ $Barang_Masuk->links() }}
 
 @endsection

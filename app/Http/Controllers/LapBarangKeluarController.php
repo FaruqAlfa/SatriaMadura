@@ -77,7 +77,7 @@ class LapBarangKeluarController extends Controller
             'tanggal_keluar' => 'required',
         ]);
         $tanggal_keluar = $request->get('tanggal_keluar');
-
+        // dd($tanggal_keluar);
         // // Ambil data tanggal_keluar yang tersedia di database
         // $tanggal_keluar = Barang_Keluar::pluck('tanggal_keluar', 'id');
 
