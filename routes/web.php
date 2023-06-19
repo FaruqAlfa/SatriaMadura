@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Supplier;
+use App\Models\Staff;
 use function Ramsey\Uuid\v1;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\Authenticate;
@@ -13,8 +14,11 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\LapBarangKeluarController;
+use App\Http\Controllers\LapBarangMasukController;
 use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\BarangKeluarController;
+use App\Http\Controllers\StaffResourceController;
 use App\Http\Controllers\SupplierResourceController;
 
 /*
@@ -36,10 +40,10 @@ use App\Http\Controllers\SupplierResourceController;
 // Auth::routes();
 
 // Route::get('/', function () {
-    //     return redirect->route('');
-    // });
+//     return redirect->route('');
+// });
 Route::get('/', [SupplierResourceController::class, 'index'])->name('home');
-    
+
 Route::middleware('guest')->group(function () {
     Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
     Route::post('/Postregister', [RegisterController::class, 'register'])->name('postregister');
@@ -48,17 +52,15 @@ Route::middleware('guest')->group(function () {
 });
 
 
-Route::middleware('auth:admin')->group(function (){
-    Route::resource('/staff', StaffController::class);
-    // Route::resource('/supplier', [SupplierController::class]);
-    Route::resource('/supplier', SupplierController::class);
+Route::middleware('auth:admin')->group(function () {
+    Route::resource('/staff', StaffResourceController::class);
+    Route::resource('/supplier', SupplierResourceController::class);
     Route::get('/logoutAdmin', [AuthController::class, 'logoutAdmin'])->name('logoutAdmin');
     Route::get('/dashboardAdmin', [AdminController::class, 'index'])->name('dashboardAdmin');
     Route::get('/barang', [BarangController::class, 'getBarang'])->name('barang');
 });
 
-
-Route::middleware('auth:web')->group(function (){
+Route::middleware('auth:web')->group(function () {
     Route::get('/', [SupplierResourceController::class, 'index'])->name('home');
     Route::resource('/barang', BarangController::class);
     Route::resource('/barangmasuk', BarangMasukController::class);
@@ -66,12 +68,20 @@ Route::middleware('auth:web')->group(function (){
     Route::get('/logoutSupplier', [AuthController::class, 'logoutSupplier'])->name('logoutSupplier');
 });
 
-
-
-Route::middleware('auth:staff')->group(function (){
-    Route::get('/dashboardStaff', [StaffController::class, 'index'])->name('dashboardStaff');
-    Route::resource('/barangKeluar', BarangKeluarController::class);
+Route::middleware('auth:staff')->group(function () {
+    Route::resource('/dashboardStaff', StaffResourceController::class);
+    Route::resource('/barangkeluar', BarangKeluarController::class);
     Route::get('/logoutStaff', [AuthController::class, 'logout'])->name('logoutStaff');
 });
 
+Route::get('/lap_barang_masuk', [LapBarangMasukController::class, 'index'])->name('lap_barang_masuk');
+Route::get('/lap_barang_masuk/cetakPDF2', [LapBarangMasukController::class, 'cetakPDF2'])->name('cetakPDF2');
+Route::get('/lap_barang_masuk/cetakPDF2All', [LapBarangMasukController::class, 'cetakPDF2All'])->name('cetakPDF2All');
+Route::post('/lap_barang_masuk', [LapBarangMasukController::class, 'filterByTanggalMasuk'])->name('filterByTanggalMasuk');
 
+Route::get('/lap_barang_keluar', [LapBarangKeluarController::class, 'index'])->name('lap_barang_keluar');
+Route::get('/lap_barang_keluar/cetakPDF1', [LapBarangKeluarController::class, 'cetakPDF1'])->name('cetakPDF1');
+Route::get('/lap_barang_keluar/cetakPDF1All', [LapBarangKeluarController::class, 'cetakPDF1All'])->name('cetakPDF1All');
+Route::post('/lap_barang_keluar', [LapBarangKeluarController::class, 'filterByTanggalKeluar'])->name('filterByTanggalKeluar');
+
+Route::get('/lap_barang_masuk', [LapBarangMasukController::class, 'index'])->name('lap_barang_masuk');

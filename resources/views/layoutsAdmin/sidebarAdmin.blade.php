@@ -33,13 +33,9 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="true">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+          <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
           <li class="nav-item">
-
             <a href="{{ route('dashboardAdmin') }}" class="nav-link">
-
-          
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -47,7 +43,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -55,22 +51,12 @@
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-          </li>
-          <li class="nav-item">
-            <a href="" class="nav-link">
-              <img src="img/gudang.png" class="nav-icon">
-              <p>
-                Gudang
-                <i class="right fas fa-angle-left"></i>
-
-              </p>
-            </a>
-          </li>
+          </li> --}}
           <li class="nav-item">
             <a href="#" class="nav-link">
               <img src="img/location.png" class="nav-icon">
               <p>
-                Dsitribusi
+                Distribusi
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -85,11 +71,21 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Data Karyawan
                 <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">
+              <img src="img/gudang.png" class="nav-icon">
+              <p>
+                Data Supplier
+                <i class="right fas fa-angle-left"></i>
+
               </p>
             </a>
           </li>

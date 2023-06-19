@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Staff;
 use App\Models\StaffResource;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class StaffResourceController extends Controller
      */
     public function index()
     {
-        return view('perbarangan.staff');
+        return view('dashboard.dashboardStaff');
     }
 
     public function getStaff()
@@ -44,12 +45,12 @@ class StaffResourceController extends Controller
     {
         $request->validate([
             'id' => 'required',
-            'name' =>'required',
-            'nama_staff' =>'required',
-            'username' =>'required',
-            'email' =>'required',
-            'password' =>'required',
-            'no_telepon' =>'required',
+            'name' => 'required',
+            'nama_staff' => 'required',
+            'username' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'no_telepon' => 'required',
         ]);
 
         StaffResource::create($request->all());
@@ -65,7 +66,6 @@ class StaffResourceController extends Controller
      */
     public function show(StaffResource $staffResource)
     {
-        
     }
 
     /**

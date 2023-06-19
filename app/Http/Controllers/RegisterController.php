@@ -19,6 +19,13 @@ class RegisterController extends Controller
     {
 
         $request->validate([
+            'name' => 'required',
+            'nama_supplier' => 'required',
+            'username' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'no_telepon' => 'required',
+        ]);
         //Buat user baru
         Supplier::create([
             'name' => $request->get('name'),
@@ -28,6 +35,7 @@ class RegisterController extends Controller
             'password' => Hash::make($request->get('password')),
             'no_telepon' => $request->get('no_telepon'),
         ]);
+        
 
         // $user = new User; 
         // $user->username = $request->get('username');

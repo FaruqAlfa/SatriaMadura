@@ -36,7 +36,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="{{ url('dashboardStaff') }}" class="nav-link">
+            <a href="{{ route('dashboardStaff.index') }}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -44,7 +44,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -52,8 +52,8 @@
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-          </li>
-          <li class="nav-item">
+          </li> --}}
+          {{-- <li class="nav-item">
             <a href="#" class="nav-link">
               <img src="img/gudang.png" class="nav-icon">
               <p>
@@ -61,25 +61,40 @@
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-          </li>
+          </li> --}}
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('barangkeluar.index') }}" class="nav-link">
               <img src="img/location.png" class="nav-icon">
               <p>
-                Dsitribusi
+                Distribusi
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
-              <p>
-                Pembukuan
-                <i class="fas fa-angle-left right"></i>
-              </p>
+                <i class="nav-icon fas fa-edit"></i>
+                <p>
+                    Pembukuan
+                    <i class="fas fa-angle-left right"></i>
+                </p>
             </a>
-          </li>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{ route('lap_barang_masuk') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Barang Masuk</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('lap_barang_keluar') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Barang Keluar</p>
+                    </a>
+                </li>
+                <!-- Tambahkan item dropdown lainnya di sini -->
+            </ul>
+        </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
@@ -90,14 +105,9 @@
             </a>
           </li>
           <li class="nav-item d-none d-sm-inline-block">
-            <a class="nav-link" href="{{ route('logout')}}"
-            onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-                {{__('Logout') }}
+            <a class="nav-link" href="{{ route('logoutStaff')}}">
+              Logout
             </a>
-            <form id="logout-form" action="{{route('logout') }}" method="POST" class="d-none">
-              @csrf
-            </form>
           </li>
         </ul>
       </nav>
