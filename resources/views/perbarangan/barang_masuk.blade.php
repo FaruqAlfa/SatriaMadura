@@ -1,4 +1,4 @@
-@extends('perbarangan.layout')
+@extends('Tambah.includeSupplier')
 
 @section('content')
 <div class="row">
@@ -7,14 +7,30 @@
             <h2 style="text-align: center">BARANG MASUK PERBARANGAN</h2>
         </div>
         <div class="float-right my-2">
-            <a class="btn btn-success" href="{{route('barangmasuk.create')}}">Input Barang</a>
+            <a class="btn btn-success " href="{{route('barangmasuk.create')}}">Input Barang</a>
         </div>
         <div class="col-md-6 mt-4">
-            <form action="{{ url('barang_masuk')}}" method="get">
+            <form action="{{ url('barang_masuk') }}" method="get">
                 <input type="search" class="form-control" name ="search" value="{{Request::get('search')}}" id="inputEmail" placeholder="Search Here"><br>
-                <button class="btn btn-secondary" type="submit">Cari</button>
+                <button class="btn btn-secondary" type="submit">Cari</button><br><br>
             </form>
         </div>
+
+        <style type="text/css">
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            th, td {
+                text-align: left;
+                padding: 8px;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+        </style>
     </div>
 </div>
 
@@ -51,5 +67,7 @@
     </tr>
     @endforeach
 </table>
-{{-- {{$Barang_Masuk->links()}} --}}
+
+{{-- {{ $barang_masuk->links() }} --}}
+
 @endsection

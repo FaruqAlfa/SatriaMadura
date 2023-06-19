@@ -28,11 +28,10 @@ class BarangMasukController extends Controller
                 })->with('barang_masuk')
                 ->paginate(5);
 
-            return view('perbarangan.barang-masuk', ['paginate' => $barang_masuk]);
+            return view('perbarangan.barang-masuk', compact('barang_masuk'));
         } else {
-            $barang_masuk = Barang_Masuk::with('barang_masuk')->get(); // Mengambil semua isi tabel
-            $paginate = Barang_Masuk::orderBy('id', 'asc')->Paginate(5);
-            return view('perbarangan.barang_masuk', ['barang_masuk' => $barang_masuk, 'paginate' => $paginate]);
+            $barang_masuk = Barang_Masuk::orderBy('id', 'asc')->Paginate(5); // Mengambil semua isi tabel
+            return view('perbarangan.barang_masuk', compact('barang_masuk'));
         }
     }
 
@@ -55,13 +54,13 @@ class BarangMasukController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'supplier_id' => 'required',
+            'barang_id' => 'required',
             'jumlah' => 'required',
             'tanggal_masuk' => 'required',
         ]);
 
         $barang_masuk = new Barang_Masuk;
-        $supplier_id = $request->get('supplier_id');
+        $supplier_id = $request->get('barang_id');
         $barang_masuk->supplier_id = $supplier_id;
         $barang_masuk->barang_id = $supplier_id;
         $barang_masuk->jumlah = $request->get('jumlah');

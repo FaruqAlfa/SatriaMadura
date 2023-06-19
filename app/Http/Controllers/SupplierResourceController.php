@@ -17,7 +17,7 @@ class SupplierResourceController extends Controller
      */
     public function index()
     {
-        return view('dashboard.dashboardSupplier');
+        return view('Dashboard.dashboardSupplier');
     }
 
     public function getStaff()

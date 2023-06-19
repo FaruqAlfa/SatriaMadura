@@ -63,7 +63,7 @@
             </a>
           </li> --}}
           <li class="nav-item">
-            <a href="{{ url('barangmasuk') }}" class="nav-link">
+            <a href="{{ route('barangmasuk.index') }}" class="nav-link">
               <img src="img/location.png" class="nav-icon">
               <p>
                 Dsitribusi

@@ -63,6 +63,7 @@
             <td>{{ $item->tanggal_masuk }}</td>
         </tr>
     @endforeach
-</table>
+</table><br>
+
 {{-- {{$Barang_masuk->links()}} --}}
 @endsection

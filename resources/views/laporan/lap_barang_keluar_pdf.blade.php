@@ -46,6 +46,7 @@
             <td>{{ $item->tanggal_keluar }}</td>
         </tr>
     @endforeach
-</table>
+</table><br>
+
 {{-- {{$Barang_keluar->links()}} --}}
 @endsection
