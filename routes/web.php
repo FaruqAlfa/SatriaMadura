@@ -68,24 +68,28 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/', [SupplierResourceController::class, 'index'])->name('home');
     Route::resource('/barang', BarangController::class);
     Route::resource('/barangmasuk', BarangMasukController::class);
+    Route::get('/barangMasuk',[BarangMasukController::class, 'index'])->name('barangMasuk');
     Route::resource('/dashboardSupplier', SupplierResourceController::class);
     Route::get('/logoutSupplier', [AuthController::class, 'logoutSupplier'])->name('logoutSupplier');
 });
 
 
 
-Route::middleware('auth:staff')->group(function (){
-    Route::resource('/dashboard', StaffController::class);
-    Route::get('/dashboardStaff', [StaffController::class, 'index'])->name('dashboardStaff');
-    Route::resource('/barangkeluar', BarangKeluarController::class);
-    Route::get('/logoutStaff', [AuthController::class, 'logoutStaff'])->name('logoutStaff');
-});
+// Route::middleware('auth:staff')->group(function (){
+//     Route::resource('/dashboard', StaffController::class);
+//     Route::get('/dashboardStaff', [StaffController::class, 'index'])->name('dashboardStaff');
+//     Route::resource('/bm', BarangMasukController::class);
+//     Route::resource('/barangkeluar', BarangKeluarController::class);
+//     Route::get('/logoutStaff', [AuthController::class, 'logoutStaff'])->name('logoutStaff');
+// });
 
 
 Route::middleware('auth:staff')->group(function (){
     Route::resource('/dashboard', StaffController::class);
     Route::get('/dashboardStaff', [StaffController::class, 'index'])->name('dashboardStaff');
-    Route::resource('/barang', BarangKeluarController::class);
+    Route::resource('/barangm', BarangMasukController::class);
+    Route::get('/barangmasuk',[BarangMasukController::class, 'index'])->name('barangmasuk');
+    Route::resource('/barangk', BarangKeluarController::class);
     Route::get('/barangkeluar',[BarangKeluarController::class, 'index'])->name('barangKeluar');
     Route::get('/logoutStaff', [AuthController::class, 'logoutStaff'])->name('logoutStaff');
 });

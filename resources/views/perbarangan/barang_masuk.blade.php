@@ -1,4 +1,4 @@
-@extends('Tambah.includeSupplier')
+@extends('Tambah.includeStaff')
 
 @section('content')
 <div class="row">

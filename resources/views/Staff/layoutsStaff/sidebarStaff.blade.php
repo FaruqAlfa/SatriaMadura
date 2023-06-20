@@ -93,11 +93,17 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                  <a href="{{ route('barangMasuk') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Barang Masuk Search</p>
+                  </a>
+                </li>
+                <li class="nav-item">
                   <a href="{{ route('barangKeluar') }}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Barang Keluar Search</p>
                   </a>
-              </li>
+                </li>
                 <!-- Tambahkan item dropdown lainnya di sini -->
             </ul>
         </li>
