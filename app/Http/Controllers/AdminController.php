@@ -16,12 +16,6 @@ class AdminController extends Controller
         return view('Dashboard.dashboardAdmin');
     }
 
-    public function showAdmin($id)
-    {
-        $admin = Admin::find($id);
-        return view('layoutsAdmin.sidebarAdmin', ['Admin' => $admin]);
-    }
-
     public function getAdmin1()
     {
         $barang_keluar = Barang_Keluar::all();
