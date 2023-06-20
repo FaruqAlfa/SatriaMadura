@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Admin;
+use Illuminate\Http\Request;
 use App\Models\Barang_Keluar;
 use App\Models\Barang_Masuk;
 use App\Models\SupplierResource;
@@ -13,7 +13,8 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('Dashboard.dashboardAdmin');
+        $admin = Admin::all();
+        return view('Admin.dashboardAdmin', ['Admin' => $admin]);
     }
 
     public function getAdmin1()

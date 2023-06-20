@@ -36,7 +36,8 @@
                     </select>
                 </div>
 
-                <a class="btn btn-warning mt-3" href="{{ route('filterByTanggalKeluar') }}">Filter</a>
+                {{-- <a class="btn btn-warning mt-3" href="{{ route('filterByTanggalKeluar') }}">Filter</a> --}}
+                <button class="btn btn-warning mt-3" type="submit">Filter</button>
 
             </form>
 
@@ -44,7 +45,7 @@
                 <form action="{{ route('cetakPDF1') }}" method="GET">
                     <input type="hidden" name="tanggal_keluar" value="{{ $bk->tanggal_keluar }}">
                     
-                    <a class="btn btn-primary mt-3 mr-3" href="{{ route('cetakPDF1') }}">CetakPDF</a>
+                    <button class="btn btn-info mt-3 mr-4" type="submit">CetakPDF</button>
                 </form>
 
                 <a class="btn btn-primary mt-3" href="{{ route('cetakPDF1All') }}">CetakPDFAll</a>
@@ -79,7 +80,7 @@
     <h2 id="total_harga">Total Harga: {{ $total_harga }}</h2>
 @endif
 
-<a class="btn btn-success mt-3" href="{{ route('lap_barang_keluar') }}">Kembali</a>
+<a class="btn btn-success mt-3" href="{{ route('lap_barang_keluar') }}">Kembali</a><br><br>
 
 @endsection
 

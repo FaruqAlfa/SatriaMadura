@@ -28,31 +28,23 @@
 
 <table class="table table-bordered">
     <tr>
+        <th>Name</th>
         <th>Nama Staff</th>
-        <th>Nama Barang</th>
-        <th>Jumlah</th>
-        <th>Harga Satuan</th>
-        <th>Total Harga</th>
-        <th>Tanggal Keluar</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>No Telepon</th>
     </tr>
 
-    @foreach ($barang_keluar as $item)
+    @foreach ($staff as $item)
         <tr>
-            <td>{{ $item->staff->nama_staff }}</td>
-            <td>{{ $item->barang->nama_barang }}</td>
-            <td>{{ $item->jumlah }}</td>
-            <td>{{ $item->harga }}</td>
-            <td>{{ $item->total }}</td>
-            <td>{{ $item->tanggal_keluar }}</td>
+            <td>{{ $item->name }}</td>
+            <td>{{ $item->nama_staff }}</td>
+            <td>{{ $item->username }}</td>
+            <td>{{ $item->email }}</td>
+            <td>{{ $item->no_telepon }}</td>
         </tr>
     @endforeach
 </table><br>
-
-@if(isset($total_harga))
-    <h2 id="total_harga">Total Harga: {{ $total_harga }}</h2>
-@endif
-
-<a class="btn btn-success mt-3" href="{{ route('lap_barang_keluar_admin') }}">Kembali</a><br><br>
 
 @endsection
 

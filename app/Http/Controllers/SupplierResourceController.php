@@ -13,15 +13,25 @@ class SupplierResourceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('Dashboard.dashboardSupplier');
+        $supplier = SupplierResource::all();
+        $search = $request->search;
+        $perPage = $request->input('per_page', 5);
+
+        $supplier = SupplierResource::where('supplier.id', 'like', "%$search%")
+            ->orWhere('supplier.nama_supplier', 'like', "%$search%")
+            ->orWhere('supplier.username', 'like', "%$search%")
+            ->orWhere('supplier.email', 'like', "%$search%")
+            ->orWhere('supplier.no_telepon', 'like', "%$search%")
+            ->paginate($perPage);
+        return view('perbarangan.supplier', ['Supplier' => $supplier]);
     }
 
     public function getSupplier()
     {
-        $supplier1 = SupplierResource::all(); // Mengambil semua data dari tabel menggunakan model
-        return view('perbarangan.supplier', compact('supplier1')); // Mengembalikan data ke view dengan nama 'your-view'
+        $supplier = SupplierResource::all(); // Mengambil semua data dari tabel menggunakan model
+        return view('perbarangan.supplier', compact('supplier')); // Mengembalikan data ke view dengan nama 'your-view'
     }
 
     /**

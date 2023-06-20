@@ -28,10 +28,10 @@ class BarangKeluarController extends Controller
             ->orWhere('barang_keluar.total', 'like', "%$search%")
             ->orWhere('staff.nama_staff', 'like', "%$search%")
             ->paginate($perPage);
-        return view('perbarangan.barang_keluar', ['Barang_Keluar'=>$barang_keluar]);
+        return view('perbarangan.barang_keluar', ['Barang_Keluar' => $barang_keluar]);
     }
 
-    /**
+    /**~
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -139,8 +139,8 @@ class BarangKeluarController extends Controller
         $barang_keluar->save();
 
 
-        return redirect()->route('barangkeluar.index')
-            ->with('success', 'Barang Keluar Berhasil Ditambahkan');
+        return redirect()->route('barangKeluar')
+            ->with('success', 'Barang Keluar Berhasil Diupdate');
     }
 
     /**

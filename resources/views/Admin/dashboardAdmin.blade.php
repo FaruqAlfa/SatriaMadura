@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sistem Informasi Admin</title>
+  <title>Dashboard Admin</title>
   @include('Admin.layoutsAdmin.css')
+
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -30,7 +31,6 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->

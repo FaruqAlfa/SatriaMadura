@@ -36,15 +36,15 @@
                     </select>
                 </div>
 
-                <a class="btn btn-warning mt-3" href="{{ route('filterByTanggalMasuk') }}">Filter</a>
+                {{-- <a class="btn btn-warning mt-3" href="{{ route('filterByTanggalMasuk') }}">Filter</a> --}}
+                <button class="btn btn-warning mt-3" type="submit">Filter</button>
 
             </form>
-
             <div class="col d-flex justify-content-end align-items-end">
                 <form action="{{ route('cetakPDF2') }}" method="GET">
-                    <input type="hidden" name="tanggal_masuk" value="{{$bm->tanggal_masuk}}">
+                    <input type="text" hidden id="tanggal_masuk" name="tanggal_masuk" value="{{$tanggal_masuk}}">
 
-                    <a class="btn btn-primary mt-3 mr-3" href="{{ route('cetakPDF2') }}">CetakPDF</a>
+                    <button class="btn btn-info mt-3 mr-4" type="submit">CetakPDF</button>
                 </form>
 
                 <a class="btn btn-primary mt-3" href="{{ route('cetakPDF2All') }}">CetakPDFAll</a>
@@ -80,5 +80,5 @@
 @endif
 
 <a class="btn btn-success mt-3" href="{{ route('lap_barang_masuk') }}">Kembali</a><br><br>
-{{-- {{$Barang_masuk->links()}} --}}
+
 @endsection

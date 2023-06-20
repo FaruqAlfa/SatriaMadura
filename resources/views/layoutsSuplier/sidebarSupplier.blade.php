@@ -63,7 +63,7 @@
             </a>
           </li> --}}
           <li class="nav-item">
-            <a href="{{ route('barangmasuk.index') }}" class="nav-link">
+            <a href="{{ route('barangMasuk') }}" class="nav-link">
               <img src="img/location.png" class="nav-icon">
               <p>
                 Distribusi

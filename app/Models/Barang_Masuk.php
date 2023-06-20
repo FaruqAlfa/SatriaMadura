@@ -17,13 +17,14 @@ class Barang_Masuk extends Model
 
     protected $fillable = [
         'id',
+        'supplier_id',
         'barang_id',
         'jumlah',
         'total',
         'tanggal_masuk',
     ];
 
-    public function supplier1()
+    public function supplier()
     {
         return $this->belongsTo(SupplierResource::class);
     }

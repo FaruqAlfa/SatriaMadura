@@ -10,11 +10,17 @@
             <a class="btn btn-success" href="{{route('barangkeluar.create')}}">Input Barang</a>
         </div>
         <div class="col-md-6 mt-4">
-            <form action="{{ url('barang_keluar')}}" method="get">
+            <form action="{{ url('barangkeluar')}}" method="get">
                 <input type="search" class="form-control" name ="search" value="{{Request::get('search')}}" id="inputEmail" placeholder="Search Here"><br>
-                <button class="btn btn-secondary" type="submit">Cari</button><br><br>
+                <button class="btn btn-warning mt-3" type="submit">Cari</button><br><br>
             </form>
         </div>
+
+@if ($message = Session::get('success'))
+<div class="alert alert-success">
+    <p>{{ $message }}</p>
+</div>
+@endif
 
         <style type="text/css">
             table {
@@ -66,10 +72,14 @@
         </td>
     </tr>
     @endforeach
+
 </table><br>
 
 @if(isset($total_harga1))
     <h2 id="total_harga1">Total Harga: {{ $total_harga1 }}</h2><br><br>
 @endif
+
+</table>
+{{ $Barang_Keluar->links() }}
 
 @endsection
