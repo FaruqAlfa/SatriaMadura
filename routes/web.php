@@ -76,19 +76,24 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/', [SupplierResourceController::class, 'index'])->name('home');
     Route::resource('/barang', BarangController::class);
     Route::resource('/barangmasuk', BarangMasukController::class);
+    Route::get('/barangMasuk',[BarangMasukController::class, 'index'])->name('barangMasuk');
     Route::resource('/dashboardSupplier', SupplierResourceController::class);
     Route::get('/logoutSupplier', [AuthController::class, 'logoutSupplier'])->name('logoutSupplier');
 });
 
 
 
+
 Route::middleware('auth:staff')->group(function () {
     Route::resource('/dashboard', StaffController::class);
     Route::get('/dashboardStaff', [StaffController::class, 'index'])->name('dashboardStaff');
+    Route::resource('/barangm', BarangMasukController::class);
     Route::resource('/barangkeluar', BarangKeluarController::class);
     Route::get('/barangkeluar', [BarangKeluarController::class, 'index'])->name('barangKeluar');
     Route::resource('/barangmasuk', BarangMasukController::class);
     Route::get('/barangmasuk', [BarangMasukController::class, 'index'])->name('barangMasuk');
+    Route::resource('/barangk', BarangKeluarController::class);
+    Route::get('/barangkeluar',[BarangKeluarController::class, 'index'])->name('barangKeluar');
     Route::get('/logoutStaff', [AuthController::class, 'logoutStaff'])->name('logoutStaff');
     Route::post('/lap_barang_keluar', [LapBarangKeluarController::class, 'filterByTanggalKeluar'])->name('filterByTanggalKeluar');
     Route::get('/lap_barang_masuk', [LapBarangMasukController::class, 'index'])->name('lap_barang_masuk');
@@ -101,19 +106,8 @@ Route::middleware('auth:staff')->group(function () {
 });
 
 
-// Route::get('/lap_barang_masuk', [LapBarangMasukController::class, 'index'])->name('lap_barang_masuk');
-// Route::get('/lap_barang_masuk/cetakPDF2', [LapBarangMasukController::class, 'cetakPDF2'])->name('cetakPDF2');
-// Route::get('/lap_barang_masuk/cetakPDF2All', [LapBarangMasukController::class, 'cetakPDF2All'])->name('cetakPDF2All');
-// Route::get('/lap_barang_masuk', [LapBarangMasukController::class, 'filterByTanggalMasuk'])->name('filterByTanggalMasuk');
-
-
-// Route::get('/lap_barang_keluar', [LapBarangKeluarController::class, 'index'])->name('lap_barang_keluar');
-// Route::get('/lap_barang_keluar/cetakPDF1', [LapBarangKeluarController::class, 'cetakPDF1'])->name('cetakPDF1');
-// Route::get('/lap_barang_keluar/cetakPDF1All', [LapBarangKeluarController::class, 'cetakPDF1All'])->name('cetakPDF1All');
-
 Route::get('/lap_barang_keluar', [LapBarangKeluarController::class, 'index'])->name('lap_barang_keluar');
 Route::get('/lap_barang_keluar/cetakPDF1', [LapBarangKeluarController::class, 'cetakPDF1'])->name('cetakPDF1');
 Route::get('/lap_barang_keluar/cetakPDF1All', [LapBarangKeluarController::class, 'cetakPDF1All'])->name('cetakPDF1All');
 Route::post('/lap_barang_keluar', [LapBarangKeluarController::class, 'filterByTanggalKeluar'])->name('filterByTanggalKeluar');
 
-// Route::get('/lap_barang_masuk', [LapBarangMasukController::class, 'index'])->name('lap_barang_masuk');
