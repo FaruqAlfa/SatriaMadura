@@ -74,8 +74,13 @@
         
     </tr>
     @endforeach
-</table>
+</table><br>
+
+@if(isset($total_harga2))
+    <h2 id="total_harga2">Total Harga: {{ $total_harga2 }}</h2><br><br>
+@endif
 
 {{ $Barang_Masuk->links() }}
+
 
 @endsection
