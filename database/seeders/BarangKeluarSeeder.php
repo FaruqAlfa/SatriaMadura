@@ -22,5 +22,6 @@ class BarangKeluarSeeder extends Seeder
             'harga'=> 50000,
             'tanggal_keluar'=> '2023-03-16'
         ]);
+        
     }
 }

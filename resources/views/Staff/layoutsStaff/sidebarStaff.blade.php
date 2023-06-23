@@ -81,6 +81,12 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
+                  <a href="{{ route('barang') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Informasi Barang</p>
+                  </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('lap_barang_masuk') }}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Laporan Barang Masuk</p>

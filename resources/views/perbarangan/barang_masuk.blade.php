@@ -15,6 +15,7 @@
                 <button class="btn btn-warning mt-3" type="submit">Cari</button><br><br>
             </form>
         </div>
+        
 
 @if ($message = Session::get('success'))
 <div class="alert alert-success">

@@ -87,6 +87,9 @@ Route::middleware('auth:web')->group(function () {
 Route::middleware('auth:staff')->group(function () {
     Route::resource('/dashboard', StaffController::class);
     Route::get('/dashboardStaff', [StaffController::class, 'index'])->name('dashboardStaff');
+    Route::resource('/barangan', BarangController::class);
+    Route::get('/barang',[BarangController::class, 'index'])->name('barang');
+    Route::get('/inputbarang',[BarangController::class, 'create'])->name('inputbarang');
     Route::resource('/barangm', BarangMasukController::class);
     Route::resource('/barangkeluar', BarangKeluarController::class);
     Route::get('/barangkeluar', [BarangKeluarController::class, 'index'])->name('barangKeluar');
