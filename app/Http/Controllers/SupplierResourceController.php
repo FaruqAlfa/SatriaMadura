@@ -6,8 +6,6 @@ use App\Models\Supplier;
 use App\Models\SupplierResource;
 use Illuminate\Http\Request;
 
-use function Ramsey\Uuid\v1;
-
 class SupplierResourceController extends Controller
 {
     /**
@@ -15,16 +13,25 @@ class SupplierResourceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('Dashboard.dashboardSupplier');
+        $supplier = SupplierResource::all();
+        $search = $request->search;
+        $perPage = $request->input('per_page', 5);
+
+        $supplier = SupplierResource::where('supplier.id', 'like', "%$search%")
+            ->orWhere('supplier.nama_supplier', 'like', "%$search%")
+            ->orWhere('supplier.username', 'like', "%$search%")
+            ->orWhere('supplier.email', 'like', "%$search%")
+            ->orWhere('supplier.no_telepon', 'like', "%$search%")
+            ->paginate($perPage);
+        return view('perbarangan.supplier', ['Supplier' => $supplier]);
     }
 
-    public function getStaff()
+    public function getSupplier()
     {
         $supplier = SupplierResource::all(); // Mengambil semua data dari tabel menggunakan model
-
-        return view('perbarangan.supplier', ['supplier' => $supplier]); // Mengembalikan data ke view dengan nama 'your-view'
+        return view('perbarangan.supplier', compact('supplier')); // Mengembalikan data ke view dengan nama 'your-view'
     }
 
     /**

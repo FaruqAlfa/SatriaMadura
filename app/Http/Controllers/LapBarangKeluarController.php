@@ -54,6 +54,7 @@ class LapBarangKeluarController extends Controller
 
     public function cetakPDF1(Request $request)
     {
+        $tanggal_keluar = $request->get('tanggal_keluar');
         $lap_barang_keluar = Barang_Keluar::where('tanggal_keluar', $request->get('tanggal_keluar'))->get();
 
         $pdf = PDF::loadview('laporan.lap_barang_keluar_pdf', ['lap_barang_keluar' => $lap_barang_keluar]);

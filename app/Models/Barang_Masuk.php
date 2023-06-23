@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Barang;
 use App\Models\Lap_Barang_Masuk;
-use App\Models\Supplier;
+use App\Models\SupplierResource;
 
 class Barang_Masuk extends Model
 {
@@ -17,6 +17,7 @@ class Barang_Masuk extends Model
 
     protected $fillable = [
         'id',
+        'supplier_id',
         'barang_id',
         'jumlah',
         'total',
@@ -25,7 +26,7 @@ class Barang_Masuk extends Model
 
     public function supplier()
     {
-        return $this->belongsTo(Supplier::class);
+        return $this->belongsTo(SupplierResource::class);
     }
 
     public function barang()

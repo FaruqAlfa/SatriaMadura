@@ -15,9 +15,6 @@ class BarangMasukController extends Controller
      */
     public function index(Request $request)
     {
-        // $barang_masuk = Barang_Masuk::all();
-        // return view('perbarangan.barang_masuk', ['Barang_Masuk' => $barang_masuk]);
-
         $search = $request->search;
         $perPage = $request->input('per_page', 2);
 
