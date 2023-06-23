@@ -55,35 +55,56 @@
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-          </li>
-          <li class="nav-item">
-            <a href="" class="nav-link">
-              <img src="img/gudang.png" class="nav-icon">
-              <p>
-                Gudang
-                <i class="right fas fa-angle-left"></i>
 
-              </p>
-            </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <img src="img/location.png" class="nav-icon">
-              <p>
-                Dsitribusi
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
+                <i class="nav-icon fas fa-edit"></i>
+                <p>
+                    Distribusi
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                  <a href="{{ route('barang_masuk_admin') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Barang Masuk</p>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="{{ route('barang_keluar_admin') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Barang Keluar</p>
+                  </a>
+              </li>
+              <!-- Tambahkan item dropdown lainnya di sini -->
+            </ul>
           </li>
-          <li class="nav-item">
+          <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
-              <p>
-                Pembukuan
-                <i class="fas fa-angle-left right"></i>
-              </p>
+                <i class="nav-icon fas fa-edit"></i>
+                <p>
+                    Pembukuan
+                    <i class="fas fa-angle-left right"></i>
+                </p>
             </a>
-          </li>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{ route('lap_barang_masuk_admin') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Laporan Barang Masuk</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('lap_barang_keluar_admin') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Laporan Barang Keluar</p>
+                    </a>
+                </li>
+                <!-- Tambahkan item dropdown lainnya di sini -->
+            </ul>
+        </li>
           <li class="nav-item">
             <a href="{{ route('staffAll') }}" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
@@ -93,6 +114,18 @@
               </p>
             </a>
           </li>
+
+          <li class="nav-item">
+            <a href="{{ route('supplier') }}" class="nav-link">
+              <img src="img/gudang.png" class="nav-icon">
+              <p>
+                Data Supplier
+                <i class="right fas fa-angle-left"></i>
+
+              </p>
+            </a>
+          </li>
+
           <li class="nav-item d-none d-sm-inline-block">
             <a class="nav-link" href="{{ route('logoutAdmin')}}">
               Logout

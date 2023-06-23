@@ -1,10 +1,10 @@
-@extends('Tambah.includeStaff')
+@extends('Tambah.includeAdmin')
 
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left mt-5">
-            <h2 style="text-align: center">Data Pelaporan Barang Masuk</h2>
+            <h2 style="text-align: center">Tampilan Admin Data Pelaporan Barang Masuk</h2>
         </div><br>
 
         <style type="text/css">
@@ -24,31 +24,21 @@
         </style>
         
         <div class="col-md-7 mt-2">
-            <form action="{{ route('filterByTanggalMasuk') }}" method="POST">
+            <form action="{{ route('filterByTanggalMasuk2') }}" method="POST">
                 @csrf
                 <div>
-                    <label for="tanggal_masuk">Tanggal Masuk:</label>
-                    <select id="tanggal_masuk" name="tanggal_masuk" required>
+                    <label for="tanggal_masuk_admin">Tanggal Masuk:</label>
+                    <select id="tanggal_masuk_admin" name="tanggal_masuk_admin" required>
                         <option value="">Pilih Tanggal Masuk</option>
-                        @foreach ($barang_masuk as $bm)
-                            <option value="{{ $bm->tanggal_masuk }}">{{ $bm->tanggal_masuk }}</option>
+                        @foreach ($barang_masuk as $bk)
+                            <option value="{{ $bk->tanggal_masuk }}">{{ $bk->tanggal_masuk }}</option>
                         @endforeach
                     </select>
                 </div>
 
-                {{-- <a class="btn btn-warning mt-3" href="{{ route('filterByTanggalMasuk') }}">Filter</a> --}}
-                <button class="btn btn-warning mt-3" type="submit">Filter</button>
-
+                <a class="btn btn-warning mt-3" href="{{ route('filterByTanggalMasuk2') }}">Filter</a><br><br>
+                {{-- <button type="submit">Filter</button> --}}
             </form>
-            <div class="col d-flex justify-content-end align-items-end">
-                <form action="{{ route('cetakPDF2') }}" method="GET">
-                    <input type="text" hidden id="tanggal_masuk" name="tanggal_masuk" value="{{$tanggal_masuk}}">
-
-                    <button class="btn btn-info mt-3 mr-4" type="submit">CetakPDF</button>
-                </form>
-
-                <a class="btn btn-primary mt-3" href="{{ route('cetakPDF2All') }}">CetakPDFAll</a>
-            </div><br>
         </div>
     </div>
 </div>
@@ -79,6 +69,5 @@
     <h2 id="total_harga">Total Harga: {{ $total_harga }}</h2>
 @endif
 
-<a class="btn btn-success mt-3" href="{{ route('lap_barang_masuk') }}">Kembali</a><br><br>
-
+<a class="btn btn-success mt-3" href="{{ route('lap_barang_masuk_admin') }}">Kembali</a><br><br>
 @endsection
