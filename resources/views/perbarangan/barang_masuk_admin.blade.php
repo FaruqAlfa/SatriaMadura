@@ -10,7 +10,7 @@
         <div class="col-md-6 mt-4">
             <form action="{{ url('barang_masuk_admin')}}" method="get">
                 <input type="search" class="form-control" name ="search" value="{{Request::get('search')}}" id="inputEmail" placeholder="Search Here"><br>
-                <button class="btn btn-secondary" type="submit">Cari</button><br><br>
+                <button class="btn btn-warning" type="submit">Cari</button><br><br>
             </form>
         </div><br>
 
@@ -29,6 +29,7 @@
                 background-color: #f2f2f2;
             }
         </style>
+
     </div>
 </div>
 
@@ -42,7 +43,7 @@
         <th>Tanggal masuk</th>
     </tr>
 
-    @foreach ($barang_masuk as $item)
+    @foreach ($barang_masuk1 as $item)
         <tr>
             <td>{{ $item->supplier->nama_supplier }}</td>
             <td>{{ $item->barang->nama_barang }}</td>
@@ -54,8 +55,10 @@
     @endforeach
 </table><br>
 
-@if(isset($total_harga2))
-    <h2 id="total_harga2">Total Harga: {{ $total_harga2 }}</h2><br><br>
+@if(isset($total_harga3))
+    <h2 id="total_harga3">Total Harga: {{ $total_harga3 }}</h2><br>
 @endif
+
+<a class="btn btn-success mt-3" href="{{ route('barang_masuk_admin') }}">Kembali</a><br><br>
 
 @endsection

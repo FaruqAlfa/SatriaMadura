@@ -49,7 +49,7 @@
         <th>Harga</th>
         <th>Total</th>
         <th>Tanggal keluar</th>
-        <th width="280px">Action</th>
+        <th width="150px">Action</th>
     </tr>
     @foreach ($Barang_Keluar as $barang_keluar)
     <tr>
@@ -65,9 +65,6 @@
             <form action="{{ route('barangkeluar.destroy',$barang_keluar->id)}}" method="POST">
                 <a class="btn btn-info" href="{{route('barangkeluar.show',$barang_keluar->id)}}">Show</a>
                 <a class="btn btn-primary" href="{{ route('barangkeluar.edit',$barang_keluar->id) }}">Edit</a>
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger">Delete</button>
             </form>
         </td>
     </tr>

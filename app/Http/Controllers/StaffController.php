@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Staff;
 use Illuminate\Http\Request;
+use App\Models\Barang_Keluar;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 
@@ -16,7 +17,19 @@ class StaffController extends Controller
      */
     public function index(Request $request)
     {
-        $search = $request->search;
+//         $search = $request->search;
+//         $perPage = $request->input('per_page', 2);
+
+//         $staffDash = Barang_Keluar::join('barang', 'barang.id', '=', 'barang_keluar.barang_id')
+//             ->join('staff', 'staff.id', '=', 'barang_keluar.staff_id')
+//             ->where('barang.nama_barang', 'like', "%$search%")
+//             ->orWhere('barang_keluar.jumlah', 'like', "%$search%")
+//             ->orWhere('barang_keluar.harga', 'like', "%$search%")
+//             ->orWhere('barang_keluar.tanggal_keluar', 'like', "%$search%")
+//             ->orWhere('barang_keluar.total', 'like', "%$search%")
+//             ->orWhere('staff.nama_staff', 'like', "%$search%")
+//             ->paginate($perPage);
+//         return view('Staff.dashboardStaff', ['Staff' => $staffDash]);
     
         if ($search) {
             $Staff = Staff::where('name', 'like', "%$search%")
@@ -58,9 +71,9 @@ class StaffController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_staff' =>'required',
-            'username' =>'required',
-            'password' =>'required',
+            'nama_staff' => 'required',
+            'username' => 'required',
+            'password' => 'required',
         ]);
 
         $data = $request->all();
@@ -159,10 +172,16 @@ class StaffController extends Controller
 
 
     // Menambahkan Staff Dari Admin
+    public function getAll()
+    {
+        $Staff = Staff::all();
+        $posts = Staff::orderBy('id', 'DESC')->paginate(5);
+        return view('Admin.EditStaff.IndexStaff', compact('Staff'))->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
     // public function getAll(){
     //     $Staff = Staff::orderBy('id', 'DESC')->paginate(1);
     //     // $posts = Staff::orderBy('id', 'DESC');
     //     return view('Admin.EditStaff.IndexStaff', compact('Staff'));
     // }
-
 }

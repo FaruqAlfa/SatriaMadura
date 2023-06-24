@@ -27,7 +27,7 @@ class BarangMasukController extends Controller
             ->orWhere('barang_masuk.total', 'like', "%$search%")
             ->orWhere('supplier.nama_supplier', 'like', "%$search%")
             ->paginate($perPage);
-        return view('perbarangan.barang_masuk', ['Barang_Masuk'=>$barang_masuk]);
+        return view('perbarangan.barang_masuk', ['Barang_Masuk' => $barang_masuk]);
     }
 
     /**
@@ -139,7 +139,7 @@ class BarangMasukController extends Controller
         $barang_masuk->save();
 
 
-        return redirect()->route('barangmasuk.index')
+        return redirect()->route('barangMasuk')
             ->with('success', 'Barang Masuk Berhasil Ditambahkan');
     }
 

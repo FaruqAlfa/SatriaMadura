@@ -56,9 +56,6 @@ class LapBarangMasukController extends Controller
     {
         $lap_barang_masuk = Barang_Masuk::where('tanggal_masuk', $request->input('tanggal_masuk'))->get();
 
-        // $a = $request->input('tanggal_masuk');
-        // echo "<script>coxnsole.log($a)</script>";
-
         $pdf = PDF::loadview('laporan.lap_barang_masuk_pdf', ['lap_barang_masuk' => $lap_barang_masuk]);
         $pdf->setPaper('A4', 'portrait');
         return $pdf->stream();

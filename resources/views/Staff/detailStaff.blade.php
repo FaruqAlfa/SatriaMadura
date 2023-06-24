@@ -1,4 +1,5 @@
-@extends('Staff.dashboardStaff')
+
+@extends('Tambah.includeStaff')
 
 @section('content')
 <div class="container">

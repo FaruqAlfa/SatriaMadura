@@ -118,7 +118,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('barangMasuk') }}" class="nav-link">
+                  <a href="{{ route('supplierWeb') }}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Barang Masuk Search</p>
                   </a>

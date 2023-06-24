@@ -138,7 +138,6 @@ class BarangKeluarController extends Controller
         $barang_keluar->jumlah = $request->get('jumlah');
         $barang_keluar->save();
 
-
         return redirect()->route('barangKeluar')
             ->with('success', 'Barang Keluar Berhasil Diupdate');
     }

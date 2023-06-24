@@ -20,10 +20,10 @@ class Barang_Masuk extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'id',
         'supplier_id',
         'barang_id',
         'jumlah',
+        'harga',
         'total',
         'tanggal_masuk',
     ];

@@ -30,14 +30,13 @@
                     <label for="tanggal_keluar_admin">Tanggal Keluar:</label>
                     <select id="tanggal_keluar_admin" name="tanggal_keluar_admin" required>
                         <option value="">Pilih Tanggal Keluar</option>
-                        @foreach ($barang_keluar as $bk)
+                        @foreach ($barang_keluar2 as $bk)
                             <option value="{{ $bk->tanggal_keluar }}">{{ $bk->tanggal_keluar }}</option>
                         @endforeach
                     </select>
                 </div>
 
-                <a class="btn btn-warning mt-3" href="{{ route('filterByTanggalKeluar2') }}">Filter</a><br><br>
-                {{-- <button type="submit">Filter</button> --}}
+                <button class="btn btn-warning mt-3" type="submit">Filter</button><br><br>
             </form>
 
         </div>
@@ -54,7 +53,7 @@
         <th>Tanggal Keluar</th>
     </tr>
 
-    @foreach ($barang_keluar as $item)
+    @foreach ($barang_keluar2 as $item)
         <tr>
             <td>{{ $item->staff->nama_staff }}</td>
             <td>{{ $item->barang->nama_barang }}</td>
@@ -66,8 +65,8 @@
     @endforeach
 </table><br>
 
-@if(isset($total_harga))
-    <h2 id="total_harga">Total Harga: {{ $total_harga }}</h2>
+@if(isset($total_harga2))
+    <h2 id="total_harga2">Total Harga: {{ $total_harga2 }}</h2>
 @endif
 
 <a class="btn btn-success mt-3" href="{{ route('lap_barang_keluar_admin') }}">Kembali</a><br><br>

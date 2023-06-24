@@ -1,12 +1,12 @@
-@extends('Admin.dashboardAdmin')
+@extends('Tambah.includeAdmin')
 
 
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
-    <div class="position-absolute top-0 start-0">
-    <h2>DAFTAR KARYAWAN</h2>
-    </div>
+        <div class="pull-left mt-4">
+            <h2 style="text-align: center">Tampilan Admin Data Karyawan</h2>
+        </div>
     <div class="float-right my-2">
     <a class="btn btn-success" href="{{ route('staffCreate') }}"> Input Staff</a>
     </div>
@@ -18,7 +18,6 @@
     <p>{{ $message }}</p>
     </div>
     @endif
-
     
     <div class="row">
         <div class="col-md-4">
@@ -36,7 +35,7 @@
     <th>Image</th>
     <th>Email</th>
     <th>No_Handphone</th>
-    <th width="280px">Action</th>
+    <th width="150px">Action</th>
     </tr>
     @foreach ($Staff as $staff)
     <tr>
@@ -48,6 +47,7 @@
     <td>{{ $staff->email }}</td>
     <td>{{ $staff->no_telepon }}</td>
     <td>
+
         <!-- Button trigger modal -->
     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
         Delete
@@ -77,10 +77,12 @@
         </div>
         </div>
     </div>
-    
+
     </td>
     </tr>
     @endforeach
     </table>
+
     {{ $Staff->links() }}
+
 @endsection

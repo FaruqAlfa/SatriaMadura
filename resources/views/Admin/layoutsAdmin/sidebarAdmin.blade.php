@@ -47,7 +47,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -55,15 +55,15 @@
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-
-          </li>
+          </li> --}}
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-edit"></i>
-                <p>
-                    Distribusi
-                    <i class="fas fa-angle-left right"></i>
-                </p>
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                Distribusi
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
 
             <ul class="nav nav-treeview">
               <li class="nav-item">
@@ -116,7 +116,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{ route('supplier') }}" class="nav-link">
+            <a href="{{ route('supplier1') }}" class="nav-link">
               <img src="img/gudang.png" class="nav-icon">
               <p>
                 Data Supplier
