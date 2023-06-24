@@ -6,6 +6,8 @@ use App\Models\Supplier;
 use App\Models\Barang_Masuk;
 use App\Models\SupplierResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 
 class SupplierResourceController extends Controller
 {
@@ -90,9 +92,10 @@ class SupplierResourceController extends Controller
      * @param  \App\Models\SupplierResource  $supplierResource
      * @return \Illuminate\Http\Response
      */
-    public function show(SupplierResource $supplierResource)
+    public function show($id)
     {
-        //
+        $supplier = SupplierResource::find($id);
+        return view('layoutsSuplier.detailSupplier', compact('supplier'));
     }
 
     /**
@@ -113,10 +116,38 @@ class SupplierResourceController extends Controller
      * @param  \App\Models\SupplierResource  $supplierResource
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SupplierResource $supplierResource)
+    public function update(Request $request, $id)
     {
-        //
+        $supplier = SupplierResource::find($id);
+        $supplier->username = $request->username;
+        $supplier->nama_supplier = $request->nama_supplier;
+
+        $request->validate([
+            'username' => 'required',
+            'nama_supplier' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg|max:2048', // Validasi untuk file gambar
+            'email' => 'required',
+            'password',
+            'no_telepon' => 'required',
+        ]);
+
+        if ($request->hasFile('image')) {
+            // Menghapus gambar lama jika ada dan menggantinya dengan yang baru
+            if ($supplier->image && file_exists(storage_path('app/public/' . $supplier->image))) {
+                Storage::delete('public/' . $supplier->image);
+            }
+
+            $image_name = $request->file('image')->store('images', 'public');
+            $supplier->image = $image_name;
+        }
+
+        $data = $request->all();
+        $data['password'] = Hash::make($request->password);
+        $supplier->update($data);
+
+        return redirect()->route('dashboardSupplier')->with('success', 'supplier Berhasil Diubah');
     }
+
 
     /**
      * Remove the specified resource from storage.

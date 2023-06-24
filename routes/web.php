@@ -53,16 +53,16 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth:admin')->group(function () {
     Route::resource('/staff', StaffController::class);
-    Route::get('/search',[StaffController::class, 'index'])->name('search');
+    Route::get('/search', [StaffController::class, 'index'])->name('search');
 
     Route::get('/getAllStaff', [StaffController::class, 'getAll'])->name('staffAll');
     Route::get('/StaffInput', [StaffController::class, 'create'])->name('staffCreate');
     Route::post('/makeStaff', [StaffController::class, 'store'])->name('makeStaff');
     Route::resource('/supplierRes', SupplierResourceController::class);
-    Route::delete('/deleteStaff{id}',[StaffController::class, 'destroy'])->name('deleteStaff');
+    Route::delete('/deleteStaff{id}', [StaffController::class, 'destroy'])->name('deleteStaff');
 
     Route::resource('/supplier', SupplierController::class);
-    Route::delete('/deleteStaff{id}',[StaffController::class, 'destroy'])->name('deleteStaff');
+    Route::delete('/deleteStaff{id}', [StaffController::class, 'destroy'])->name('deleteStaff');
     Route::get('/logoutAdmin', [AuthController::class, 'logoutAdmin'])->name('logoutAdmin');
     Route::get('/dashboardAdmin', [AdminController::class, 'index'])->name('dashboardAdmin');
     Route::get('/admin/{id}', [AdminController::class, 'showAdmin'])->name('layoutsAdmin.sidebarAdmin');
@@ -87,6 +87,8 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/barangmasuk', [BarangMasukController::class, 'index'])->name('barangMasuk');
     // Route::get('/supplierWeb', [SupplierResourceController::class, 'getSupplier2'])->name('supplierWeb');
     Route::get('/barangmasuk', [BarangMasukController::class, 'index'])->name('barangMasuk');
+    Route::get('/detailEditSupplier/{id}', [SupplierResourceController::class, 'show'])->name('detailEditSupplier');
+    Route::get('/detailSupplier/{id}', [SupplierResourceController::class, 'show'])->name('showDetailSupplier');
 });
 
 
@@ -100,17 +102,15 @@ Route::middleware('auth:staff')->group(function () {
     Route::get('/editStaff{id}', [StaffController::class, 'edit'])->name('edit');
     Route::put('/updateStaff{id}', [StaffController::class, 'update'])->name('update');
     Route::resource('/barangan', BarangController::class);
-
-    Route::get('/barang',[BarangController::class, 'index'])->name('barang');
-    Route::get('/inputbarang',[BarangController::class, 'create'])->name('inputbarang');
+    Route::get('/barang', [BarangController::class, 'index'])->name('barang');
+    Route::get('/inputbarang', [BarangController::class, 'create'])->name('inputbarang');
     Route::resource('/barangm', BarangMasukController::class);
     Route::resource('/barangkeluar', BarangKeluarController::class);
     Route::get('/barangkeluar', [BarangKeluarController::class, 'index'])->name('barangKeluar');
     Route::resource('/barangmasuk', BarangMasukController::class);
     Route::get('/barangmasuk', [BarangMasukController::class, 'index'])->name('barangMasuk');
     Route::resource('/barangk', BarangKeluarController::class);
-    Route::get('/barangkeluar',[BarangKeluarController::class, 'index'])->name('barangKeluar');
-    Route::get('/logoutStaff', [AuthController::class, 'logoutStaff'])->name('logoutStaff');
+    Route::get('/barangkeluar', [BarangKeluarController::class, 'index'])->name('barangKeluar');
     Route::post('/lap_barang_keluar', [LapBarangKeluarController::class, 'filterByTanggalKeluar'])->name('filterByTanggalKeluar');
     Route::get('/lap_barang_masuk', [LapBarangMasukController::class, 'index'])->name('lap_barang_masuk');
     Route::get('/lap_barang_keluar', [LapBarangKeluarController::class, 'index'])->name('lap_barang_keluar');
@@ -120,5 +120,5 @@ Route::middleware('auth:staff')->group(function () {
     Route::get('/lap_barang_keluar/cetakPDF1', [LapBarangKeluarController::class, 'cetakPDF1'])->name('cetakPDF1');
     Route::get('/lap_barang_keluar/cetakPDF1All', [LapBarangKeluarController::class, 'cetakPDF1All'])->name('cetakPDF1All');
     Route::get('/supplierWeb', [SupplierResourceController::class, 'getSupplier2'])->name('supplierWeb');
+    Route::get('/logoutStaff', [AuthController::class, 'logoutStaff'])->name('logoutStaff');
 });
-
