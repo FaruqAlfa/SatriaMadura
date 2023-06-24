@@ -70,14 +70,14 @@
 
           {{-- {{ route('barangkeluar.index') }} --}}
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{{ route('barangKeluar') }}" class="nav-link">
               <img src="{{ asset('img/location.png') }}" class="nav-icon">
               <p>
                 Distribusi
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-          </li> --}}
+          </li> 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-edit"></i>
@@ -108,7 +108,7 @@
                 <li class="nav-item">
                   <a href="{{ route('barangMasuk') }}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Barang Masuk Search</p>
+                      <p>Barang Masuk Search1</p>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -120,7 +120,7 @@
                 <li class="nav-item">
                   <a href="{{ route('supplierWeb') }}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Barang Masuk Search</p>
+                      <p>Barang Masuk Search2</p>
                   </a>
                 </li>
                 

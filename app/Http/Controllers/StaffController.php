@@ -17,39 +17,39 @@ class StaffController extends Controller
      */
     public function index(Request $request)
     {
-//         $search = $request->search;
-//         $perPage = $request->input('per_page', 2);
+        $search = $request->search;
+        $perPage = $request->input('per_page', 2);
 
-//         $staffDash = Barang_Keluar::join('barang', 'barang.id', '=', 'barang_keluar.barang_id')
-//             ->join('staff', 'staff.id', '=', 'barang_keluar.staff_id')
-//             ->where('barang.nama_barang', 'like', "%$search%")
-//             ->orWhere('barang_keluar.jumlah', 'like', "%$search%")
-//             ->orWhere('barang_keluar.harga', 'like', "%$search%")
-//             ->orWhere('barang_keluar.tanggal_keluar', 'like', "%$search%")
-//             ->orWhere('barang_keluar.total', 'like', "%$search%")
-//             ->orWhere('staff.nama_staff', 'like', "%$search%")
-//             ->paginate($perPage);
-//         return view('Staff.dashboardStaff', ['Staff' => $staffDash]);
-    
-        if ($search) {
-            $Staff = Staff::where('name', 'like', "%$search%")
-                ->orWhere('nama_staff', 'like', "%$search%")
-                ->orWhere('username', 'like', "%$search%")
-                ->orWhere('email', 'like', "%$search%")
-                ->orWhere('no_telepon', 'like', "%$search%")
-                ->paginate(5);
-        } else {
-            $Staff = Staff::orderBy('id', 'DESC')->paginate(5);
-        }
-    
-        return view('Admin.EditStaff.indexStaff', compact('Staff'));
+        $staffDash = Barang_Keluar::join('barang', 'barang.id', '=', 'barang_keluar.barang_id')
+            ->join('staff', 'staff.id', '=', 'barang_keluar.staff_id')
+            ->where('barang.nama_barang', 'like', "%$search%")
+            ->orWhere('barang_keluar.jumlah', 'like', "%$search%")
+            ->orWhere('barang_keluar.harga', 'like', "%$search%")
+            ->orWhere('barang_keluar.tanggal_keluar', 'like', "%$search%")
+            ->orWhere('barang_keluar.total', 'like', "%$search%")
+            ->orWhere('staff.nama_staff', 'like', "%$search%")
+            ->paginate($perPage);
+        return view('Staff.dashboardStaff', ['Staff' => $staffDash]);
+
+        // if ($search) {
+        //     $Staff = Staff::where('name', 'like', "%$search%")
+        //         ->orWhere('nama_staff', 'like', "%$search%")
+        //         ->orWhere('username', 'like', "%$search%")
+        //         ->orWhere('email', 'like', "%$search%")
+        //         ->orWhere('no_telepon', 'like', "%$search%")
+        //         ->paginate(5);
+        // } else {
+        //     $Staff = Staff::orderBy('id', 'DESC')->paginate(5);
+        // }
+
+        // return view('Admin.EditStaff.indexStaff', compact('Staff'));
     }
-     
+
     public function getStaff()
     {
         $staff = Staff::all(); // Mengambil semua data dari tabel menggunakan model
 
-        return view('Dashboard.dashboardStaff', ['staff' => $staff]); // Mengembalikan data ke view dengan nama 'your-view'
+        return view('Dashboard.dashboardStaff', ['Staff' => $staff]); // Mengembalikan data ke view dengan nama 'your-view'
     }
 
     /**
@@ -77,7 +77,7 @@ class StaffController extends Controller
         ]);
 
         $data = $request->all();
-        $data['password'] = Hash::make($request -> password);
+        $data['password'] = Hash::make($request->password);
 
         Staff::create($data);
 
@@ -97,10 +97,9 @@ class StaffController extends Controller
         $Staff = Staff::find($id);
         // return dd($Staff);
         return view('Staff.detailStaff', compact('Staff'));
-
     }
 
-    
+
 
 
     /**
@@ -113,7 +112,6 @@ class StaffController extends Controller
     {
         $Staff = Staff::find($id);
         return view('staff.editStaff', compact('Staff'));
-        
     }
 
     /**
@@ -125,10 +123,10 @@ class StaffController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $staff = Staff::find($id); 
+        $staff = Staff::find($id);
         $staff->username = $request->username;
         $staff->nama_staff = $request->nama_staff;
-    
+
         $request->validate([
             'username' => 'required',
             'nama_staff' => 'required',
@@ -137,24 +135,24 @@ class StaffController extends Controller
             'password',
             'no_telepon' => 'required',
         ]);
-    
+
         if ($request->hasFile('image')) {
             // Menghapus gambar lama jika ada dan menggantinya dengan yang baru
             if ($staff->image && file_exists(storage_path('app/public/' . $staff->image))) {
                 Storage::delete('public/' . $staff->image);
             }
-    
+
             $image_name = $request->file('image')->store('images', 'public');
             $staff->image = $image_name;
         }
-    
+
         $data = $request->all();
         $data['password'] = Hash::make($request->password);
         $staff->update($data);
-    
+
         return redirect()->route('dashboardStaff')->with('success', 'Staff Berhasil Diubah');
     }
-    
+
 
     /**
      * Remove the specified resource from storage.
