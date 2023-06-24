@@ -27,8 +27,8 @@
             <form action="{{ route('filterByTanggalKeluar') }}" method="POST">
                 @csrf
                 <div>
-                    <label for="tanggal_keluar">Tanggal Keluar:</label>
-                    <select id="tanggal_keluar" name="tanggal_keluar" required>
+                    <label for="tanggal_keluar">Filtering Tanggal Keluar:</label>
+                    <select class="form-control col-md-4" id="tanggal_keluar" name="tanggal_keluar" required>
                         <option value="">Pilih Tanggal Keluar</option>
                         @foreach ($barang_keluar as $bk)
                             <option value="{{ $bk->tanggal_keluar }}">{{ $bk->tanggal_keluar }}</option>

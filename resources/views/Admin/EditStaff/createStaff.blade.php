@@ -1,9 +1,7 @@
-@extends('Admin.dashboardAdmin')
+@extends('Tambah.includeAdmin')
 
 @section('content')
-
     <div class="container mt-5">
-
         <div class="row justify-content-center align-items-center">
             <div class="card" style="width: 24rem;">
                 <div class="card-header">
@@ -39,6 +37,7 @@
                             <input type="password" name="password" class="form-control" id="password" aria-describedby="password">
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
+                        <a href="{{ route('staffAll') }}"class="btn btn-primary">Kembali</a>
                     </form>
                 </div>
             </div>

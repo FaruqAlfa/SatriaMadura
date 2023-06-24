@@ -1,7 +1,7 @@
-@extends('Dashboard.dashboardStaff')
+@extends('Tambah.includeStaff')
 
 @section('content')
-        <div class="container mt-5">
+        <div class="container mt-5 h-100 row justify-content-center align-items-center">
             <div class="card" style="width: 24rem;">
                 <div class="card-header">
                     Edit Staff
@@ -49,7 +49,15 @@
                             <label for="no_telepon">No. Hanphone</label> 
                             <input type="no_telepon" name="no_telepon" class="form-control" id="no_telepon" value="{{ $Staff->no_telepon }}" aria-describedby="no_telepon" > 
                         </div>
+
+                        <div class="form-group">
+                            <label for="image">Feature Image</label>
+                            <input type="file" class="form-control" required="required" name="image" value="{{$Staff->image}}"></br>
+                            {{-- <img width="150px" src="{{asset('storage/'.$Staff->image)}}"> --}}
+                        </div>
+
                         <button type="submit" class="btn btn-primary">Submit</button>
+                        <a href="{{ route('dashboardStaff') }}"class="btn btn-primary">Kembali</a> 
                     </form>
                 </div>
             </div>

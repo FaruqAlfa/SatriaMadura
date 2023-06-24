@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Supplier;
+use App\Models\Barang_Masuk;
 use App\Models\SupplierResource;
 use Illuminate\Http\Request;
 
@@ -15,23 +16,51 @@ class SupplierResourceController extends Controller
      */
     public function index(Request $request)
     {
-        $supplier = SupplierResource::all();
+        $search = $request->search;
+        $perPage = $request->input('per_page', 2);
+
+        $dashboard_sup = Barang_Masuk::join('barang', 'barang.id', '=', 'barang_masuk.barang_id')
+            ->join('supplier', 'supplier.id', '=', 'barang_masuk.supplier_id')
+            ->where('barang.nama_barang', 'like', "%$search%")
+            ->orWhere('barang_masuk.jumlah', 'like', "%$search%")
+            ->orWhere('barang_masuk.harga', 'like', "%$search%")
+            ->orWhere('barang_masuk.tanggal_masuk', 'like', "%$search%")
+            ->orWhere('barang_masuk.total', 'like', "%$search%")
+            ->orWhere('supplier.nama_supplier', 'like', "%$search%")
+            ->paginate($perPage);
+        return view('Dashboard.dashboardSupplier', ['Dashboard_Sup' => $dashboard_sup]);
+    }
+
+    public function getSupplier(Request $request)
+    {
         $search = $request->search;
         $perPage = $request->input('per_page', 5);
 
-        $supplier = SupplierResource::where('supplier.id', 'like', "%$search%")
+        $supplier1 = SupplierResource::where('supplier.id', 'like', "%$search%")
+            ->orWhere('supplier.name', 'like', "%$search%")
             ->orWhere('supplier.nama_supplier', 'like', "%$search%")
             ->orWhere('supplier.username', 'like', "%$search%")
             ->orWhere('supplier.email', 'like', "%$search%")
             ->orWhere('supplier.no_telepon', 'like', "%$search%")
             ->paginate($perPage);
-        return view('perbarangan.supplier', ['Supplier' => $supplier]);
+        return view('perbarangan.supplier', compact('supplier1')); // Mengembalikan data ke view dengan nama 'your-view'
     }
 
-    public function getSupplier()
+    public function getSupplier2(Request $request)
     {
-        $supplier = SupplierResource::all(); // Mengambil semua data dari tabel menggunakan model
-        return view('perbarangan.supplier', compact('supplier')); // Mengembalikan data ke view dengan nama 'your-view'
+        $search = $request->search;
+        $perPage = $request->input('per_page', 5);
+
+        $barang_masuk_sup = Barang_Masuk::join('barang', 'barang.id', '=', 'barang_masuk.barang_id')
+            ->join('supplier', 'supplier.id', '=', 'barang_masuk.supplier_id')
+            ->where('barang.nama_barang', 'like', "%$search%")
+            ->orWhere('barang_masuk.jumlah', 'like', "%$search%")
+            ->orWhere('barang_masuk.harga', 'like', "%$search%")
+            ->orWhere('barang_masuk.tanggal_masuk', 'like', "%$search%")
+            ->orWhere('barang_masuk.total', 'like', "%$search%")
+            ->orWhere('supplier.nama_supplier', 'like', "%$search%")
+            ->paginate($perPage);
+        return view('layoutsSuplier.supplierWeb', ['Barang_Masuk_Sup' => $barang_masuk_sup]); // Mengembalikan data ke view dengan nama 'your-view'
     }
 
     /**

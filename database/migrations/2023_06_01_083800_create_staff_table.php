@@ -18,13 +18,13 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('nama_staff', 30);
-            $table->string('username',25)->nullable()->uniqiue();
+            $table->string('username', 25)->nullable()->uniqiue();
             $table->string('email')->nullable()->unique();
             $table->string('password');
             $table->string('no_telepon', 20)->nullable();
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
-
         });
     }
 

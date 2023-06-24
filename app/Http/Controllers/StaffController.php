@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Staff;
 use Illuminate\Http\Request;
-
+use App\Models\Barang_Keluar;
 
 class StaffController extends Controller
 {
@@ -13,9 +13,21 @@ class StaffController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('Staff.dashboardStaff');
+        $search = $request->search;
+        $perPage = $request->input('per_page', 2);
+
+        $staffDash = Barang_Keluar::join('barang', 'barang.id', '=', 'barang_keluar.barang_id')
+            ->join('staff', 'staff.id', '=', 'barang_keluar.staff_id')
+            ->where('barang.nama_barang', 'like', "%$search%")
+            ->orWhere('barang_keluar.jumlah', 'like', "%$search%")
+            ->orWhere('barang_keluar.harga', 'like', "%$search%")
+            ->orWhere('barang_keluar.tanggal_keluar', 'like', "%$search%")
+            ->orWhere('barang_keluar.total', 'like', "%$search%")
+            ->orWhere('staff.nama_staff', 'like', "%$search%")
+            ->paginate($perPage);
+        return view('Staff.dashboardStaff', ['Staff' => $staffDash]);
     }
 
     public function getStaff()
@@ -44,9 +56,9 @@ class StaffController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_staff' =>'required',
-            'username' =>'required',
-            'password' =>'required',
+            'nama_staff' => 'required',
+            'username' => 'required',
+            'password' => 'required',
         ]);
 
         Staff::create($request->all());
@@ -90,12 +102,12 @@ class StaffController extends Controller
     {
         $request->validate([
             'id' => 'required',
-            'name' =>'required',
-            'nama_staff' =>'required',
-            'username' =>'required',
-            'email' =>'required',
-            'password' =>'required',
-            'no_telepon' =>'required',
+            'name' => 'required',
+            'nama_staff' => 'required',
+            'username' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'no_telepon' => 'required',
         ]);
 
         return redirect()->route('staff.index')->with('success', 'Staff Berhasil Ditambahkan');
@@ -115,10 +127,10 @@ class StaffController extends Controller
 
 
     // Menambahkan Staff Dari Admin
-    public function getAll(){
+    public function getAll()
+    {
         $Staff = Staff::all();
         $posts = Staff::orderBy('id', 'DESC')->paginate(5);
         return view('Admin.EditStaff.IndexStaff', compact('Staff'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
-
 }

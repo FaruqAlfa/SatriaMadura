@@ -27,8 +27,8 @@
             <form action="{{ route('filterByTanggalMasuk') }}" method="POST">
                 @csrf
                 <div>
-                    <label for="tanggal_masuk">Tanggal Masuk:</label>
-                    <select id="tanggal_masuk" name="tanggal_masuk" required>
+                    <label for="tanggal_masuk">Filtering Tanggal Masuk:</label>
+                    <select class="form-control col-md-4" id="tanggal_masuk" name="tanggal_masuk" required>
                         <option value="">Pilih Tanggal Masuk</option>
                         @foreach ($barang_masuk as $bm)
                             <option value="{{ $bm->tanggal_masuk }}">{{ $bm->tanggal_masuk }}</option>
@@ -42,7 +42,7 @@
             </form>
             <div class="col d-flex justify-content-end align-items-end">
                 <form action="{{ route('cetakPDF2') }}" method="GET">
-                    <input type="text" hidden id="tanggal_masuk" name="tanggal_masuk" value="{{$tanggal_masuk}}">
+                    <input type="text" hidden id="tanggal_masuk" name="tanggal_masuk" value="{{$bm->tanggal_masuk}}">
 
                     <button class="btn btn-info mt-3 mr-4" type="submit">CetakPDF</button>
                 </form>
@@ -80,5 +80,6 @@
 @endif
 
 <a class="btn btn-success mt-3" href="{{ route('lap_barang_masuk') }}">Kembali</a><br><br>
+
 
 @endsection

@@ -1,4 +1,4 @@
-@extends('Tambah.includeStaff')
+@extends('Tambah.includeSupplier')
 
 @section('content')
 <div class="row">
@@ -50,7 +50,7 @@
         <th>Harga</th>
         <th>Total</th>
         <th>Tanggal Masuk</th>
-        <th width="280px">Action</th>
+        <th width="170px">Action</th>
     </tr>
     @foreach ($Barang_Masuk as $barang_masuk)
     <tr>
@@ -65,9 +65,6 @@
             <form action="{{ route('barangmasuk.destroy',$barang_masuk->id)}}" method="POST">
                 <a class="btn btn-info" href="{{route('barangmasuk.show',$barang_masuk->id)}}">Show</a>
                 <a class="btn btn-primary" href="{{ route('barangmasuk.edit',$barang_masuk->id) }}">Edit</a>
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger">Delete</button>
             </form>
         </td>
         

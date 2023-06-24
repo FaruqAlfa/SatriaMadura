@@ -1,14 +1,14 @@
-@extends('Tambah.includeAdmin')
+@extends('Tambah.includeStaff')
 
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left mt-4">
-            <h2 style="text-align: center">Tampilan Admin Data Supplier</h2>
+            <h2 style="text-align: center">Tampilan Data Staff Barang Masuk</h2>
         </div>
 
         <div class="col-md-6 mt-4">
-            <form action="{{ url('supplier1') }}" method="get">
+            <form action="{{ url('supplierWeb') }}" method="get">
                 <input type="search" class="form-control" name ="search" value="{{Request::get('search')}}" id="inputEmail" placeholder="Search Here"><br>
                 <button class="btn btn-warning mt-3" type="submit">Cari</button><br><br>
             </form>
@@ -22,20 +22,22 @@
 
         <table class="table table-bordered">
             <tr>
-                <th>Nama</th>
                 <th>Nama Supplier</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>No Telepon</th>
+                <th>Nama Barang</th>
+                <th>Jumlah</th>
+                <th>Harga</th>
+                <th>Total</th>
+                <th>Tanggal Masuk</th>
             </tr>
         
-            @foreach ($supplier1 as $supplier_admin)
+            @foreach ($Barang_Masuk_Sup as $barang_masuk_sup)
                 <tr>
-                    <td>{{ $supplier_admin->name }}</td>
-                    <td>{{ $supplier_admin->nama_supplier }}</td>
-                    <td>{{ $supplier_admin->username }}</td>
-                    <td>{{ $supplier_admin->email }}</td>
-                    <td>{{ $supplier_admin->no_telepon }}</td>
+                    <td>{{ $barang_masuk_sup->supplier->nama_supplier }}</td>
+                    <td>{{ $barang_masuk_sup->barang->nama_barang }}</td>
+                    <td>{{ $barang_masuk_sup->jumlah }}</td>
+                    <td>{{ $barang_masuk_sup->harga }}</td>
+                    <td>{{ $barang_masuk_sup->total }}</td>
+                    <td>{{ $barang_masuk_sup->tanggal_masuk }}</td>
                 </tr>
             @endforeach
         </table><br>
@@ -56,11 +58,13 @@
             }
         </style>
 
-        <a class="btn btn-success mt-3" href="{{ route('supplier1') }}">Kembali</a><br><br>
+        <a class="btn btn-success mt-3" href="{{ route('supplierWeb') }}">Kembali</a><br><br>
 
         </div>
     </div>
 </div>
+
+{{ $Barang_Masuk_Sup->links() }}
 
 @endsection
 

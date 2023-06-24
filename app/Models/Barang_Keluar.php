@@ -17,9 +17,10 @@ class Barang_Keluar extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'id',
         'staff_id',
+        'barang_id',
         'jumlah',
+        'harga',
         'total',
         'tanggal_keluar',
     ];
