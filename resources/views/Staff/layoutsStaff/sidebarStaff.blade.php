@@ -1,8 +1,13 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <style>
+    a{ 
+      text-decoration: none
+    }
+  </style>
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="img/logoPTreal.jpg" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img src="{{ asset('img/logoPTreal.jpg') }}" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Satria Madura</span>
     </a>
 
@@ -11,10 +16,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          {{-- <a href="#" class="d-block">{{ $user->name }}</a> --}}
+          <a href="#" class="d-block"> {{ Auth::user()->nama_staff }}</a>
         </div>
       </div>
 
@@ -62,9 +67,11 @@
               </p>
             </a>
           </li> --}}
-          {{-- <li class="nav-item">
-            <a href="{{ route('barangkeluar') }}" class="nav-link">
-              <img src="img/location.png" class="nav-icon">
+
+          {{-- {{ route('barangkeluar.index') }} --}}
+          <li class="nav-item">
+            <a href="" class="nav-link">
+              <img src="{{ asset('img/location.png') }}" class="nav-icon">
               <p>
                 Distribusi
                 <i class="fas fa-angle-left right"></i>
@@ -121,10 +128,10 @@
               </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('detailEdit', ['id' => Auth::id()])  }}" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                Data Karyawan
+                My Profile
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>

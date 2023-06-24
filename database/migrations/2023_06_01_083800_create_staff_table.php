@@ -19,9 +19,11 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('nama_staff', 30);
             $table->string('username',25)->nullable()->uniqiue();
+            $table->string('image')->nullable();
             $table->string('email')->nullable()->unique();
             $table->string('password');
             $table->string('no_telepon', 20)->nullable();
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
 

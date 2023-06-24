@@ -1,10 +1,12 @@
-@extends('Dashboard.dashboardStaff')
+@extends('Staff.dashboardStaff')
 
 @section('content')
-        <div class="container mt-5">
+        <div class="container py-5 h-100 row justify-content-center align-items-center" >
             <div class="card" style="width: 24rem;">
-                <div class="card-header">
-                    Edit Staff
+                <div class="card-header" >
+                    <center>
+                        Edit Staff
+                    </center>
                 </div>
                 <div class="card-body">
                     @if ($errors->any())
@@ -17,7 +19,7 @@
                         </ul>
                     </div>
                     @endif
-                    <form method="post" action="{{ route('staff.update', $Staff->id) }}" id="myForm">
+                    <form method="post" action="{{ route('update', $Staff->id) }} id="myForm" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
@@ -42,14 +44,22 @@
 
                         <div class="form-group">
                             <label for="password">Password</label> 
-                            <input type="password" name="password" class="form-control" id="password" value="{{ $Staff->password }}" aria-describedby="password" > 
+                            <input type="password" name="password" class="form-control" id="password"  aria-describedby="password" > 
                         </div>
 
                         <div class="form-group">
                             <label for="no_telepon">No. Hanphone</label> 
                             <input type="no_telepon" name="no_telepon" class="form-control" id="no_telepon" value="{{ $Staff->no_telepon }}" aria-describedby="no_telepon" > 
                         </div>
+
+                        <div class="form-group">
+                            <label for="image">Feature Image</label>
+                            <input type="file" class="form-control" required="required" name="image" value="{{$Staff->image}}"></br>
+                            {{-- <img width="150px" src="{{asset('storage/'.$Staff->image)}}"> --}}
+                            </div>
+
                         <button type="submit" class="btn btn-primary">Submit</button>
+                        <a href="{{ route('dashboardStaff') }}"class="btn btn-primary">Kembali</a> 
                     </form>
                 </div>
             </div>
