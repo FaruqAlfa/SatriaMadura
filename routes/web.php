@@ -18,7 +18,6 @@ use App\Http\Controllers\LapBarangKeluarController;
 use App\Http\Controllers\LapBarangMasukController;
 use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\BarangKeluarController;
-use App\Http\Controllers\StaffResourceController;
 use App\Http\Controllers\SupplierResourceController;
 
 /*
@@ -55,10 +54,13 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth:admin')->group(function () {
     Route::resource('/staff', StaffController::class);
     Route::get('/search',[StaffController::class, 'index'])->name('search');
+
     Route::get('/getAllStaff', [StaffController::class, 'getAll'])->name('staffAll');
     Route::get('/StaffInput', [StaffController::class, 'create'])->name('staffCreate');
     Route::post('/makeStaff', [StaffController::class, 'store'])->name('makeStaff');
     Route::resource('/supplierRes', SupplierResourceController::class);
+    Route::delete('/deleteStaff{id}',[StaffController::class, 'destroy'])->name('deleteStaff');
+
     Route::resource('/supplier', SupplierController::class);
     Route::delete('/deleteStaff{id}',[StaffController::class, 'destroy'])->name('deleteStaff');
     Route::get('/logoutAdmin', [AuthController::class, 'logoutAdmin'])->name('logoutAdmin');
@@ -80,12 +82,12 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/dashboardSupplier', [SupplierResourceController::class, 'index'])->name('dashboardSupplier');
     Route::resource('/barang', BarangController::class);
     Route::resource('/barangmasuk', BarangMasukController::class);
+    Route::resource('/dashboardSupplier', SupplierResourceController::class);
     Route::get('/logoutSupplier', [AuthController::class, 'logoutSupplier'])->name('logoutSupplier');
     Route::get('/barangmasuk', [BarangMasukController::class, 'index'])->name('barangMasuk');
     // Route::get('/supplierWeb', [SupplierResourceController::class, 'getSupplier2'])->name('supplierWeb');
     Route::get('/barangmasuk', [BarangMasukController::class, 'index'])->name('barangMasuk');
 });
-
 
 
 Route::middleware('auth:staff')->group(function () {
@@ -98,8 +100,7 @@ Route::middleware('auth:staff')->group(function () {
     Route::get('/editStaff{id}', [StaffController::class, 'edit'])->name('edit');
     Route::put('/updateStaff{id}', [StaffController::class, 'update'])->name('update');
     Route::resource('/barangan', BarangController::class);
-    Route::resource('/barangkeluar', BarangKeluarController::class);
-    Route::get('/barangkeluar', [BarangKeluarController::class, 'index'])->name('barangKeluar');
+
     Route::get('/barang',[BarangController::class, 'index'])->name('barang');
     Route::get('/inputbarang',[BarangController::class, 'create'])->name('inputbarang');
     Route::resource('/barangm', BarangMasukController::class);
@@ -120,10 +121,4 @@ Route::middleware('auth:staff')->group(function () {
     Route::get('/lap_barang_keluar/cetakPDF1All', [LapBarangKeluarController::class, 'cetakPDF1All'])->name('cetakPDF1All');
     Route::get('/supplierWeb', [SupplierResourceController::class, 'getSupplier2'])->name('supplierWeb');
 });
-
-
-// Route::get('/lap_barang_keluar', [LapBarangKeluarController::class, 'index'])->name('lap_barang_keluar');
-// Route::get('/lap_barang_keluar/cetakPDF1', [LapBarangKeluarController::class, 'cetakPDF1'])->name('cetakPDF1');
-// Route::get('/lap_barang_keluar/cetakPDF1All', [LapBarangKeluarController::class, 'cetakPDF1All'])->name('cetakPDF1All');
-// Route::post('/lap_barang_keluar', [LapBarangKeluarController::class, 'filterByTanggalKeluar'])->name('filterByTanggalKeluar');
 

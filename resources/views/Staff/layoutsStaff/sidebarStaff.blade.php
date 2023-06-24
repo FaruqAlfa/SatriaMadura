@@ -16,10 +16,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          {{-- <a href="#" class="d-block">{{ $user->name }}</a> --}}
+          <a href="#" class="d-block"> {{ Auth::user()->nama_staff }}</a>
         </div>
       </div>
 
@@ -67,9 +67,11 @@
               </p>
             </a>
           </li> --}}
-          {{-- <li class="nav-item">
-            <a href="{{ route('barangkeluar') }}" class="nav-link">
-              <img src="img/location.png" class="nav-icon">
+
+          {{-- {{ route('barangkeluar.index') }} --}}
+          <li class="nav-item">
+            <a href="" class="nav-link">
+              <img src="{{ asset('img/location.png') }}" class="nav-icon">
               <p>
                 Distribusi
                 <i class="fas fa-angle-left right"></i>
@@ -86,6 +88,12 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
+                  <a href="{{ route('barang') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Informasi Barang</p>
+                  </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('lap_barang_masuk') }}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Laporan Barang Masuk</p>
@@ -96,6 +104,12 @@
                         <i class="far fa-circle nav-icon"></i>
                         <p>Laporan Barang Keluar</p>
                     </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('barangMasuk') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Barang Masuk Search</p>
+                  </a>
                 </li>
                 <li class="nav-item">
                   <a href="{{ route('barangKeluar') }}" class="nav-link">
@@ -109,14 +123,15 @@
                       <p>Barang Masuk Search</p>
                   </a>
                 </li>
+                
                 <!-- Tambahkan item dropdown lainnya di sini -->
               </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('detailEdit', ['id' => Auth::id()])  }}" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                Data Karyawan
+                My Profile
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>

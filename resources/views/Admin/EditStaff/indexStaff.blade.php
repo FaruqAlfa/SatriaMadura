@@ -18,16 +18,15 @@
     <p>{{ $message }}</p>
     </div>
     @endif
-
+    
     <div class="row">
         <div class="col-md-4">
-            <form class="d-flex"  action="{{ route('search') }}" method="GET">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+          <form class="d-flex"  action="{{ route('search') }}" method="GET">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
         </div>
-    </div>
-    
+      </div>
     <table class="table table-bordered">
     <tr>
     <th>Name</th>
@@ -44,10 +43,12 @@
     <td>{{ $staff->name }}</td>
     <td>{{ $staff->nama_staff }}</td>
     <td>{{ $staff->username }}</td>
+    <td><img width="100px" src="{{asset('storage/'.$staff->image)}}"></td>
     <td>{{ $staff->email }}</td>
     <td>{{ $staff->no_telepon }}</td>
     <td>
-    <!-- Button trigger modal -->
+
+        <!-- Button trigger modal -->
     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
         Delete
     </button>
@@ -70,15 +71,18 @@
             <form action="{{ route('deleteStaff', $staff->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
-            <button type="submit" class="btn btn-danger">Delete</button>
+                <button type="submit" class="btn btn-danger">Delete</button>
             </form>
             </div>
         </div>
         </div>
     </div>
+
     </td>
     </tr>
     @endforeach
     </table>
-    {{-- {{ $Staff->links() }} --}}
+
+    {{ $Staff->links() }}
+
 @endsection
