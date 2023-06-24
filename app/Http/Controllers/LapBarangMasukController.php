@@ -7,12 +7,13 @@ use App\Models\Barang_Masuk;
 use App\Models\Barang;
 use App\Models\Lap_Barang_Masuk;
 use Barryvdh\DomPDF\Facade\PDF;
+use Carbon\Carbon;
 
 class LapBarangMasukController extends Controller
 {
     public function index()
     {
-        $barang_masuk = Barang_Masuk::all();
+        $barang_masuk = Barang_Masuk::with('supplier')->get();
         // Menghitung jumlah total harga
         $total_harga = $barang_masuk->sum('total');
         return view('laporan.lap_barang_masuk', compact('barang_masuk', 'total_harga'));
@@ -53,7 +54,10 @@ class LapBarangMasukController extends Controller
 
     public function cetakPDF2(Request $request)
     {
-        $lap_barang_masuk = Barang_Masuk::where('tanggal_masuk', $request->get('tanggal_masuk'))->get();
+        $lap_barang_masuk = Barang_Masuk::where('tanggal_masuk', $request->input('tanggal_masuk'))->get();
+
+        // $a = $request->input('tanggal_masuk');
+        // echo "<script>coxnsole.log($a)</script>";
 
         $pdf = PDF::loadview('laporan.lap_barang_masuk_pdf', ['lap_barang_masuk' => $lap_barang_masuk]);
         $pdf->setPaper('A4', 'portrait');
@@ -86,6 +90,6 @@ class LapBarangMasukController extends Controller
 
         // Menghitung jumlah total harga
         $total_harga = $barang_masuk->sum('total');
-        return view('laporan.lap_barang_masuk', compact('barang_masuk', 'total_harga'));
+        return view('laporan.lap_barang_masuk', compact('barang_masuk', 'total_harga', 'tanggal_masuk'));
     }
 }

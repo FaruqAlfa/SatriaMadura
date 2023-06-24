@@ -13,30 +13,25 @@ class BarangKeluarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $barang_keluar = Barang_Keluar::all();
+        $search = $request->search;
+        $perPage = $request->input('per_page', 2);
+
+        $barang_keluar = Barang_Keluar::join('barang', 'barang.id', '=', 'barang_keluar.barang_id')
+            ->join('staff', 'staff.id', '=', 'barang_keluar.staff_id')
+            ->where('barang.nama_barang', 'like', "%$search%")
+            ->orWhere('barang_keluar.jumlah', 'like', "%$search%")
+            ->orWhere('barang_keluar.harga', 'like', "%$search%")
+            ->orWhere('barang_keluar.tanggal_keluar', 'like', "%$search%")
+            ->orWhere('barang_keluar.total', 'like', "%$search%")
+            ->orWhere('staff.nama_staff', 'like', "%$search%")
+            ->paginate($perPage);
         return view('perbarangan.barang_keluar', ['Barang_Keluar' => $barang_keluar]);
-
-        if (request('search')) {
-            $barang_keluar = Barang_Keluar::where('id', 'LIKE', '%' . request('search') . '%')
-                ->orWhere('staff_id', 'LIKE', '%' . request('search') . '%')
-                ->orWhere('jumlah', 'LIKE', '%' . request('search') . '%')
-                ->orWhere('total', 'LIKE', '%' . request('search') . '%')
-                ->orWhereHas('barang_keluar', function ($query) {
-                    $query->where('tanggal_keluar', 'like', '%' . request('search') . '%');
-                })->with('barang_keluar')
-                ->paginate(5);
-
-            return view('perbarangan.barang-masuk', ['paginate' => $barang_keluar]);
-        } else {
-            $barang_keluar = Barang_Keluar::with('barang_keluar')->get(); // Mengambil semua isi tabel
-            $paginate = Barang_Keluar::orderBy('id', 'asc')->Paginate(5);
-            return view('perbarangan.barang_keluar', ['barang_keluar' => $barang_keluar, 'paginate' => $paginate]);
-        }
     }
 
-    /**
+    /**~
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -144,8 +139,8 @@ class BarangKeluarController extends Controller
         $barang_keluar->save();
 
 
-        return redirect()->route('barangkeluar.index')
-            ->with('success', 'Barang Keluar Berhasil Ditambahkan');
+        return redirect()->route('barangKeluar')
+            ->with('success', 'Barang Keluar Berhasil Diupdate');
     }
 
     /**

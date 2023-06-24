@@ -14,8 +14,8 @@ class Barang_Keluar extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $table='barang_keluar';
-    public $timestamps= false;
+    protected $table = 'barang_keluar';
+    public $timestamps = false;
     protected $primaryKey = 'id';
 
     protected $fillable = [
@@ -25,16 +25,19 @@ class Barang_Keluar extends Model
         'total',
         'tanggal_keluar',
     ];
-    
-    public function staff(){
+
+    public function staff()
+    {
         return $this->belongsTo(Staff::class);
     }
 
-    public function barang(){
+    public function barang()
+    {
         return $this->belongsTo(Barang::class);
     }
 
-    public function lap_barang_keluar(){
+    public function lap_barang_keluar()
+    {
         return $this->hasMany(Lap_Barang_Keluar::class);
     }
 }

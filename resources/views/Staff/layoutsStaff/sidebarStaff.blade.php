@@ -67,6 +67,7 @@
               </p>
             </a>
           </li> --}}
+
           {{-- {{ route('barangkeluar.index') }} --}}
           <li class="nav-item">
             <a href="" class="nav-link">
@@ -76,7 +77,7 @@
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-          </li>
+          </li> --}}
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-edit"></i>
@@ -87,20 +88,45 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
+                  <a href="{{ route('barang') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Informasi Barang</p>
+                  </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('lap_barang_masuk') }}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Barang Masuk</p>
+                        <p>Laporan Barang Masuk</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('lap_barang_keluar') }}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Barang Keluar</p>
+                        <p>Laporan Barang Keluar</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                  <a href="{{ route('barangMasuk') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Barang Masuk Search</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('barangKeluar') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Barang Keluar Search</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('barangMasuk') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Barang Masuk Search</p>
+                  </a>
+                </li>
+                
                 <!-- Tambahkan item dropdown lainnya di sini -->
-            </ul>
-        </li>
+              </ul>
+          </li>
           <li class="nav-item">
             <a href="{{ route('detailEdit', ['id' => Auth::id()])  }}" class="nav-link">
               <i class="nav-icon fas fa-table"></i>

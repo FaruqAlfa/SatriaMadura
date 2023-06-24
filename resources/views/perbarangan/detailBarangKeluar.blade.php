@@ -17,7 +17,7 @@
                         <li class="list-group-item"><b>Tanggal keluar: </b>{{ $barang_keluar->tanggal_keluar }}</li>
                     </ul>
                 </div>
-                <a class="btn btn-success mt3" href="{{ route('barangkeluar.index') }}">Kembali</a>
+                <a class="btn btn-success mt3" href="{{ route('barangKeluar') }}">Kembali</a>
             </div>
         </div>
     </div>
