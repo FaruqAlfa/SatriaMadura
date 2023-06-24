@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Barang;
 use App\Models\Staff;
 use App\Models\Lap_Barang_Keluar;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Barang_Keluar extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $table='barang_keluar';
     public $timestamps= false;

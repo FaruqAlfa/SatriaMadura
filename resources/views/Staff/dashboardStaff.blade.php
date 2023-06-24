@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>dashboard Staff</title>
   @include('Staff.layoutsStaff.css')
 
 
@@ -13,7 +13,7 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="img/logoPT.png" alt="AdminLTELogo" height="100" width="100">
+    <img class="animation__shake" src="{{ asset('img/logoPT.png') }}" alt="AdminLTELogo" height="100" width="100">
   </div>
 
   <!-- Navbar -->
@@ -21,41 +21,21 @@
   <!-- /.navbar -->
 
   <!-- Sidebar -->
- @include('Staff.layoutsStaff.sidebarStaff')
+  @include('Staff.layoutsStaff.sidebarStaff')
   <!-- /.Sidebar -->
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Dashboard Staff</h1>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
+  <div class="wrapper">
+  
+    <div class="content-wrapper">
+      @yield('content')
     </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    <section class="content">
-      
-    </section>
-    <!-- /.content -->
+  
   </div>
   
 <!-- Footer -->
 @include('Staff.layoutsStaff.footerStaff')
 <!-- /.footer -->
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
 
 @include('Staff.layoutsStaff.js')
 </body>

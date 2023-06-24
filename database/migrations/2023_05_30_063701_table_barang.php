@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nama_barang', 30);
             $table->integer('stok');
             $table->integer('harga');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

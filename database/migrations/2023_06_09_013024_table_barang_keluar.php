@@ -23,6 +23,7 @@ return new class extends Migration
             $table->date('tanggal_keluar');
             $table->foreign('staff_id')->references('id')->on('staff');
             $table->foreign('barang_id')->references('id')->on('barang');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

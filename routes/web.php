@@ -54,9 +54,11 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth:admin')->group(function (){
     Route::resource('/staff', StaffController::class);
-    Route::get('/getAllStaff',[StaffController::class, 'getAll'])->name('staffAll');
+    Route::get('/search',[StaffController::class, 'index'])->name('search');
+    Route::get('/getAllStaff',[StaffController::class, 'index'])->name('staffAll');
     Route::get('/StaffInput',[StaffController::class, 'create'])->name('staffCreate');
     Route::post('/makeStaff',[StaffController::class, 'store'])->name('makeStaff');
+    Route::delete('/deleteStaff{id}',[StaffController::class, 'destroy'])->name('deleteStaff');
     // Route::resource('/supplier', [SupplierController::class]);
     Route::resource('/supplier', SupplierController::class);
     Route::get('/logoutAdmin', [AuthController::class, 'logoutAdmin'])->name('logoutAdmin');
@@ -77,17 +79,21 @@ Route::middleware('auth:web')->group(function () {
 Route::middleware('auth:staff')->group(function (){
     Route::resource('/dashboard', StaffController::class);
     Route::get('/dashboardStaff', [StaffController::class, 'index'])->name('dashboardStaff');
+    route::get('/detailStaff/{id}', [StaffController::class, 'show'])->name('showDetail');
+    route::get('/detailEdit/{id}', [StaffController::class, 'show'])->name('detailEdit');
+    route::get('/editStaff{id}', [StaffController::class, 'edit'])->name('edit');
+    route::put('/updateStaff{id}', [StaffController::class, 'update'])->name('update');
     Route::resource('/barangKeluar', BarangKeluarController::class);
     Route::get('/logoutStaff', [AuthController::class, 'logoutStaff'])->name('logoutStaff');
 });
 
 
-Route::middleware('auth:staff')->group(function (){
-    Route::resource('/dashboard', StaffController::class);
-    Route::get('/dashboardStaff', [StaffController::class, 'index'])->name('dashboardStaff');
-    Route::resource('/barangKeluar', BarangKeluarController::class);
-    Route::get('/logoutStaff', [AuthController::class, 'logoutStaff'])->name('logoutStaff');
-});
+// Route::middleware('auth:staff')->group(function (){
+//     Route::resource('/dashboard', StaffController::class);
+//     Route::get('/dashboardStaff', [StaffController::class, 'index'])->name('dashboardStaff');
+//     Route::resource('/barangKeluar', BarangKeluarController::class);
+//     Route::get('/logoutStaff', [AuthController::class, 'logoutStaff'])->name('logoutStaff');
+// });
 
 Route::get('/lap_barang_masuk', [LapBarangMasukController::class, 'index'])->name('lap_barang_masuk');
 Route::get('/lap_barang_masuk/cetakPDF2', [LapBarangMasukController::class, 'cetakPDF2'])->name('cetakPDF2');

@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Staff;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 
 class StaffController extends Controller
 {
@@ -13,11 +14,24 @@ class StaffController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('Staff.dashboardStaff');
+        $search = $request->search;
+    
+        if ($search) {
+            $Staff = Staff::where('name', 'like', "%$search%")
+                ->orWhere('nama_staff', 'like', "%$search%")
+                ->orWhere('username', 'like', "%$search%")
+                ->orWhere('email', 'like', "%$search%")
+                ->orWhere('no_telepon', 'like', "%$search%")
+                ->paginate(5);
+        } else {
+            $Staff = Staff::orderBy('id', 'DESC')->paginate(5);
+        }
+    
+        return view('Admin.EditStaff.indexStaff', compact('Staff'));
     }
-
+     
     public function getStaff()
     {
         $staff = Staff::all(); // Mengambil semua data dari tabel menggunakan model
@@ -49,9 +63,12 @@ class StaffController extends Controller
             'password' =>'required',
         ]);
 
-        Staff::create($request->all());
+        $data = $request->all();
+        $data['password'] = Hash::make($request -> password);
 
-        return redirect()->route('dashboardAdmin')->with('success', 'Staff Berhasil Ditambahkan');
+        Staff::create($data);
+
+        return redirect()->route('staffAll')->with('success', 'Staff Berhasil Ditambahkan');
     }
 
     /**
@@ -62,10 +79,16 @@ class StaffController extends Controller
      */
     public function show($id)
     {
-        // $Staff = Staff::all();
-        // $posts = Staff::orderBy('id', 'DESC')->paginate(5);
-        // return view('Staff.IndexStaff', compact('staff'))->with('i', (request()->input('page', 1) - 1) * 5);
+        // $Staff = Staff::find($request->id);
+        // return view('Staff.detailStaff', compact('Staff'));
+        $Staff = Staff::find($id);
+        // return dd($Staff);
+        return view('Staff.detailStaff', compact('Staff'));
+
     }
+
+    
+
 
     /**
      * Show the form for editing the specified resource.
@@ -77,6 +100,7 @@ class StaffController extends Controller
     {
         $Staff = Staff::find($id);
         return view('staff.editStaff', compact('Staff'));
+        
     }
 
     /**
@@ -88,18 +112,36 @@ class StaffController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $staff = Staff::find($id); 
+        $staff->username = $request->username;
+        $staff->nama_staff = $request->nama_staff;
+    
         $request->validate([
-            'id' => 'required',
-            'name' =>'required',
-            'nama_staff' =>'required',
-            'username' =>'required',
-            'email' =>'required',
-            'password' =>'required',
-            'no_telepon' =>'required',
+            'username' => 'required',
+            'nama_staff' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg|max:2048', // Validasi untuk file gambar
+            'email' => 'required',
+            'password',
+            'no_telepon' => 'required',
         ]);
-
-        return redirect()->route('staff.index')->with('success', 'Staff Berhasil Ditambahkan');
+    
+        if ($request->hasFile('image')) {
+            // Menghapus gambar lama jika ada dan menggantinya dengan yang baru
+            if ($staff->image && file_exists(storage_path('app/public/' . $staff->image))) {
+                Storage::delete('public/' . $staff->image);
+            }
+    
+            $image_name = $request->file('image')->store('images', 'public');
+            $staff->image = $image_name;
+        }
+    
+        $data = $request->all();
+        $data['password'] = Hash::make($request->password);
+        $staff->update($data);
+    
+        return redirect()->route('dashboardStaff')->with('success', 'Staff Berhasil Diubah');
     }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -110,15 +152,17 @@ class StaffController extends Controller
     public function destroy($id)
     {
         Staff::find($id)->delete();
-        return redirect()->route('staff.index')->with('success', 'Berhasil dihapus');
+
+        // return redirect()->view('Admin.EditStaff.indexStaff')->with('success', 'Berhasil dihapus');
+        return redirect()->route('staffAll')->with('success', 'Berhasil dihapus');
     }
 
 
     // Menambahkan Staff Dari Admin
-    public function getAll(){
-        $Staff = Staff::all();
-        $posts = Staff::orderBy('id', 'DESC')->paginate(5);
-        return view('Admin.EditStaff.IndexStaff', compact('Staff'))->with('i', (request()->input('page', 1) - 1) * 5);
-    }
+    // public function getAll(){
+    //     $Staff = Staff::orderBy('id', 'DESC')->paginate(1);
+    //     // $posts = Staff::orderBy('id', 'DESC');
+    //     return view('Admin.EditStaff.IndexStaff', compact('Staff'));
+    // }
 
 }
