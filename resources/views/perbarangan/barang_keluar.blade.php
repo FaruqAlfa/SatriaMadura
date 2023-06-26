@@ -16,11 +16,11 @@
             </form>
         </div>
 
-@if ($message = Session::get('success'))
-<div class="alert alert-success">
-    <p>{{ $message }}</p>
-</div>
-@endif
+        @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+        @endif
 
         <style type="text/css">
             table {
@@ -76,7 +76,9 @@
     <h2 id="total_harga1">Total Harga: {{ $total_harga1 }}</h2><br><br>
 @endif
 
-</table>
+</table><br>
+
+<a class="btn btn-success mt-3" href="{{ route('barangKeluar') }}">Kembali</a><br><br>
 {{ $Barang_Keluar->links() }}
 
 @endsection

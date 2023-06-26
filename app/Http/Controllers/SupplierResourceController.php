@@ -19,7 +19,7 @@ class SupplierResourceController extends Controller
     public function index(Request $request)
     {
         $search = $request->search;
-        $perPage = $request->input('per_page', 2);
+        $perPage = $request->input('per_page', 5);
 
         $dashboard_sup = Barang_Masuk::join('barang', 'barang.id', '=', 'barang_masuk.barang_id')
             ->join('supplier', 'supplier.id', '=', 'barang_masuk.supplier_id')
@@ -72,7 +72,7 @@ class SupplierResourceController extends Controller
      */
     public function create()
     {
-        //
+        return view('Admin.EditStaff.createStaff');
     }
 
     /**
@@ -104,9 +104,10 @@ class SupplierResourceController extends Controller
      * @param  \App\Models\SupplierResource  $supplierResource
      * @return \Illuminate\Http\Response
      */
-    public function edit(SupplierResource $supplierResource)
+    public function edit($id)
     {
-        //
+        $supplier = SupplierResource::find($id);
+        return view('layoutsSuplier.editSupplier', compact('supplier'));
     }
 
     /**
@@ -141,8 +142,13 @@ class SupplierResourceController extends Controller
             $supplier->image = $image_name;
         }
 
+        if ($request->password == null) {
+            $request['password'] = $supplier->password;
+        } else {
+            $data['password'] = Hash::make($request->password);
+        }
+
         $data = $request->all();
-        $data['password'] = Hash::make($request->password);
         $supplier->update($data);
 
         return redirect()->route('dashboardSupplier')->with('success', 'supplier Berhasil Diubah');

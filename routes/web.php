@@ -41,7 +41,7 @@ use App\Http\Controllers\SupplierResourceController;
 // Route::get('/', function () {
 //     return redirect->route('');
 // });
-//Route::get('/', [SupplierResourceController::class, 'index'])->name('home');
+// //Route::get('/', [SupplierResourceController::class, 'index'])->name('home');
 
 Route::middleware('guest')->group(function () {
     Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
@@ -58,10 +58,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/StaffInput', [StaffController::class, 'create'])->name('staffCreate');
     Route::post('/makeStaff', [StaffController::class, 'store'])->name('makeStaff');
     Route::delete('/deleteStaff{id}', [StaffController::class, 'destroy'])->name('deleteStaff');
-    
     Route::resource('/supplierRes', SupplierResourceController::class);
     Route::resource('/supplier', SupplierController::class);
-    Route::delete('/deleteStaff{id}', [StaffController::class, 'destroy'])->name('deleteStaff');
     Route::get('/logoutAdmin', [AuthController::class, 'logoutAdmin'])->name('logoutAdmin');
     Route::get('/dashboardAdmin', [AdminController::class, 'index'])->name('dashboardAdmin');
     Route::get('/admin/{id}', [AdminController::class, 'showAdmin'])->name('layoutsAdmin.sidebarAdmin');
@@ -76,22 +74,23 @@ Route::middleware('auth:admin')->group(function () {
 });
 
 Route::middleware('auth:web')->group(function () {
-    Route::resource('/supplier', SupplierControllerr::class);
-    Route::resource('/dashboard', SupplierResourceController::class);
-    Route::get('/dashboardSupplier', [SupplierResourceController::class, 'index'])->name('dashboardSupplier');
+    Route::resource('/supplier', SupplierController::class);
     Route::resource('/barang', BarangController::class);
     Route::resource('/barangmasuk', BarangMasukController::class);
-    Route::resource('/dashboardSupplier', SupplierResourceController::class);
+    Route::get('/barangmasukSup', [BarangMasukController::class, 'index'])->name('barangMasukSup');
+    Route::resource('/dashboardSupplier1', SupplierResourceController::class);
+    Route::get('/dashboardSupplier', [SupplierResourceController::class, 'index'])->name('dashboardSupplier');
     Route::get('/logoutSupplier', [AuthController::class, 'logoutSupplier'])->name('logoutSupplier');
-    Route::get('/barangmasuk', [BarangMasukController::class, 'index'])->name('barangMasuk');
-    // Route::get('/supplierWeb', [SupplierResourceController::class, 'getSupplier2'])->name('supplierWeb');
-    Route::get('/barangmasuk', [BarangMasukController::class, 'index'])->name('barangMasuk');
     Route::get('/detailEditSupplier/{id}', [SupplierResourceController::class, 'show'])->name('detailEditSupplier');
     Route::get('/detailSupplier/{id}', [SupplierResourceController::class, 'show'])->name('showDetailSupplier');
+    Route::get('/editSupplier{id}', [SupplierResourceController::class, 'edit'])->name('editSup');
+    Route::put('/updateSupplier{id}', [SupplierResourceController::class, 'update'])->name('updateSup');
 });
 
 
 Route::middleware('auth:staff')->group(function () {
+    Route::resource('/supplier', SupplierControllerr::class);
+    Route::resource('/dashboardSup', SupplierResourceController::class);
     Route::resource('/dashboard', StaffController::class);
     Route::get('/dashboardStaff', [StaffController::class, 'index'])->name('dashboardStaff');
     Route::get('/detailStaff/{id}', [StaffController::class, 'show'])->name('showDetail');
@@ -105,11 +104,10 @@ Route::middleware('auth:staff')->group(function () {
     Route::get('/inputbarang', [BarangController::class, 'create'])->name('inputbarang');
     Route::resource('/barangm', BarangMasukController::class);
     Route::resource('/barangkeluar', BarangKeluarController::class);
-    Route::get('/barangkeluar', [BarangKeluarController::class, 'index'])->name('barangKeluar');
+    Route::get('/barangkeluarSta', [BarangKeluarController::class, 'index'])->name('barangKeluar');
     Route::resource('/barangmasuk', BarangMasukController::class);
     Route::get('/barangmasuk', [BarangMasukController::class, 'index'])->name('barangMasuk');
     Route::resource('/barangk', BarangKeluarController::class);
-    Route::get('/barangkeluar', [BarangKeluarController::class, 'index'])->name('barangKeluar');
     Route::post('/lap_barang_keluar', [LapBarangKeluarController::class, 'filterByTanggalKeluar'])->name('filterByTanggalKeluar');
     Route::get('/lap_barang_masuk', [LapBarangMasukController::class, 'index'])->name('lap_barang_masuk');
     Route::get('/lap_barang_keluar', [LapBarangKeluarController::class, 'index'])->name('lap_barang_keluar');

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('nama_supplier', 30);
             $table->string('username');
+            $table->string('image')->nullable();
             $table->string('email');
             $table->string('password');
             $table->string('no_telepon', 20);
