@@ -16,7 +16,7 @@ class BarangMasukController extends Controller
     public function index(Request $request)
     {
         $search = $request->search;
-        $perPage = $request->input('per_page', 2);
+        $perPage = $request->input('per_page', 5);
 
         $barang_masuk = Barang_Masuk::join('barang', 'barang.id', '=', 'barang_masuk.barang_id')
             ->join('supplier', 'supplier.id', '=', 'barang_masuk.supplier_id')
@@ -75,7 +75,7 @@ class BarangMasukController extends Controller
         $barang_masuk->save();
 
 
-        return redirect()->route('barangmasuk.index')
+        return redirect()->route('barangmasuk.store')
             ->with('success', 'Barang Masuk Berhasil Ditambahkan');
     }
 

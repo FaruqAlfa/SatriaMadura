@@ -29,6 +29,4 @@ class Staff extends Model
         'password',
         'no_telepon',
     ];
-
-
 }
