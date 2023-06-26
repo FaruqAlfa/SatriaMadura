@@ -14,9 +14,9 @@
               @method('POST')
               <!-- Name input -->
               <div class="form-outline mb-4">
-                <label class="name" for="name">Name</label>
+                <label class="name" for="name">Kategori</label>
                   <input type="name" id="name" name="name" class="form-control form-control-lg"
-                    placeholder="Masukkan Nama Anda" />
+                    placeholder="Masukkan Kategori Suplier Anda" />
                 </div>
 
                 <!-- Supplier Name input -->

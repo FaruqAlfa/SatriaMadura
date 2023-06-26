@@ -12,7 +12,7 @@
         </div>
     
         <div class="col-md-6 mt-4">
-            <form action="{{ url('getAllStaff') }}" method="GET">
+            <form action="{{ url('search') }}" method="GET">
                 <input type="search" class="form-control" name ="search" value="{{Request::get('search')}}" id="inputEmail" placeholder="Search Here"><br>
                 <button class="btn btn-warning mt-3" type="submit">Cari</button><br><br>
             </form>
@@ -98,6 +98,6 @@
 </table><br>
 
 <a class="btn btn-success mt-3" href="{{ route('staffAll') }}">Kembali</a><br><br>
-    {{-- {{ $Staff->links() }} --}}
+    {{ $Staff->links() }}
 
 @endsection

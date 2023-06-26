@@ -55,7 +55,7 @@
 
     @foreach ($barang_keluar2 as $item)
         <tr>
-            <td>{{ $item->staff->nama_staff }}</td>
+            <td>{{ $item->staff ->nama_staff }}</td>
             <td>{{ $item->barang->nama_barang }}</td>
             <td>{{ $item->jumlah }}</td>
             <td>{{ $item->harga }}</td>
