@@ -31,4 +31,7 @@ class Barang extends Model
     public function barang_keluar(){
         return $this->hasMany(Barang_Keluar::class);
     }
+
+    
+
 }

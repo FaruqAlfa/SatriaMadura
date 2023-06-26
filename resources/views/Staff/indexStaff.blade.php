@@ -21,7 +21,7 @@
     
 <table class="table table-bordered">
     <tr>
-        <th>Name</th>
+        <th>Kategori</th>
         <th>Nama Staff</th>
         <th>Username</th>
         <th>Email</th>
@@ -31,7 +31,7 @@
     @foreach ($Staff as $staff)
 
     <tr>
-        <td>{{ $staff->name }}</td>
+        <td>{{ $staff->kategori }}</td>
         <td>{{ $staff->nama_staff }}</td>
         <td>{{ $staff->username }}</td>
         <td>{{ $staff->email }}</td>

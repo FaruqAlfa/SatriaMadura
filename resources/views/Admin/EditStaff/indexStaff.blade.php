@@ -83,6 +83,6 @@
     @endforeach
     </table>
 
-    {{-- {{ $Staff->links() }} --}}
+    {{ $Staff->links() }}
 
 @endsection

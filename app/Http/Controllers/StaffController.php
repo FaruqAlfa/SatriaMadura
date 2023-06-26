@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Staff;
 use Illuminate\Http\Request;
 use App\Models\Barang_Keluar;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,21 +16,20 @@ class StaffController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $search = $request->search;
-        $perPage = $request->input('per_page', 2);
+    
+    //    $Staff = Staff::with('barang_keluar')->get();
+    // dd($Staff);
+    $Staff = DB::table('staff')
+    ->join('barang_keluar', 'staff.id', '=', 'barang_keluar.staff_id')
+    ->join('barang', 'barang_keluar.barang_id', '=', 'barang.id')
+    ->get();
 
-        $staffDash = Barang_Keluar::join('barang', 'barang.id', '=', 'barang_keluar.barang_id')
-            ->join('staff', 'staff.id', '=', 'barang_keluar.staff_id')
-            ->where('barang.nama_barang', 'like', "%$search%")
-            ->orWhere('barang_keluar.jumlah', 'like', "%$search%")
-            ->orWhere('barang_keluar.harga', 'like', "%$search%")
-            ->orWhere('barang_keluar.tanggal_keluar', 'like', "%$search%")
-            ->orWhere('barang_keluar.total', 'like', "%$search%")
-            ->orWhere('staff.nama_staff', 'like', "%$search%")
-            ->paginate($perPage);
-        return view('Staff.dashboardStaff', ['Staff' => $staffDash]);
+// return view('staff.index', compact('staff'));
+
+        $post = Staff::orderBy('id', 'DESC')->paginate(5);
+        return view('Staff.dashboardStaff', compact('Staff'));
 
         // if ($search) {
         //     $Staff = Staff::where('name', 'like', "%$search%")
@@ -128,12 +128,13 @@ class StaffController extends Controller
         $staff->nama_staff = $request->nama_staff;
 
         $request->validate([
+            'kategori' => 'required',
             'username' => 'required',
-            'nama_staff' => 'required',
+            'nama_staff',
             'image' => 'image|mimes:jpeg,png,jpg|max:2048', // Validasi untuk file gambar
-            'email' => 'required',
+            'email',
             'password',
-            'no_telepon' => 'required',
+            'no_telepon',
         ]);
 
         if ($request->hasFile('image')) {
@@ -146,8 +147,14 @@ class StaffController extends Controller
             $staff->image = $image_name;
         }
 
+        if($request->password === null){
+            $request['password'] = $staff->password;
+        } else {
+            $request['password'] = Hash::make($request->password);
+        }
+
+        // return dd($request->all());
         $data = $request->all();
-        $data['password'] = Hash::make($request->password);
         $staff->update($data);
 
         return redirect()->route('dashboardStaff')->with('success', 'Staff Berhasil Diubah');
@@ -172,9 +179,27 @@ class StaffController extends Controller
     // Menambahkan Staff Dari Admin
     public function getAll()
     {
-        $Staff = Staff::all();
-        $posts = Staff::orderBy('id', 'DESC')->paginate(5);
-        return view('Admin.EditStaff.IndexStaff', compact('Staff'))->with('i', (request()->input('page', 1) - 1) * 5);
+        $Staff = Staff::all();   
+        $Staff = Staff::orderBy('id', 'DESC')->paginate(5);
+        return view('Admin.EditStaff.IndexStaff', compact('Staff'));
+    }
+
+    public function search(Request $request)
+    {
+
+       $Staff = Staff::where([
+        ['nama_staff', '!=', Null],
+        [function ($query) use ($request) {
+            if (($search = $request->search)){
+                $query->orWhere('nama_staff', 'like', "%$search%")->get();
+                $query->orWhere('username', 'like', "%$search%")->get();
+                $query->orWhere('email', 'like', "%$search%")->get();
+                $query->orWhere('no_telepon', 'like', "%$search%")->get();
+            }
+        }]
+       ])->paginate(5);
+       $posts = Staff::orderby('id', 'DESC');
+        return view('Admin.EditStaff.indexStaff', compact('Staff'));
     }
 
     // public function getAll(){

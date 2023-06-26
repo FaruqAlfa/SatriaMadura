@@ -24,8 +24,8 @@
                     <form method="post" action="{{ route('staff.store') }}" id="myform">
                     @csrf
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="name" name="name" class="form-control" id="name" aria-describedby="name">
+                            <label for="kategori">Kategori</label>
+                            <input type="kategori" name="kategori" class="form-control" id="kategori" aria-describedby="kategori">
                         </div>
                         <div class="form-group">
                             <label for="nama_staff">Nama Staff</label>

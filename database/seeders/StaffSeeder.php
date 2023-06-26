@@ -18,7 +18,7 @@ class StaffSeeder extends Seeder
     {
         DB::table('staff')->insert([
 
-            'name' => 'StaffGudang',
+            'kategori' => 'StaffGudang',
             'nama_staff'=> 'Kholid Maulidi',
             'username' => 'Staff',
             'email' => 'staff@gmail.com',

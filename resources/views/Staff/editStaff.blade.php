@@ -23,8 +23,8 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <label for="name">Name</label> 
-                            <input type="text" name="name" class="form-control" id="name" value="{{ $Staff->name }}" aria-describedby="name" > 
+                            <label for="kategori">Kategori</label> 
+                            <input type="text" name="kategori" class="form-control" id="kategori" value="{{ $Staff->kategori }}" aria-describedby="kategori" > 
                         </div>
                         
                         <div class="form-group">
@@ -54,7 +54,7 @@
 
                         <div class="form-group">
                             <label for="image">Feature Image</label>
-                            <input type="file" class="form-control" required="required" name="image" value="{{$Staff->image}}"></br>
+                            <input type="file" class="form-control"  name="image" value="{{$Staff->image}}"></br>
                             {{-- <img width="150px" src="{{asset('storage/'.$Staff->image)}}"> --}}
                         </div>
 

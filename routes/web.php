@@ -41,7 +41,7 @@ use App\Http\Controllers\SupplierResourceController;
 // Route::get('/', function () {
 //     return redirect->route('');
 // });
-Route::get('/', [SupplierResourceController::class, 'index'])->name('home');
+//Route::get('/', [SupplierResourceController::class, 'index'])->name('home');
 
 Route::middleware('guest')->group(function () {
     Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
@@ -53,14 +53,13 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth:admin')->group(function () {
     Route::resource('/staff', StaffController::class);
-    Route::get('/search', [StaffController::class, 'index'])->name('search');
-
+    Route::get('/search', [StaffController::class, 'search'])->name('search');
     Route::get('/getAllStaff', [StaffController::class, 'getAll'])->name('staffAll');
     Route::get('/StaffInput', [StaffController::class, 'create'])->name('staffCreate');
     Route::post('/makeStaff', [StaffController::class, 'store'])->name('makeStaff');
-    Route::resource('/supplierRes', SupplierResourceController::class);
     Route::delete('/deleteStaff{id}', [StaffController::class, 'destroy'])->name('deleteStaff');
-
+    
+    Route::resource('/supplierRes', SupplierResourceController::class);
     Route::resource('/supplier', SupplierController::class);
     Route::delete('/deleteStaff{id}', [StaffController::class, 'destroy'])->name('deleteStaff');
     Route::get('/logoutAdmin', [AuthController::class, 'logoutAdmin'])->name('logoutAdmin');
@@ -93,14 +92,14 @@ Route::middleware('auth:web')->group(function () {
 
 
 Route::middleware('auth:staff')->group(function () {
-    Route::resource('/supplier', SupplierControllerr::class);
-    Route::resource('/dashboardSup', SupplierResourceController::class);
     Route::resource('/dashboard', StaffController::class);
     Route::get('/dashboardStaff', [StaffController::class, 'index'])->name('dashboardStaff');
     Route::get('/detailStaff/{id}', [StaffController::class, 'show'])->name('showDetail');
     Route::get('/detailEdit/{id}', [StaffController::class, 'show'])->name('detailEdit');
     Route::get('/editStaff{id}', [StaffController::class, 'edit'])->name('edit');
     Route::put('/updateStaff{id}', [StaffController::class, 'update'])->name('update');
+    Route::resource('/supplier', SupplierControllerr::class);
+    Route::resource('/dashboardSup', SupplierResourceController::class);
     Route::resource('/barangan', BarangController::class);
     Route::get('/barang', [BarangController::class, 'index'])->name('barang');
     Route::get('/inputbarang', [BarangController::class, 'create'])->name('inputbarang');

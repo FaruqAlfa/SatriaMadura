@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -21,21 +22,25 @@ class AuthController extends Controller
  
         if (Auth::guard('web')->attempt($credentials)) {
             $request->session()->regenerate();
- 
             return redirect('dashboardSupplier');
         }
+        //$credentials['password'] = Hash::make($request->password);
+        // return dd($credentials);
 
-        if (Auth::guard('admin')->attempt($credentials)) {
-            $request->session()->regenerate();
- 
-            return redirect('dashboardAdmin');
-        }
-
+        //return dd(Auth::guard('staff')->attempt($credentials));
+        
         if (Auth::guard('staff')->attempt($credentials)) {
             $request->session()->regenerate();
- 
             return redirect('dashboardStaff');
         }
+        
+        if (Auth::guard('admin')->attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect('dashboardAdmin');
+        }
+        
+
+        // dd($request->all(),$credentials);
  
         return back()->withErrors([
             'username' => 'The provided credentials do not match our records.',
@@ -76,7 +81,7 @@ class AuthController extends Controller
     public function logoutSupplier(Request $request)
     {
         Auth::logout();
-        Auth::guard('staff')->logout();
+        Auth::guard('web')->logout();
         return redirect('/login');
 
     }

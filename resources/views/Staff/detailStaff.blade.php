@@ -10,7 +10,7 @@
                   <div class="card mb-3" style="border-radius: .5rem;">
                     <div class="row g-0">
                       <div class="col-md-4 gradient-custom text-center text-white" style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem; border-radius: 50%">
-                        <img src="{{ asset('storage/'.$Staff->image) }}"
+                        <img src="{{ asset('storage/'.$Staff->image) }}"  
                           alt="image" class="img-fluid my-5" style="width: 200px; border-radius: 50%" />
                         <i class="far fa-edit mb-5"></i>
                       </div>

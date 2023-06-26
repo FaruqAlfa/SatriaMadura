@@ -16,11 +16,11 @@ return new class extends Migration
 
         Schema::create('staff', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
+            $table->string('kategori')->nullable();
             $table->string('nama_staff', 30);
-            $table->string('username',25)->nullable()->uniqiue();
+            $table->string('username',25);
             $table->string('image')->nullable();
-            $table->string('email')->nullable()->unique();
+            $table->string('email')->nullable();
             $table->string('password');
             $table->string('no_telepon', 20)->nullable();
             $table->softDeletes();

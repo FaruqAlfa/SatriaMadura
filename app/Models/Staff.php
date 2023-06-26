@@ -22,13 +22,18 @@ class Staff extends Model
 
 
     protected $fillable = [
-        'name',
+        'kategori',
         'nama_staff',
         'username',
         'email',
         'password',
         'no_telepon',
     ];
+
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
 
 
 }
