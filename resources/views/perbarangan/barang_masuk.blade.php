@@ -44,7 +44,7 @@
 
 <table class="table table-bordered">
     <tr>
-        {{-- <th>No</th> --}}
+        <th>No</th>
         <th>Nama Supplier</th>
         <th>Nama Barang</th>
         <th>Jumlah</th>
@@ -55,7 +55,7 @@
     </tr>
     @foreach ($Barang_Masuk as $barang_masuk)
     <tr>
-        {{-- <td>{{ $barang_masuk->id }}</td> --}}
+        <td>{{ $barang_masuk->id }}</td>
         <td>{{ $barang_masuk->supplier->nama_supplier }}</td>
         <td>{{ $barang_masuk->barang->nama_barang }}</td>
         <td>{{ $barang_masuk->jumlah }}</td>
@@ -63,7 +63,7 @@
         <td>{{ $barang_masuk->total }}</td>
         <td>{{ $barang_masuk->tanggal_masuk }}</td>
         <td>
-            <form action="{{ route('barangmasuk.destroy',$barang_masuk->id)}}" method="POST">
+            <form action="{{ route('editBarang',$barang_masuk->id)}}" method="POST">
                 <a class="btn btn-info" href="{{route('barangmasuk.show',$barang_masuk->id)}}">Show</a>
                 <a class="btn btn-primary" href="{{ route('editBarang',$barang_masuk->id) }}">Edit</a>
             </form>

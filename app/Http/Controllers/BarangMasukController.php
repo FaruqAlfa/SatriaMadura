@@ -17,8 +17,9 @@ class BarangMasukController extends Controller
     {
         $search = $request->search;
         $perPage = $request->input('per_page', 5);
-
-        $barang_masuk = Barang_Masuk::join('barang', 'barang.id', '=', 'barang_masuk.barang_id')
+    
+        $barang_masuk = Barang_Masuk::select('barang_masuk.*', 'barang.nama_barang', 'supplier.nama_supplier')
+            ->join('barang', 'barang.id', '=', 'barang_masuk.barang_id')
             ->join('supplier', 'supplier.id', '=', 'barang_masuk.supplier_id')
             ->where('barang.nama_barang', 'like', "%$search%")
             ->orWhere('barang_masuk.jumlah', 'like', "%$search%")
@@ -27,8 +28,11 @@ class BarangMasukController extends Controller
             ->orWhere('barang_masuk.total', 'like', "%$search%")
             ->orWhere('supplier.nama_supplier', 'like', "%$search%")
             ->paginate($perPage);
+    
+        // dd($barang_masuk);
         return view('perbarangan.barang_masuk', ['Barang_Masuk' => $barang_masuk]);
     }
+    
 
     /**
      * Show the form for creating a new resource.
