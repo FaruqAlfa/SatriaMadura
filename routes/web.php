@@ -58,8 +58,6 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/getAllStaff', [StaffController::class, 'getAll'])->name('staffAll');
     Route::get('/StaffInput', [StaffController::class, 'create'])->name('staffCreate');
     Route::post('/makeStaff', [StaffController::class, 'store'])->name('makeStaff');
-    Route::resource('/supplierRes', SupplierResourceController::class);
-    // Route::resource('/supplier', SupplierController::class);
     Route::delete('/deleteStaff{id}', [StaffController::class, 'destroy'])->name('deleteStaff');
     Route::get('/logoutAdmin', [AuthController::class, 'logoutAdmin'])->name('logoutAdmin');
     Route::get('/dashboardAdmin', [AdminController::class, 'index'])->name('dashboardAdmin');
