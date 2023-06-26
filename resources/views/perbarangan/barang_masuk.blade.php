@@ -7,7 +7,7 @@
             <h2 style="text-align: center">BARANG MASUK PERBARANGAN</h2>
         </div>
         <div class="float-right my-2">
-            <a class="btn btn-success " href="{{route('barangmasuk.create')}}">Input Barang</a>
+            <a class="btn btn-success " href="{{route('createBarang')}}">Input Barang</a>
         </div>
         <div class="col-md-6 mt-4">
             <form action="{{ url('barangmasuk') }}" method="get">
@@ -65,7 +65,7 @@
         <td>
             <form action="{{ route('barangmasuk.destroy',$barang_masuk->id)}}" method="POST">
                 <a class="btn btn-info" href="{{route('barangmasuk.show',$barang_masuk->id)}}">Show</a>
-                <a class="btn btn-primary" href="{{ route('barangmasuk.edit',$barang_masuk->id) }}">Edit</a>
+                <a class="btn btn-primary" href="{{ route('editBarang',$barang_masuk->id) }}">Edit</a>
             </form>
         </td>
         

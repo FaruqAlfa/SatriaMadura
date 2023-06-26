@@ -19,7 +19,7 @@
                </ul>
             </div>
          @endif
-         <form method="post" action="{{ route('barangmasuk.update', $barang_masuk->id) }}" id="myForm">
+         <form method="post" action="{{ route('updateBarang', $barang_masuk->id) }}" id="myForm">
          @csrf
          @method('PUT')
             <div class="form-group">
@@ -43,7 +43,7 @@
                <input type="no_handphone" name="no_handphone" class="formcontrol" id="no_handphone"value="{{ $Mahasiswa->no_handphone }}" ariadescribedby="no_handphone">
             </div> --}}
             <button type="submit" class="btn btn-primary">Submit</button>
-            <a class="btn btn-success mt-3" href="{{ route('barangmasuk.index') }}">Kembali</a>
+            <a class="btn btn-success mt-3" href="{{ route('barangMasukSup') }}">Kembali</a>
          </form>
          </div>
       </div>

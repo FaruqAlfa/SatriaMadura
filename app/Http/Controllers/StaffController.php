@@ -29,7 +29,7 @@ class StaffController extends Controller
 // return view('staff.index', compact('staff'));
 
         $post = Staff::orderBy('id', 'DESC')->paginate(5);
-        return view('Staff.dashboardStaff', compact('Staff'));
+        return view('Staff.dashboardStaff', compact('Staff', 'post'));
 
         // if ($search) {
         //     $Staff = Staff::where('name', 'like', "%$search%")

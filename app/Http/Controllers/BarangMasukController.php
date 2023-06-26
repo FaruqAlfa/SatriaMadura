@@ -75,7 +75,7 @@ class BarangMasukController extends Controller
         $barang_masuk->save();
 
 
-        return redirect()->route('barangmasuk.store')
+        return redirect()->route('barangMasukSup')
             ->with('success', 'Barang Masuk Berhasil Ditambahkan');
     }
 
@@ -139,7 +139,7 @@ class BarangMasukController extends Controller
         $barang_masuk->save();
 
 
-        return redirect()->route('barangMasuk')
+        return redirect()->route('barangMasukSup')
             ->with('success', 'Barang Masuk Berhasil Ditambahkan');
     }
 
