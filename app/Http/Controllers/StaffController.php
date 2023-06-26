@@ -18,7 +18,7 @@ class StaffController extends Controller
     public function index(Request $request)
     {
         $search = $request->search;
-        $perPage = $request->input('per_page', 2);
+        $perPage = $request->input('per_page', 5);
 
         $staffDash = Barang_Keluar::join('barang', 'barang.id', '=', 'barang_keluar.barang_id')
             ->join('staff', 'staff.id', '=', 'barang_keluar.staff_id')
@@ -49,7 +49,7 @@ class StaffController extends Controller
     {
         $staff = Staff::all(); // Mengambil semua data dari tabel menggunakan model
 
-        return view('Dashboard.dashboardStaff', ['Staff' => $staff]); // Mengembalikan data ke view dengan nama 'your-view'
+        return view('Staff.dashboardStaff', ['Staff' => $staff]); // Mengembalikan data ke view dengan nama 'your-view'
     }
 
     /**
@@ -111,7 +111,7 @@ class StaffController extends Controller
     public function edit($id)
     {
         $Staff = Staff::find($id);
-        return view('staff.editStaff', compact('Staff'));
+        return view('Staff.editStaff', compact('Staff'));
     }
 
     /**
@@ -146,8 +146,13 @@ class StaffController extends Controller
             $staff->image = $image_name;
         }
 
+        if ($request->password == null) {
+            $request['password'] = $staff->password;
+        } else {
+            $data['password'] = Hash::make($request->password);
+        }
+
         $data = $request->all();
-        $data['password'] = Hash::make($request->password);
         $staff->update($data);
 
         return redirect()->route('dashboardStaff')->with('success', 'Staff Berhasil Diubah');
@@ -176,10 +181,4 @@ class StaffController extends Controller
         $posts = Staff::orderBy('id', 'DESC')->paginate(5);
         return view('Admin.EditStaff.IndexStaff', compact('Staff'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
-
-    // public function getAll(){
-    //     $Staff = Staff::orderBy('id', 'DESC')->paginate(1);
-    //     // $posts = Staff::orderBy('id', 'DESC');
-    //     return view('Admin.EditStaff.IndexStaff', compact('Staff'));
-    // }
 }

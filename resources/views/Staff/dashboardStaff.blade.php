@@ -57,6 +57,7 @@
     @endforeach
 </table><br>
 
+<a class="btn btn-success mt-3" href="{{ route('dashboardStaff') }}">Kembali</a><br><br>
 {{ $Staff->links() }}
 
 @endsection

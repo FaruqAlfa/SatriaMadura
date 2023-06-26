@@ -55,8 +55,9 @@
         
     </tr>
     @endforeach
+
 </table><br>
 
+<a class="btn btn-success mt-3" href="{{ route('dashboardSupplier') }}">Kembali</a><br><br>
 {{ $Dashboard_Sup->links() }}
-
 @endsection

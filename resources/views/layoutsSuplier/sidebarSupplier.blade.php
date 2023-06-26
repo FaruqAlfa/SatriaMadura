@@ -1,8 +1,13 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <style>
+    a{ 
+      text-decoration: none
+    }
+  </style>
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="img/logoPTreal.jpg" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <a href="{{ url('dashboardSupplier') }}" class="brand-link">
+      <img src="{{ asset('img/logoPTreal.jpg') }}" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Satria Madura</span>
     </a>
 
@@ -11,10 +16,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ asset('/storage/') }}/{{ Auth::user()->image }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block"> {{ Auth::user()->name }}</a>
+          <a href="#" class="d-block"> {{ Auth::user()->nama_supplier }}</a>
         </div>
       </div>
 
@@ -63,8 +68,8 @@
             </a>
           </li> --}}
           <li class="nav-item">
-            <a href="{{ route('barangMasuk') }}" class="nav-link">
-              <img src="img/location.png" class="nav-icon">
+            <a href="{{ route('barangMasukSup') }}" class="nav-link">
+              <img src="{{ asset('img/location.png') }}" class="nav-icon">
               <p>
                 Distribusi
                 <i class="fas fa-angle-left right"></i>
@@ -99,4 +104,4 @@
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
-  </aside>
+</aside>

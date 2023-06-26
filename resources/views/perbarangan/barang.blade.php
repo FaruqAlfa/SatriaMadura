@@ -4,10 +4,10 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left mt-4">
-            <h2 style="text-align: center">Informasi Barang</h2>
+            <h2 style="text-align: center">Informasi Barang</h2><br>
         </div>
         <div class="float-right my-2">
-            <a class="btn btn-success" href="{{route('inputbarang')}}">Input Barang</a>
+            <a class="btn btn-success" href="{{route('inputbarang')}}">Input Barang</a><br>
         </div>
 
         <style type="text/css">
@@ -34,7 +34,7 @@
         <th>Nama Barang</th>
         <th>Stok</th>
         <th>Harga</th>
-        <th width="280px">Action</th>
+        <th width="150px">Action</th>
     </tr>
     @foreach ($Barang as $barang)
     <tr>
@@ -53,6 +53,8 @@
         </td>
     </tr>
     @endforeach
-</table>
+</table><br>
+
+<a class="btn btn-success mt-3" href="{{ route('barang') }}">Kembali</a><br><br>
 {{-- {{ $Barang_Keluar->links() }} --}}
 @endsection

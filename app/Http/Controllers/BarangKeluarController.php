@@ -17,7 +17,7 @@ class BarangKeluarController extends Controller
     {
         $barang_keluar = Barang_Keluar::all();
         $search = $request->search;
-        $perPage = $request->input('per_page', 2);
+        $perPage = $request->input('per_page', 5);
 
         $barang_keluar = Barang_Keluar::join('barang', 'barang.id', '=', 'barang_keluar.barang_id')
             ->join('staff', 'staff.id', '=', 'barang_keluar.staff_id')
@@ -75,7 +75,7 @@ class BarangKeluarController extends Controller
         $barang_keluar->tanggal_keluar = $request->get('tanggal_keluar');
         $barang_keluar->save();
 
-        return redirect()->route('barangkeluar.index')
+        return redirect()->route('barangkeluar.store')
             ->with('success', 'Barang Keluar Berhasil Ditambahkan');
     }
 

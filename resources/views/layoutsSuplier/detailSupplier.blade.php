@@ -43,7 +43,7 @@
                 @if (request()->route()->getName() !== "showDetailSupplier")         
                     <div class="row justify-content-end items-center">
                         <div class="col-12">
-                            <a href="{{ route('edit', ['id' => Auth::id()]) }}" class="btn btn-warning">Edit Profile</a>
+                            <a href="{{ route('editSup', ['id' => Auth::id()]) }}" class="btn btn-warning">Edit Profile</a>
                         </div>
                     </div>
                 @endif

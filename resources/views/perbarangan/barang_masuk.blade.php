@@ -77,6 +77,7 @@
     <h2 id="total_harga2">Total Harga: {{ $total_harga2 }}</h2><br><br>
 @endif
 
+<a class="btn btn-success mt-3" href="{{ route('barangMasukSup') }}">Kembali</a><br><br>
 {{ $Barang_Masuk->links() }}
 
 
