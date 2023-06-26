@@ -12,7 +12,7 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="img/logoPT.png" alt="AdminLTELogo" height="100" width="100">
+    <img class="animation__shake" src= {{ asset('img/logoPT.png') }}  alt="AdminLTELogo" height="100" width="100">
   </div>
 
   <!-- Navbar -->
