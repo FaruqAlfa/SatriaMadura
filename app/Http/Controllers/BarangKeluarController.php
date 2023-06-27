@@ -53,14 +53,16 @@ class BarangKeluarController extends Controller
     {
         $request->validate([
             'staff_id' => 'required',
+            'barang_id' => 'required',
             'jumlah' => 'required',
             'tanggal_keluar' => 'required',
         ]);
 
         $barang_keluar = new Barang_Keluar;
         $staff_id = $request->get('staff_id');
+        $barang_id = $request->get('barang_id');
         $barang_keluar->staff_id = $staff_id;
-        $barang_keluar->barang_id = $staff_id;
+        $barang_keluar->barang_id = $barang_id;
         $barang_keluar->jumlah = $request->get('jumlah');
 
         $jumlah = $request->input('jumlah');
@@ -69,24 +71,24 @@ class BarangKeluarController extends Controller
         $barang = Barang::findOrFail($staff_id);
         $barang = $barang_keluar->barang ?? new Barang();
         // Periksa apakah stok mencukupi
-    if ($barang->stok >= $jumlah) {
-        $harga = $barang->harga;
-        $total = $jumlah * $harga;
-        
-        // Kurangi stok
-        $barang->stok = $barang->stok - $jumlah;
-        $barang->save();
-        
-        $barang_keluar->harga = $harga;
-        $barang_keluar->total = $total;
-        $barang_keluar->tanggal_keluar = $request->get('tanggal_keluar');
-        $barang_keluar->save();
-        
-        return redirect()->route('barangkeluar.index')
-            ->with('success', 'Barang Keluar Berhasil Ditambahkan');
-    } else {
-        return redirect()->back()->with('error', 'Stok tidak mencukupi.');
-    }
+        if ($barang->stok >= $jumlah) {
+            $harga = $barang->harga;
+            $total = $jumlah * $harga;
+            
+            // Kurangi stok
+            $barang->stok = $barang->stok - $jumlah;
+            $barang->save();
+            
+            $barang_keluar->harga = $harga;
+            $barang_keluar->total = $total;
+            $barang_keluar->tanggal_keluar = $request->get('tanggal_keluar');
+            $barang_keluar->save();
+            
+            return redirect()->route('barangkeluar.index')
+                ->with('success', 'Barang Keluar Berhasil Ditambahkan');
+        } else {
+            return redirect()->back()->with('error', 'Stok tidak mencukupi.');
+        }
     }
 
     /**
