@@ -24,12 +24,10 @@
                             <div class="col-6 mb-3">
                               <h6>Email:  {{ $Staff->email}}</h6>
                               
-                              {{-- {{ dd($Staff) }} --}}
-                              {{-- <p class="text-muted">{{ $Staff->email ? $Staff->email : 'No email available' }}</p> --}}
                             </div>
                             <div class="col-6 mb-3">
                               <h6>Phone: {{ $Staff->no_telepon}}</h6>
-                              {{-- <p class="text-muted">{{ $Staff->no_telepon }}</p> --}}
+                             
                             </div>
                           </div>
                           <h6>Username: {{ $Staff->username }}</h6>
@@ -39,7 +37,7 @@
                     </div>
                   </div>
                 </div>
-                {{-- @dd(request()->route()->getName()) --}}
+              
                 @if (request()->route()->getName() !== "showDetail")         
                     <div class="row justify-content-end items-center">
                         <div class="col-12">

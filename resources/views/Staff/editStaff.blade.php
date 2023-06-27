@@ -55,7 +55,7 @@
                         <div class="form-group">
                             <label for="image">Feature Image</label>
                             <input type="file" class="form-control"  name="image" value="{{$Staff->image}}"></br>
-                            {{-- <img width="150px" src="{{asset('storage/'.$Staff->image)}}"> --}}
+                          
                         </div>
 
                         <button type="submit" class="btn btn-primary">Submit</button>

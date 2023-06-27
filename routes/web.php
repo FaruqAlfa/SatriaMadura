@@ -1,13 +1,6 @@
 <?php
-
-use App\Models\Supplier;
-use App\Models\Staff;
-use function Ramsey\Uuid\v1;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\StaffController;
@@ -18,7 +11,6 @@ use App\Http\Controllers\LapBarangKeluarController;
 use App\Http\Controllers\LapBarangMasukController;
 use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\BarangKeluarController;
-use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\SupplierResourceController;
 
 /*

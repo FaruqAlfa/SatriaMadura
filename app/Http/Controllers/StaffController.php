@@ -202,9 +202,4 @@ class StaffController extends Controller
         return view('Admin.EditStaff.indexStaff', compact('Staff'));
     }
 
-    // public function getAll(){
-    //     $Staff = Staff::orderBy('id', 'DESC')->paginate(1);
-    //     // $posts = Staff::orderBy('id', 'DESC');
-    //     return view('Admin.EditStaff.IndexStaff', compact('Staff'));
-    // }
 }

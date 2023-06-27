@@ -24,21 +24,7 @@
         </style>
         
         <div class="col-md-6 mt-3">
-            {{-- <form method="POST" action="{{ route('lap_barang_keluar.filter') }}">
-                @csrf
-                <div class="form-group">
-                    <label for="tanggal_keluar">Filter berdasarkan Tanggal keluar:</label>
-                    <select name="tanggal_keluar" id="tanggal_keluar" class="form-control">
-                        <option value="">Pilih Tanggal keluar</option>
-                        @foreach ($dates as $date)
-                            <option value="{{ $date }}"{{ old('tanggal_masuk') == $tanggal ? 'selected' : '' }}>
-                                {{ Carbon::parse($tanggal)->format('Y-m-d') }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-primary">Filter</button>
-            </form> --}}
+           
         </div>
     </div>
 </div>

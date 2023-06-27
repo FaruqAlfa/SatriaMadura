@@ -22,10 +22,7 @@
                     @endif
                     <form method="post" action="{{ route('createBarang') }}" id="myForm" enctype="multipart/form-data" >
                         @csrf
-                        {{-- <div class="form-group">
-                            <label for="supplier_id">supplier_id</label>
-                            <input type="text" name="supplier_id" class="form-control" id="supplier_id" aria-describedby="supplier_id">
-                        </div> --}}
+                        
                         <div class="form-group">
                             <label for="barang_id">barang_id</label>
                             <input type="barang_id" name="barang_id" class="form-control" id="barang_id" aria-describedby="barang_id">
@@ -35,16 +32,7 @@
                             <label for="jumlah">jumlah</label>
                             <input type="jumlah" name="jumlah" class="form-control" id="jumlah" aria-describedby="jumlah">
                         </div>
-                        {{-- <div class="form-group">
-                            <label for="harga">harga</label>
-                            <input type="harga" name="harga" class="form-control" id="harga"
-                                aria-describedby="harga">
-                        </div> --}}
-                        {{-- <div class="form-group">
-                            <label for="total">total</label>
-                            <input type="total" name="total" class="form-control" id="total"
-                                aria-describedby="total">
-                        </div> --}}
+                        
                         <div class="form-group">
                             <label for="tanggal_masuk">tanggal_masuk</label>
                             <input type="tanggal_masuk" name="tanggal_masuk" class="form-control" id="tanggal_masuk"

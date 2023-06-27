@@ -36,15 +36,7 @@
                             <label for="jumlah">jumlah</label>
                             <input type="jumlah" name="jumlah" class="form-control" id="jumlah" aria-describedby="jumlah">
                         </div>
-                        {{-- <div class="form-group">
-                            <label for="harga">harga</label>
-                            <input type="harga" name="harga" class="form-control" id="harga" aria-describedby="harga">
-                        </div> --}}
-                        {{-- <div class="form-group">
-                            <label for="total">total</label>
-                            <input type="total" name="total" class="form-control" id="total"
-                                aria-describedby="total">
-                        </div> --}}
+                        
                         <div class="form-group">
                             <label for="tanggal_keluar">tanggal_keluar</label>
                             <input type="tanggal_keluar" name="tanggal_keluar" class="form-control" id="tanggal_keluar"
