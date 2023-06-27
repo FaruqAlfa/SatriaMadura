@@ -14,22 +14,24 @@ class BarangKeluarController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
-        $barang_keluar = Barang_Keluar::all();
-        $search = $request->search;
-        $perPage = $request->input('per_page', 5);
+{
+    $search = $request->search;
+    $perPage = $request->input('per_page', 5);
 
-        $barang_keluar = Barang_Keluar::join('barang', 'barang.id', '=', 'barang_keluar.barang_id')
-            ->join('staff', 'staff.id', '=', 'barang_keluar.staff_id')
-            ->where('barang.nama_barang', 'like', "%$search%")
-            ->orWhere('barang_keluar.jumlah', 'like', "%$search%")
-            ->orWhere('barang_keluar.harga', 'like', "%$search%")
-            ->orWhere('barang_keluar.tanggal_keluar', 'like', "%$search%")
-            ->orWhere('barang_keluar.total', 'like', "%$search%")
-            ->orWhere('staff.nama_staff', 'like', "%$search%")
-            ->paginate($perPage);
-        return view('perbarangan.barang_keluar', ['Barang_Keluar' => $barang_keluar]);
-    }
+    $barang_keluar = Barang_Keluar::select('barang_keluar.*', 'barang.nama_barang', 'staff.nama_staff')
+        ->join('barang', 'barang.id', '=', 'barang_keluar.barang_id')
+        ->join('staff', 'staff.id', '=', 'barang_keluar.staff_id')
+        ->where('barang.nama_barang', 'like', "%$search%")
+        ->orWhere('barang_keluar.jumlah', 'like', "%$search%")
+        ->orWhere('barang_keluar.harga', 'like', "%$search%")
+        ->orWhere('barang_keluar.tanggal_keluar', 'like', "%$search%")
+        ->orWhere('barang_keluar.total', 'like', "%$search%")
+        ->orWhere('staff.nama_staff', 'like', "%$search%")
+        ->paginate($perPage);
+
+    return view('perbarangan.barang_keluar', ['Barang_Keluar' => $barang_keluar]);
+}
+
 
     /**~
      * Show the form for creating a new resource.
@@ -66,17 +68,25 @@ class BarangKeluarController extends Controller
 
         $barang = Barang::findOrFail($staff_id);
         $barang = $barang_keluar->barang ?? new Barang();
-        $barang_keluar->harga = $barang->harga;
+        // Periksa apakah stok mencukupi
+    if ($barang->stok >= $jumlah) {
         $harga = $barang->harga;
         $total = $jumlah * $harga;
-        $barang->stok = $barang->stok - $request->jumlah;
+        
+        // Kurangi stok
+        $barang->stok = $barang->stok - $jumlah;
         $barang->save();
+        
+        $barang_keluar->harga = $harga;
         $barang_keluar->total = $total;
         $barang_keluar->tanggal_keluar = $request->get('tanggal_keluar');
         $barang_keluar->save();
-
-        return redirect()->route('barangkeluar.store')
+        
+        return redirect()->route('barangkeluar.index')
             ->with('success', 'Barang Keluar Berhasil Ditambahkan');
+    } else {
+        return redirect()->back()->with('error', 'Stok tidak mencukupi.');
+    }
     }
 
     /**
@@ -118,28 +128,34 @@ class BarangKeluarController extends Controller
 
         $barang_keluar = Barang_Keluar::findOrFail($id);
 
-        // $barang_keluar = barang_keluar::findOrFail($id);
+        // $barang_masuk = Barang_Masuk::findOrFail($id);
         $barang = Barang::findOrFail($barang_keluar->barang_id);
-
+        
         // Mengembalikan jumlah stok barang sebelumnya
-        $barang->stok = $barang->stok + $barang_keluar->jumlah;
+    $barang->stok += $barang_keluar->jumlah;
 
-        $barang_keluar->jumlah = $request->get('jumlah');
-        $barang_keluar->save();
-        // Mengupdate jumlah stok barang dengan nilai baru
-        $barang->stok = $barang->stok - $request->jumlah;
+    // Mengupdate jumlah stok barang dengan nilai baru
+    $jumlah = $request->input('jumlah');
+
+    // Periksa apakah stok mencukupi
+    if ($barang->stok >= $jumlah) {
+        $barang->stok -= $jumlah;
         $barang->save();
 
-        $barang_keluar->harga = $barang->harga;
-        $harga = $barang->harga;
-        $total = $request->jumlah * $harga;
+        $barang_keluar->jumlah = $jumlah;
 
+        $harga = $barang->harga;
+        $total = $jumlah * $harga;
+
+        $barang_keluar->harga = $harga;
         $barang_keluar->total = $total;
-        $barang_keluar->jumlah = $request->get('jumlah');
         $barang_keluar->save();
 
         return redirect()->route('barangKeluar')
             ->with('success', 'Barang Keluar Berhasil Diupdate');
+    } else {
+        return redirect()->back()->with('error', 'Stok tidak mencukupi.');
+    }
     }
 
     /**
