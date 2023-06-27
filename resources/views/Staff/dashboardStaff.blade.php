@@ -44,7 +44,6 @@
         <th>Tanggal Keluar</th>
     </tr>
     @foreach ($Staff as $staffDash)
-    {{-- @dd($staffDash); --}}
     <tr>
         {{-- <td>{{ $barang_masuk->id }}</td> --}}
         <td>{{ $staffDash->nama_staff }}</td>

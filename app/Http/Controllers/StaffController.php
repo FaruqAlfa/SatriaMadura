@@ -19,30 +19,17 @@ class StaffController extends Controller
     public function index()
     {
     
-    //    $Staff = Staff::with('barang_keluar')->get();
-    // dd($Staff);
-    $Staff = DB::table('staff')
-    ->join('barang_keluar', 'staff.id', '=', 'barang_keluar.staff_id')
-    ->join('barang', 'barang_keluar.barang_id', '=', 'barang.id')
-    ->get();
+        $Staff = DB::table('staff')
+        ->join('barang_keluar', 'staff.id', '=', 'barang_keluar.staff_id')
+        ->join('barang', 'barang_keluar.barang_id', '=', 'barang.id')
+        ->get();
 
 // return view('staff.index', compact('staff'));
 
         $post = Staff::orderBy('id', 'DESC')->paginate(5);
         return view('Staff.dashboardStaff', compact('Staff', 'post'));
 
-        // if ($search) {
-        //     $Staff = Staff::where('name', 'like', "%$search%")
-        //         ->orWhere('nama_staff', 'like', "%$search%")
-        //         ->orWhere('username', 'like', "%$search%")
-        //         ->orWhere('email', 'like', "%$search%")
-        //         ->orWhere('no_telepon', 'like', "%$search%")
-        //         ->paginate(5);
-        // } else {
-        //     $Staff = Staff::orderBy('id', 'DESC')->paginate(5);
-        // }
-
-        // return view('Admin.EditStaff.indexStaff', compact('Staff'));
+       
     }
 
     public function getStaff()
@@ -100,8 +87,6 @@ class StaffController extends Controller
     }
 
 
-
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -157,7 +142,7 @@ class StaffController extends Controller
         $data = $request->all();
         $staff->update($data);
 
-        return redirect()->route('dashboardStaff')->with('success', 'Staff Berhasil Diubah');
+        return redirect()->route('dashboardStaff')->with('success', 'Data Berhasil Diubah');
     }
 
 

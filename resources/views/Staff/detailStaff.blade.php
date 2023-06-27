@@ -23,15 +23,14 @@
                           <div class="row pt-1">
                             <div class="col-6 mb-3">
                               <h6>Email:  {{ $Staff->email}}</h6>
-                              
                             </div>
                             <div class="col-6 mb-3">
                               <h6>Phone: {{ $Staff->no_telepon}}</h6>
-                             
                             </div>
                           </div>
                           <h6>Username: {{ $Staff->username }}</h6>
                           <hr class="mt-0 mb-4">
+                          <h5>Kategori: {{ $Staff->kategori }}</h5>
                         </div>
                       </div>
                     </div>
