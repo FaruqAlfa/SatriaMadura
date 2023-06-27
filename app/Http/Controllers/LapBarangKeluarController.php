@@ -14,7 +14,6 @@ class LapBarangKeluarController extends Controller
     public function index()
     {
         $barang_keluar = Barang_Keluar::all();
-        // Menghitung jumlah total harga
         $total_harga = $barang_keluar->sum('total');
         return view('laporan.lap_barang_keluar', compact('barang_keluar', 'total_harga'));
     }
@@ -78,10 +77,7 @@ class LapBarangKeluarController extends Controller
             'tanggal_keluar' => 'required',
         ]);
         $tanggal_keluar = $request->get('tanggal_keluar');
-        // dd($tanggal_keluar);
-        // // Ambil data tanggal_keluar yang tersedia di database
-        // $tanggal_keluar = Barang_Keluar::pluck('tanggal_keluar', 'id');
-
+       
         // Filtering data berdasarkan tanggal_keluar
         $barang_keluar = Barang_Keluar::where('tanggal_keluar', $tanggal_keluar)->get();
 

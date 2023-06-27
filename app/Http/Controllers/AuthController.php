@@ -24,10 +24,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
             return redirect('dashboardSupplier');
         }
-        //$credentials['password'] = Hash::make($request->password);
-        // return dd($credentials);
 
-        //return dd(Auth::guard('staff')->attempt($credentials));
         
         if (Auth::guard('staff')->attempt($credentials)) {
             $request->session()->regenerate();
@@ -40,7 +37,7 @@ class AuthController extends Controller
         }
         
 
-        // dd($request->all(),$credentials);
+       
  
         return back()->withErrors([
             'username' => 'The provided credentials do not match our records.',
@@ -51,12 +48,6 @@ class AuthController extends Controller
         return 'username';
     }
 
-    // public function logout(Request $request){
-    //     Auth::logout();
-    //     $request->session()->invalidate();
-    //     $request->session()->regenerateToken();
-    //     return redirect('/login');
-    // }
 
     public function logout(Request $request)
     {

@@ -49,24 +49,7 @@
               </p>
             </a>
           </li>
-          {{-- <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>
-                Produksi
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-          </li> --}}
-          {{-- <li class="nav-item">
-            <a href="#" class="nav-link">
-              <img src="img/gudang.png" class="nav-icon">
-              <p>
-                Gudang
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-          </li> --}}
+          
           <li class="nav-item">
             <a href="{{ route('barangMasukSup') }}" class="nav-link">
               <img src="{{ asset('img/location.png') }}" class="nav-icon">
@@ -76,15 +59,7 @@
               </p>
             </a>
           </li>
-          {{-- <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
-              <p>
-                Pembukuan
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-          </li> --}}
+          
           <li class="nav-item">
             <a href="{{ route('detailEditSupplier', ['id' => Auth::id()]) }}" class="nav-link">
               <i class="nav-icon fas fa-table"></i>

@@ -37,13 +37,6 @@ class RegisterController extends Controller
         ]);
         
 
-        // $user = new User; 
-        // $user->username = $request->get('username');
-        // $user->name = $request->get('name');
-        // $user->email = $request->get('email');
-        // $user->password = Hash::make($request->get('password'));
-        // $user->save();
-
         return redirect()->route('login');
     }
 }

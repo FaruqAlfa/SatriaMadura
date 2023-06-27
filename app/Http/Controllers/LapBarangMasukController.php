@@ -79,8 +79,8 @@ class LapBarangMasukController extends Controller
         ]);
         $tanggal_masuk = $request->get('tanggal_masuk');
 
-        // // Ambil data tanggal_masuk yang tersedia di database
-        // $tanggal_masuk = Barang_masuk::pluck('tanggal_masuk', 'id');
+        // Ambil data tanggal_masuk yang tersedia di database
+        
 
         // Filtering data berdasarkan tanggal_masuk
         $barang_masuk = Barang_Masuk::where('tanggal_masuk', $tanggal_masuk)->get();
