@@ -85,7 +85,7 @@ Route::middleware('auth:web')->group(function () {
 Route::middleware('auth:staff')->group(function () {
     Route::resource('/dashboardSup', SupplierResourceController::class);
     Route::resource('/dashboard', StaffController::class);
-    Route::get('/dashboardStaffgit ', [StaffController::class, 'index'])->name('dashboardStaff');
+    Route::get('/dashboardStaff', [StaffController::class, 'index'])->name('dashboardStaff');
     Route::get('/detailStaff/{id}', [StaffController::class, 'show'])->name('showDetail');
     Route::get('/detailEdit/{id}', [StaffController::class, 'show'])->name('detailEdit');
     Route::get('/editStaff{id}', [StaffController::class, 'edit'])->name('edit');
