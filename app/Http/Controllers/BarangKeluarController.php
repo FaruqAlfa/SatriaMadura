@@ -68,7 +68,7 @@ class BarangKeluarController extends Controller
         $jumlah = $request->input('jumlah');
         $harga = $barang_keluar->harga = $staff_id;
 
-        $barang = Barang::findOrFail($staff_id);
+        $barang = Barang::findOrFail($barang_id);
         $barang = $barang_keluar->barang ?? new Barang();
         // Periksa apakah stok mencukupi
         if ($barang->stok >= $jumlah) {
