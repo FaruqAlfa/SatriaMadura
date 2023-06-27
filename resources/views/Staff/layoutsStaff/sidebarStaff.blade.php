@@ -106,21 +106,16 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('barangMasuk') }}" class="nav-link">
+                  <a href="{{ route('supplierWeb') }}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Barang Masuk Search1</p>
+                      <p>Barang Masuk Search</p>
                   </a>
                 </li>
+                
                 <li class="nav-item">
                   <a href="{{ route('barangKeluar') }}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Barang Keluar Search</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{ route('supplierWeb') }}" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Barang Masuk Search2</p>
                   </a>
                 </li>
                 

@@ -45,7 +45,7 @@ class BarangController extends Controller
 
         Barang::create($request->all());
 
-        return redirect()->route('dashboardAdmin')->with('success', 'Barang Berhasil Ditambahkan');
+        return redirect()->route('barang')->with('success', 'Barang Berhasil Ditambahkan');
     }
 
     /**

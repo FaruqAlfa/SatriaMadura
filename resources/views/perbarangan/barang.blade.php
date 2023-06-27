@@ -55,6 +55,6 @@
     @endforeach
 </table><br>
 
-<a class="btn btn-success mt-3" href="{{ route('barang') }}">Kembali</a><br><br>
+<a class="btn btn-success mt-3" href="{{ route('dashboardStaff') }}">Kembali</a><br><br>
 {{-- {{ $Barang_Keluar->links() }} --}}
 @endsection

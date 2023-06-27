@@ -73,7 +73,6 @@ Route::middleware('auth:admin')->group(function () {
 });
 
 Route::middleware('auth:web')->group(function () {
-    // Route::resource('/supplier', SupplierController::class);
     Route::resource('/barang', BarangController::class);
     Route::resource('/barangmasuk', BarangMasukController::class);
     Route::get('/barangmasukSup', [BarangMasukController::class, 'index'])->name('barangMasukSup');
@@ -92,7 +91,6 @@ Route::middleware('auth:web')->group(function () {
 
 
 Route::middleware('auth:staff')->group(function () {
-    // Route::resource('/supplier', SupplierControllerr::class);
     Route::resource('/dashboardSup', SupplierResourceController::class);
     Route::resource('/dashboard', StaffController::class);
     Route::get('/dashboardStaff', [StaffController::class, 'index'])->name('dashboardStaff');
@@ -100,7 +98,6 @@ Route::middleware('auth:staff')->group(function () {
     Route::get('/detailEdit/{id}', [StaffController::class, 'show'])->name('detailEdit');
     Route::get('/editStaff{id}', [StaffController::class, 'edit'])->name('edit');
     Route::put('/updateStaff{id}', [StaffController::class, 'update'])->name('update');
-    // Route::resource('/supplier', SupplierControllerr::class);
     Route::resource('/dashboardSup', SupplierResourceController::class);
     Route::resource('/barangan', BarangController::class);
     Route::get('/barang', [BarangController::class, 'index'])->name('barang');
