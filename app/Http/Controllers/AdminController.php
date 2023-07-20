@@ -7,14 +7,20 @@ use Illuminate\Http\Request;
 use App\Models\Barang_Keluar;
 use App\Models\Barang_Masuk;
 use App\Models\SupplierResource;
+use App\Models\Lap_Barang_Masuk;
 
 
 class AdminController extends Controller
 {
-    public function index()
+    // public function index()
+    // {
+    //     $admin = Admin::all();
+    //     return view('Admin.dashboardAdmin', ['Admin' => $admin]);
+    // }
+
+    public function dashboard()
     {
-        $admin = Admin::all();
-        return view('Admin.dashboardAdmin', ['Admin' => $admin]);
+        return view('admin.dashboardAdmin');
     }
 
     public function getAdmin1(Request $request)
@@ -104,5 +110,15 @@ class AdminController extends Controller
         // Menghitung jumlah total harga
         $total_harga2 = $barang_masuk->sum('total');
         return view('laporan.lap_barang_masuk_admin', compact('barang_masuk', 'total_harga2', 'tanggal_masuk_admin'));
+    }
+
+    public function grafikLapBarangMasuk()
+    {
+        $lapBarangMasuk = Lap_Barang_Masuk::all();
+
+        $labels = $lapBarangMasuk->pluck('tanggal_masuk');
+        $data = $lapBarangMasuk->pluck('jumlah');
+
+        return view('dashboardAdmin', compact('labels', 'data'));
     }
 }

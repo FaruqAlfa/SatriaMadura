@@ -16,6 +16,7 @@
     },
     "dependencies": {
         "@prettier/plugin-php": "^0.19.6",
+        "chart.js": "^4.3.0",
         "prettier": "^2.8.8"
     }
 }

@@ -13,6 +13,7 @@ use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\SupplierResourceController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,7 +53,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('/makeStaff', [StaffController::class, 'store'])->name('makeStaff');
     Route::delete('/deleteStaff{id}', [StaffController::class, 'destroy'])->name('deleteStaff');
     Route::get('/logoutAdmin', [AuthController::class, 'logoutAdmin'])->name('logoutAdmin');
-    Route::get('/dashboardAdmin', [AdminController::class, 'index'])->name('dashboardAdmin');
+    Route::get('/dashboardAdmin', [AdminController::class, 'dashboard'])->name('dashboardAdmin');
     Route::get('/admin/{id}', [AdminController::class, 'showAdmin'])->name('layoutsAdmin.sidebarAdmin');
     Route::get('/barang', [BarangController::class, 'getBarang'])->name('barang');
     Route::get('/barang_masuk_admin', [AdminController::class, 'getAdmin2'])->name('barang_masuk_admin');
